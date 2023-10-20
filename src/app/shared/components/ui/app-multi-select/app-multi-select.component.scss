@@ -1,0 +1,128 @@
+@import "variables";
+
+.single-select-header {
+  box-sizing: border-box;
+  position: relative;
+  height: 40px;
+  padding: 0 12px;
+  background: #fff;
+  border: solid 1px $color-grey-morn-1;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.single-select-header_disabled {
+  border: solid 1px #eeeeee;
+  background-color: #f3f3f3;
+  color: #a6a8ab;
+
+  &:hover {
+    border-color: #eeeeee;
+  }
+}
+
+
+.select-arrow {
+  min-width: 24px;
+  transition: 0.2s;
+}
+
+.not-selected {
+  color: #a6a8ab;
+}
+
+.active {
+  border-color: $color-brand-1;
+
+  .select-arrow {
+    transform: scale(1, -1);
+  }
+}
+
+.label-container {
+  height: 24px;
+  overflow: hidden;
+}
+
+.label {
+  height: 24px;
+  padding: 0 8px;
+  margin-right: 12px;
+  border-radius: 5px;
+  background: $color-tag-bg;
+  font-size: 14px;
+  line-height: 1;
+  white-space: nowrap;
+  color: $color-brand-1;
+  font-family: $hse-font-family-alt-lt;
+  font-weight: 600;
+}
+
+.remove-item {
+  display: block;
+  width: 12px;
+  height: 12px;
+  margin-left: 8px;
+}
+
+.single-select-input {
+  box-sizing: border-box;
+  width: calc(100% - 32px);
+  height: 48px;
+  padding: 0 32px;
+  margin: 16px;
+  border: solid 1px #c2c2c2;
+  background: transparent;
+  outline: none;
+}
+
+.counter {
+  box-sizing: border-box;
+  height: 24px;
+  min-width: 24px;
+  padding: 0 8px;
+  margin-right: 8px;
+  border-radius: 16px;
+  background: $color-brand-1;
+  color: $color-base-white;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: $hse-font-family-alt-lt;
+}
+
+.items-container {
+  max-height: 316px;
+  border-bottom: 1px solid #eeeeee;
+  overflow-y: auto;
+}
+
+.add-item {
+  padding: 0 48px 16px;
+  border-bottom: 1px solid #eee;
+}
+
+.add-item-btn {
+  margin-right: 28px;
+}
+
+.btn__plus {
+  width: 18px;
+  height: 19px;
+  margin-right: 10px;
+}
+
+:host.ng-invalid.ng-touched {
+  .single-select-header {
+    border-color: red;
+  }
+}
+
+::ng-deep .mat-menu-content:not(:empty) {
+  padding: 0;
+}
+
+.menu-item {
+  height: 44px;
+  line-height: 44px;
+}
+

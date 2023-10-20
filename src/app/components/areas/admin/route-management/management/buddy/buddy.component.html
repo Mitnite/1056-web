@@ -1,0 +1,42 @@
+<p class="subtitle">
+  All buddies
+  <span>
+	<span (click)="setArchiveHandler('act')" class="{{!isArchive ? 'bold' : 'archiveText'}}">Active</span>
+	<span (click)="setArchiveHandler('arc')" class="{{isArchive ? 'bold' : 'archiveText'}}">Archive</span>
+	</span>
+
+</p>
+
+
+<div class="wrapper">
+<!--  <app-multi-select
+    [collection]="nameCollection"
+    [isMulti]="false"
+    [showSearchInput]="false"
+    placeholder="Enter the value"
+    [(ngModel)]="name"
+    style="width: 600px">
+  </app-multi-select>-->
+  <app-input placeholder="Enter the value" style="width: 620px" [disabled]="true"></app-input>
+  <div >
+    <button style="margin: 0 15px" *ngIf="!isEdit" class="btn btn-secondary" (click)="isEdit = !isEdit">Edit</button>
+    <button style="margin: 0 15px" *ngIf="isEdit" class="btn btn-secondary" (click)="isEdit = !isEdit">Cancel
+    </button>
+    <button *ngIf="!isEdit" class="btn btn-primary" (click)="exportElmToExcel()">Export</button>
+    <button *ngIf="isEdit && !isArchive" class="btn btn-archive" (click)="addToArchive = true">Add to archive</button>
+    <button *ngIf="isEdit && isArchive" class="btn btn-archive" (click)="addToArchive = true">Add to active</button>
+    <button style="margin-left: 15px" *ngIf="isEdit && isArchive" class="btn btn-delete" (click)="isDelete = true">Delete</button>
+  </div>
+</div>
+
+<div class="wrapper-table" #buddyTable>
+  <app-buddy-table [isEmail]="true" (reload)="reloadHandler($event)" [isArchive]="isArchive" [isEdit]="isEdit"
+                   [isSave]="isSave"  ></app-buddy-table>
+</div>
+
+
+<span *ngIf="addToArchive"><app-popup (deny)="addToArchive = false" (accept)="acceptHandler()" [title]="title"></app-popup></span>
+
+<span *ngIf="isDelete"><app-popup (deny)="isDelete = false" (accept)="deleteHandler()" [title]="deleteTitle"></app-popup></span>
+
+

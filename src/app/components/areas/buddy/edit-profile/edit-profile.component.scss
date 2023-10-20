@@ -1,0 +1,58 @@
+@import "src/styles/variables";
+
+.wrapper{
+  margin-right: 48px;
+  margin-left: 48px;
+  margin-top: 45px;
+}
+.title{
+  margin-top: 47px;
+  font: $hse-font-family;
+  margin-left: 107px;
+  margin-bottom: 16px;
+  font-weight:500;
+  font-size: 56px;
+  line-height: 64px;
+}
+.line{
+  margin-bottom: 16px;
+}
+.text{
+  font: $hse-font-family-alt;
+  font-weight:500;
+  font-size: 16px;
+  display: flex;
+  text-align: left;
+  margin-right: 60px;
+  width: 160px;
+  float: left;
+}
+
+
+.pages{
+  margin-top: 28px;
+  margin-left: 320px;
+}
+.button{
+  margin-top: 16px;
+  float: right;
+}
+.change{
+  margin-top: 120px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.description{
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+}
+.button2{
+  display: flex;
+  float: right;
+  margin-top: 16px;
+  margin-bottom: 48px;
+}
+
+

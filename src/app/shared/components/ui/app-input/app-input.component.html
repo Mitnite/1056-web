@@ -1,0 +1,37 @@
+<div class="app-input__container" [style.width.px]="width">
+  <label for="{{inputId}}" class="app-input__label">
+    <input id="{{inputId}}"
+           #input
+           class="app-input__input"
+           [class.app-input__input_size_small]="small"
+           [class.app-input__input_rounded]="rounded"
+           [autocomplete]="enabledAutocomplete ? 'on' : 'new-password'"
+           [(ngModel)]="model"
+           [step]="type === 'time' && step"
+           [type]="showPassword ? 'text' : type"
+           [mask]="mask || ''"
+           [prefix]="maskPrefix || ''"
+           [dropSpecialCharacters]="dropSpecialCharacters"
+           [tabIndex]="tabIndex"
+           (focus)="emitFocusEvent()"
+           (blur)="emitBlurEvent()"
+           [disabled]="disabled"
+           [placeholder]="placeholder">
+
+    <button *ngIf="!!extraButtonTitle && !isTypePassword"
+            (click)="onClickExtraButton($event)"
+            title="{{extraButtonTitle}}"
+            class="app-input__extra-button">{{extraButtonTitle}}</button>
+
+    <button *ngIf="isTypePassword"
+            (mousedown)="showInputValue(true)"
+            (mouseup)="showInputValue(false)"
+            (touchstart)="showInputValue(true)"
+            (touchend)="showInputValue(false)"
+            type="button"
+            class="app-input__visibility-button">
+      <app-icon name="eye-on" class="app-input__visibility-icon"></app-icon>
+    </button>
+  </label>
+</div>
+

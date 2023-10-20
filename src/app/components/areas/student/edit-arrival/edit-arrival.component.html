@@ -1,0 +1,43 @@
+<p class="title">Edit my arrival & residence</p>
+<div class="wrapper">
+  <div class="arrival">
+
+    <div class="line">
+      <p class="text">Arrival date</p> <app-date-picker [(ngModel)]="arrivalDate"></app-date-picker>
+    </div>
+
+    <div class="line">
+      <p class="text">Arrival time</p>
+      <app-input
+        [placeholder]="'00:00'"
+        [(ngModel)]="arrivalTime"
+        [mask]="timeMask"
+      ></app-input>
+    </div>
+
+    <div class="line">
+      <p class="text">Arrival place</p> <app-input [placeholder]="'Arrival place'" [(ngModel)]="arrivalPlace"></app-input>
+    </div>
+
+
+    <div class="line">
+      <p class="text">Place of residence</p>
+      <app-multi-select
+        [collection]="residenceCollection"
+        [placeholder]="residencePlace"
+        [isMulti]="false"
+        [showSearchInput]="false"
+        [(ngModel)]="residencePlace">
+      </app-multi-select>
+    </div>
+    <div class="line">
+      <p class="text">Address</p> <app-input [placeholder]="'Address'" [(ngModel)]="address"></app-input>
+    </div>
+  </div>
+
+  <div class="btn-container">
+    <div class="button2"><button class="btn btn-primary" (click)="isShowPopUp = true" >Update</button></div>
+  </div>
+</div>
+
+<span *ngIf="isShowPopUp"><app-popup (deny)="isShowPopUp = false" (accept)="onSubmit()" [title]="title"></app-popup></span>

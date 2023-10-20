@@ -1,0 +1,17 @@
+<div class="upload-container">
+  <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload>
+  <button class="btn btn-secondary file-upload">
+    <div class="fx v-center" (click)="fileUpload.click()">
+      <app-icon name="clip"></app-icon>
+      <span class="file-name">{{fileName || 'Добавьте файл'}}</span>
+    </div>
+    <div>
+      <app-icon name="close" *ngIf="fileName !== ''" (click)="cancelUpload()"></app-icon>
+    </div>
+  </button>
+  <div class="progress">
+    <mat-progress-bar class="progress-bar" mode="determinate" [value]="uploadProgress" *ngIf="uploadProgress">
+    </mat-progress-bar>
+  </div>
+  <div class="hint">Подсказка</div>
+</div>

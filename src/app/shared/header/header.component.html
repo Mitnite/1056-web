@@ -1,0 +1,29 @@
+
+<div class="header-placement"  >
+  <a>
+    <app-icon name="logo-en" (click)="isShowProfile ? onLogoClick() : undefined"></app-icon>
+  </a>
+
+  <div>
+    <div class="hse-header-title"> Digital buddies</div>
+  </div>
+</div>
+
+<div class="header-links" *ngIf="isShowProfile">
+  <img *ngIf="gender === 'female'" src="assets/icons/avatar_female.svg" width="25">
+  <img *ngIf="gender === 'male'" src="assets/icons/avatar-male.svg" width="25">
+  <div class="profileContainer">
+    <div class="profileContent">
+      <img *ngIf="gender === 'female'" src="assets/icons/avatar_female.svg" width="65">
+      <img *ngIf="gender === 'male'" src="assets/icons/avatar-male.svg" width="65">
+      <div style="margin-left: 16px">
+        <div>{{name}} {{surname}}</div>
+        <div class="profileRole">{{role}}</div>
+      </div>
+    </div>
+
+    <a class="btn btn-secondary btn-logout" (click)="logout()"> <app-icon name="exit"></app-icon>Log out</a>
+
+  </div>
+</div>
+

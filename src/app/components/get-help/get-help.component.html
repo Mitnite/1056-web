@@ -1,0 +1,44 @@
+<p class="title">Get help</p>
+
+<div class="wrapper">
+  <div class="block" (click)="setProblemHandler('org')">
+    <div class="subtitle">Organizational problem</div>
+    <p>Here will be described the reasons to write to the mail with a question.</p>
+  </div>
+
+  <div class="block" (click)="setProblemHandler('tech')">
+    <div class="subtitle">Technical problem</div>
+    <p>Here will be described the reasons to write to the mail with a question.</p>
+  </div>
+
+  <div class="block" (click)="setProblemHandler('faq')">
+    <div class="subtitle">FAQ</div>
+    <p>Numbered page of international students with assigned buddies.</p>
+  </div>
+</div>
+
+<div *ngIf="isShow">
+  <div class="backdrop" (click)="isShowHandler()"></div>
+
+  <div class="main">
+    <div class="btn-close" (click)=isShowHandler()>
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M12.6666 4.2735L11.7266 3.3335L7.99992 7.06016L4.27325 3.3335L3.33325 4.2735L7.05992 8.00016L3.33325 11.7268L4.27325 12.6668L7.99992 8.94016L11.7266 12.6668L12.6666 11.7268L8.93992 8.00016L12.6666 4.2735Z"
+              fill="#0F0F14"/>
+      </svg>
+    </div>
+
+    <div class="problemTitle">{{title}}</div>
+    <div *ngIf="isEmail" class="problemContacts">
+      <span class="emailText">Contact e-mail:</span>
+      <app-input [(ngModel)]="email" [disabled]="true"></app-input>
+    </div>
+
+    <div style="margin-top: 48px">
+      <span class="problemSubTitle">Problems</span>
+      <div *ngFor="let problem of problems" class="problemText">{{problem}}</div>
+    </div>
+  </div>
+
+</div>

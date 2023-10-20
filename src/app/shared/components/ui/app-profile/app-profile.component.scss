@@ -1,0 +1,38 @@
+@import "src/styles/variables";
+
+.main{
+  margin-bottom: 10px;
+  width: 613px;
+  height: 152px;
+}
+.profile-desc {
+  margin-top: 32px;
+  text-align:left;
+  padding-left: 48px;
+}
+.profile-desc img {
+  height: 88px;
+  width: 88px;
+  display:inline-block;
+  vertical-align: top;
+}
+.profile-you{
+  display: inline-block;
+  vertical-align: top;
+  padding-left: 24px;
+}
+
+.profile-name{
+  margin-top: 4px;
+  font-size: 42px;
+  font-family: $hse-font-family-alt;
+  font-weight: 600;
+  line-height: 56px;
+}
+.profile-description{
+  font-size: 18px;
+  font-family: $hse-font-family-alt;
+  font-weight: 600;
+  color: $color-grey-dusk-1;
+  line-height: 24px;
+}

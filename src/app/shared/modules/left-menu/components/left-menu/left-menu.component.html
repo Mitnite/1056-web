@@ -1,0 +1,65 @@
+<div class="lm-fake-col"></div>
+<div class="lm-backdrop"
+     [class.lm-backdrop_open]="!menuIsOpen"
+     (click)="toggleMenu()"></div>
+
+
+<div class="lm-menu fx"
+     [class.lm-menu_opened]="menuIsOpen">
+  <!-- First column start -->
+  <div class="lm-col">
+    <div class="lm-item lm-item_left lm-item_bottom-indent"
+         [class.lm-item_hover]="currentHoverId === menuIteIds.COLLAPSE"
+         (mouseenter)="mouseEnter($event, menuIteIds.COLLAPSE)"
+         (mouseleave)="mouseLeave($event)"
+         (click)="toggleMenu()">
+      <app-icon name="arrow-keyboard-right"
+                class="lm-item__icon lm-item__icon_collapse"
+                [class.lm-item__icon_right]="!menuIsOpen"></app-icon>
+    </div>
+
+    <a *ngFor="let item of (firstBlockMenu)"
+       class="lm-item lm-item_left"
+       [class.lm-item_hover]="currentHoverId === item.id"
+       [title]="item.nameKey"
+       [routerLink]="item.link"
+       routerLinkActive="lm-item_active"
+       [routerLinkActiveOptions]="{ exact: item.linkOptions }"
+       (mouseenter)="mouseEnter($event, item.id)"
+       (mouseleave)="mouseLeave($event)">
+      <app-icon [name]="item.icon"
+                class="lm-item__icon"></app-icon>
+    </a>
+  </div>
+  <!-- First column end -->
+
+  <!-- Second column start -->
+  <div class="lm-col"
+       [class.lm-col_closed]="!menuIsOpen">
+
+    <div class="lm-item lm-item_right lm-item_bottom-indent"
+         [class.lm-item_hover]="currentHoverId === menuIteIds.COLLAPSE"
+         (mouseenter)="mouseEnter($event, menuIteIds.COLLAPSE)"
+         (mouseleave)="mouseLeave($event)"
+         (click)="toggleMenu()">
+      <div class="lm-item__label">{{ 'Close' }}</div>
+    </div>
+
+
+    <a *ngFor="let item of (firstBlockMenu)"
+       class="lm-item lm-item_right"
+       [class.lm-item_hover]="currentHoverId === item.id"
+       [routerLink]="item.link"
+       routerLinkActive="lm-item_active"
+       [routerLinkActiveOptions]="{ exact: item.linkOptions }"
+       (mouseenter)="mouseEnter($event, item.id)"
+       (mouseleave)="mouseLeave($event)">
+      <div class="lm-item__label">{{ item.nameKey }}</div>
+    </a>
+  </div>
+  <!-- Second column end -->
+</div>
+
+
+
+

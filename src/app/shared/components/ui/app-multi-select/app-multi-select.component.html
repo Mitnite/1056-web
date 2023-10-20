@@ -1,0 +1,84 @@
+<div #selectHeader
+     [matMenuTriggerFor]="disabled ? null : menu"
+     class="fx v-center single-select-header"
+     [class.active]="showOptionsList"
+     (menuClosed)="optionListClosed()"
+     (menuOpened)="optionListOpened()">
+
+  <div *ngIf="disabled" class="disabler"></div>
+
+  <div *ngIf="!collectionCopy || collectionCopy?.length === 0"
+       class="max-width">
+    {{ placeholder }}
+  </div>
+
+  <div *ngIf="collectionCopy?.length > 0" class="fx-1 max-width label-container">
+    <ng-container *ngIf="checkedItems.length > 0">
+        <span *ngFor="let item of checkedItems"
+              class="fx-inline fx v-center h-center label">
+        <span>{{ item[selectedNameField] }}</span>
+        <app-icon name="cross"
+                  class="remove-item"
+                  (click)="uncheckItem($event, item)"></app-icon>
+      </span>
+    </ng-container>
+
+    <div *ngIf="checkedItems.length === 0"
+         class="fx v-center max-height not-selected">
+      {{ placeholder }}
+    </div>
+  </div>
+
+  <div *ngIf="checkedItemsCount"
+       class="fx v-center h-center counter">
+    {{ checkedItemsCount }}
+  </div>
+
+  <app-icon name="arrow-dropdown"
+            class="select-arrow"></app-icon>
+</div>
+
+<mat-menu #menu
+          [overlapTrigger]="false"
+          [xPosition]="'after'"
+          [yPosition]="'below'"
+          class="single-select-autocomplete-options-list {{dropdownClassName}}">
+
+  <div class="items-container"
+       (click)="$event.stopPropagation()">
+
+    <input #inputElement
+           *ngIf="showSearchInput"
+           type="text"
+           [(ngModel)]="searchValue"
+           [placeholder]="'Search'"
+           (ngModelChange)="searchValueChanged.next($event)"
+           class="single-select-input">
+
+    <div *ngFor="let item of filteredCollection"
+         class="fx v-center menu-item"
+         mat-menu-item>
+
+      <ng-container *ngIf="isMulti">
+        <app-checkbox [(ngModel)]="item.checked"
+                      [disabled]="item.disabled"
+                      [type]="'small'"
+                      (ngModelChange)="checkItem()">
+          <span style="margin-left: 10px;" [innerHTML]="item[nameField]"></span>
+        </app-checkbox>
+      </ng-container>
+
+      <ng-container *ngIf="!isMulti">
+        <app-radio-button [value]="item[idField]"
+                          [name]="code"
+                          [small]="true"
+                          (ngModelChange)="checkSingleItem(item)"
+                          [(ngModel)]="item.checked">
+          <div [innerHTML]="item[nameField]"></div>
+        </app-radio-button>
+      </ng-container>
+
+
+    </div>
+  </div>
+</mat-menu>

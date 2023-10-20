@@ -1,0 +1,66 @@
+@import "src/styles/variables";
+
+.wrapper{
+  width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 45px;
+}
+.title{
+  margin-top: 47px;
+  font: $hse-font-family;
+  margin-left: 196px;
+  margin-bottom: 16px;
+  font-weight:400;
+  font-size: 56px;
+  line-height: 64px;
+}
+.all-blocks{
+  display: flex;
+  margin-left: 268px;
+  gap: 24px;
+}
+.block{
+  width: 200px;
+  height: 160px;
+  border: 1px solid $color-grey-morn-1;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14);
+  transition: border, box-shadow .3s;
+  cursor: pointer;
+}
+
+.block:hover {
+  border: 1px solid #aaa;
+  box-shadow: 0 4px 15px 0 rgba(0, 0, 0, .25);
+}
+
+
+.subtitle{
+  font-weight: 600;
+  font-size: 16px;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 8px;
+  margin-top: 36px;
+  cursor: pointer;
+}
+.text{
+  font-weight: 400;
+  font-size: 16px;
+  align-items: center;
+  text-align: center;
+}
+.description {
+  text-align: center;
+  font-size: 32px;
+  line-height: 40px;
+  margin-top: 48px;
+  width: 424px;
+  margin-left: 268px;
+}
+.button{
+  display: flex;
+  justify-content: center;
+}

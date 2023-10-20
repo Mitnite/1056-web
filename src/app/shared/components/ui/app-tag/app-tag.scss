@@ -1,0 +1,16 @@
+@import "src/styles/variables";
+
+.main{
+  height: 36px;
+  display: inline-block;
+  background-color: $color-tag-bg;
+  border-radius: 4px;
+}
+.text{
+  text-align: center;
+  color: $color-brand-1;
+  font-size: 16px;
+  margin-left: 14px;
+  margin-right: 14px;
+  margin-top: 8px;
+}

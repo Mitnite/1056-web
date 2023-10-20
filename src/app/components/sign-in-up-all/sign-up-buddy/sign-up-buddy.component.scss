@@ -1,0 +1,93 @@
+@import "src/styles/variables";
+
+.wrapper {
+  width: 960px;
+  margin: 45px auto;
+}
+
+.title {
+  margin-top: 47px;
+  font: $hse-font-family;
+  margin-left: 196px;
+  margin-bottom: 16px;
+  font-weight: 400;
+  font-size: 56px;
+  line-height: 64px;
+}
+
+.line {
+  margin-bottom: 16px;
+}
+
+
+.error {
+  font: $hse-font-family-alt;
+  font-weight: 400;
+  font-size: 14px;
+  color: red;
+  display: flex;
+  justify-content: center;
+}
+
+.text {
+  font-weight: 500;
+  font: $hse-font-family-alt;
+  font-size: 16px;
+  display: flex;
+  text-align: left;
+  margin-right: 60px;
+  width: 160px;
+  float: left;
+}
+
+.pages {
+  margin-top: 28px;
+  margin-left: 320px;
+}
+
+.button {
+  margin-top: 16px;
+  float: right;
+}
+
+.change {
+  margin-top: 120px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.description {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.button1 {
+  display: flex;
+  float: left;
+  margin-top: 16px;
+  margin-bottom: 48px;
+}
+
+.button2 {
+  display: flex;
+  float: right;
+  margin-top: 16px;
+  margin-bottom: 48px;
+}
+
+.disabled {
+  cursor: not-allowed;
+  height: 40px;
+  border-radius: 4px;
+  font-family: $hse-font-family-alt-lt;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+  padding: 0 25px;
+  box-shadow: none;
+  background: #6b7a99;
+  border: none;
+  color: #fff;
+}

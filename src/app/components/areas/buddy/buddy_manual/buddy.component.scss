@@ -1,0 +1,131 @@
+@import "../../../../../styles/variables";
+
+.block {
+  width: 960px;
+
+  padding: 32px 32px;
+
+  margin-left: 48px;
+  margin-top: 45px;
+  background: #F5F6FA;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14);
+  transition: border, box-shadow .3s;
+
+}
+
+.block:hover {
+  border: 1px solid #aaa;
+  box-shadow: 0 4px 15px 0 rgba(0, 0, 0, .25);
+}
+
+.wrapper {
+  width: 960px;
+  margin-left: 48px;
+  margin-top: 45px;
+}
+
+.title {
+  margin-top: 47px;
+  font: $hse-font-family;
+  margin-left: 107px;
+  margin-bottom: 16px;
+  font-weight: 500;
+  font-size: 56px;
+  line-height: 64px;
+}
+
+.subtitle {
+  margin-bottom: 16px;
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: 500;
+}
+
+.text {
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.contacts {
+  margin-top: 32px;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.backdrop {
+  position: fixed;
+  z-index: 1002;
+  top: -50px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(1, 7, 18, 0.65);
+}
+
+.main {
+  padding: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  position: fixed;
+  top: 100px;
+  left: 0;
+  right: 0;
+  z-index: 1003;
+  width: 800px;
+  background-color: $color-base-white;
+  border: 1px solid $color-grey-morn-1;
+  border-radius: 12px;
+}
+
+
+.problemTitle {
+  font: $hse-font-family;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 40px;
+}
+
+.problemContacts {
+  margin-top: 48px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.emailText {
+  margin-right: 48px;
+  width: 172px;
+  font: $hse-font-family;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.problemSubTitle {
+  font: $hse-font-family;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 32px;
+}
+
+.problemText {
+  margin-top: 25px;
+  font: $hse-font-family;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.btn-close {
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}

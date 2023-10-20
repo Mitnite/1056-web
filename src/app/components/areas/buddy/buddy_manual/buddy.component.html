@@ -1,0 +1,33 @@
+<p class="title">Buddy manual</p>
+
+<div class="wrapper">
+  <div class="block" (click)="isShow = true">
+    <div class="subtitle">Information</div>
+    <p>Buddy manual text</p>
+  </div>
+
+
+
+<div *ngIf="isShow">
+  <div class="backdrop" (click)="isShow = false"></div>
+
+  <div class="main">
+    <div class="btn-close" (click)="isShow = false">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.6666 4.2735L11.7266 3.3335L7.99992 7.06016L4.27325 3.3335L3.33325 4.2735L7.05992 8.00016L3.33325 11.7268L4.27325 12.6668L7.99992 8.94016L11.7266 12.6668L12.6666 11.7268L8.93992 8.00016L12.6666 4.2735Z" fill="#0F0F14"/>
+      </svg>
+    </div>
+
+    <div class="problemTitle">{{title}}</div>
+    <div *ngIf="isEmail" class="problemContacts">
+      <span class="emailText">Contact e-mail:</span>
+      <app-input  [(ngModel)]="email" [disabled]="true"> </app-input>
+    </div>
+
+    <div style="margin-top: 48px">
+      <span class="problemSubTitle">Buddy manual</span>
+      <div *ngFor="let problem of problems" class="problemText">{{problem}}</div>
+    </div>
+  </div>
+
+</div>

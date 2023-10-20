@@ -1,0 +1,54 @@
+<div class="backdrop" (click)="onClick()"></div>
+<div class="main">
+
+	<div class="title-name">{{name}} {{surname}}</div>
+	<div class="all-tags" >
+    <div class="tag" *ngFor="let tag of tagList"><p class="tag-text">{{tag.name}}</p></div>
+	</div>
+
+	<div class="all-lines">
+		<div *ngIf="position === 1">
+			<div class="line">
+				<p class="text">Gender</p>
+				<app-input [disabled]="disabled" [(ngModel)]="gender"></app-input>
+			</div>
+			<div class="line">
+				<p class="text">Date of birth</p>
+				<app-input [disabled]="disabled" [(ngModel)]="birthDate"></app-input>
+			</div>
+			<div class="line">
+				<p class="text">Phone number</p>
+				<app-input [disabled]="disabled"
+                   [(ngModel)]="phone"
+                   [mask]="phoneMask"
+                   [maskPrefix]="phonePrefix"></app-input>
+			</div>
+			<div class="line">
+				<p class="text">Email</p>
+				<app-input [disabled]="disabled" [(ngModel)]="email"></app-input>
+			</div>
+			<div class="line">
+				<p class="text">Citizenship</p>
+				<app-input [disabled]="disabled" [(ngModel)]="citizenship"></app-input>
+			</div>
+			<div class="line">
+				<p class="text">Campus</p>
+				<app-input [disabled]="disabled" [(ngModel)]="campus"></app-input>
+			</div>
+			<div class="line">
+				<p class="text">HSE faculty</p>
+				<app-input [disabled]="disabled" [(ngModel)]="HSEFaculty"></app-input>
+			</div>
+			<div class="line">
+				<p class="text">About me</p>
+				<app-input [disabled]="disabled" [(ngModel)]="about"></app-input>
+			</div>
+		</div>
+
+
+	</div>
+	<button class="btn btn-secondary btn-close" (click)=onClick()>Close</button>
+	<button *ngIf  = "isAssign" class="btn btn-primary btn-assign" (click)="assign.emit()">Assign</button>
+</div>
+
+

@@ -1,0 +1,117 @@
+@import "../../../styles/variables";
+
+.backdrop{
+  position: fixed;
+  z-index: 1002;
+  top: -50px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(1, 7, 18, 0.65);
+}
+
+.btn-close{
+  position: absolute;
+  left: 40px;
+  bottom: 15px;
+}
+
+.btn-assign{
+  position: absolute;
+  right: 40px;
+  bottom: 15px;
+}
+
+
+.main{
+  transform: scale(0.9);
+  margin-left: auto;
+  margin-right: auto;
+  position: fixed;
+  top: -25px;
+  left: 0;
+  right: 0;
+  z-index: 1003;
+  height: 764px;
+  width: 800px;
+  background-color: $color-base-white;
+  border: 1px solid $color-grey-morn-1;
+  border-radius: 12px;
+
+}
+
+.title-name {
+  margin-top: 25px;
+  margin-left: 40px;
+  font: $hse-font-family-alt;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 40px;
+}
+
+.tag{
+  height: 36px;
+  display: inline-block;
+  background-color: $color-tag-bg;
+  border-radius: 4px;
+  margin-right: 12px;
+  float: left;
+}
+.tag-text{
+  text-align: center;
+  color: $color-brand-1;
+  font-size: 16px;
+  margin-left: 14px;
+  margin-right: 14px;
+  margin-top: 8px;
+}
+
+.close{
+  float: right;
+  margin-top: 12px;
+  margin-right: 12px;
+  height: 16px;
+}
+.all-tags{
+  margin-top: 28px;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+.all-lines{
+  margin-top: 96px;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+.line{
+  margin-top: 16px;
+}
+.text{
+  font: $hse-font-family-alt;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  margin-right: 48px;
+  width: 172px;
+  float: left;
+}
+.pages{
+  margin-top: 28px;
+  margin-left: 320px;
+}
+.icon{
+  cursor: pointer;
+  height: 24px;
+  margin-right: 32px;
+  float: left;
+}
+.page-n{
+  font: $hse-font-family-alt-lt;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  vertical-align: center;
+  margin-left: 0.5px;
+}

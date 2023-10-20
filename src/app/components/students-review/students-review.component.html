@@ -1,0 +1,33 @@
+<div class="backdrop" (click)="deny.emit()"></div>
+
+<div class="main">
+
+	<div class="title">Student's review #{{studentsId || 0}}</div>
+	<div class="text">Score: {{number}}</div>
+
+	<div class="stars">
+		<div *ngFor="let _ of [].constructor(number)">
+			<svg xmlns="http://www.w3.org/2000/svg" width="32" height="31" viewBox="0 0 32 31" fill="none">
+				<path fill-rule="evenodd" clip-rule="evenodd"
+							d="M32 11.584L20.496 10.592L16 0L11.504 10.608L0 11.584L8.736 19.152L6.112 30.4L16 24.432L25.888 30.4L23.28 19.152L32 11.584Z"
+							fill="#FF8914FF"/>
+			</svg>
+		</div>
+
+
+		<div *ngFor="let _ of [].constructor(5 - number)">
+			<svg xmlns="http://www.w3.org/2000/svg" width="32" height="31" viewBox="0 0 32 31" fill="none">
+				<path fill-rule="evenodd" clip-rule="evenodd"
+							d="M32 11.584L20.496 10.592L16 0L11.504 10.608L0 11.584L8.736 19.152L6.112 30.4L16 24.432L25.888 30.4L23.28 19.152L32 11.584Z"
+							fill="#FFB366"/>
+			</svg>
+		</div>
+	</div>
+
+	<div class="input">
+    <app-textarea [disabled]="true" [width]=450 [(ngModel)]="reviewText" [resize]="150"> </app-textarea>
+	</div>
+
+	<button style="margin-top: 32px" class="btn btn-secondary btn-close" (click)="deny.emit()">Close</button>
+
+</div>

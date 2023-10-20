@@ -1,0 +1,144 @@
+
+<p class="title">Personal information</p>
+
+<div class="error" *ngIf="error">{{error}}</div>
+
+<form [formGroup]="myForm" novalidate (ngSubmit)="onSubmit()" class="wrapper">
+
+
+  <div class="line">
+    <p class="text">Email</p>
+    <app-input [placeholder]="'Email'" [formControl]="myForm.controls.email" [tabIndex]="1"
+               [rounded]="true"></app-input>
+  </div>
+
+  <div class="line">
+    <p class="text">Password</p>
+    <app-input [placeholder]="'Password'" [type]="typePassword" [tabIndex]="2"
+               [formControl]="myForm.controls.password"></app-input>
+  </div>
+
+  <div class="line">
+    <p class="text">Given name</p>
+    <app-input [placeholder]="'First name'" [formControl]="myForm.controls.name" [tabIndex]="3"></app-input>
+  </div>
+
+  <div class="line">
+    <p class="text">Surname</p>
+    <app-input [placeholder]="'Last name'" [formControl]="myForm.controls.surname" [tabIndex]="4"></app-input>
+  </div>
+
+  <div class="line">
+    <p class="text">Gender</p>
+    <app-multi-select
+      [collection]="genderCollection"
+      [placeholder]=""
+      [isMulti]="false"
+      [showSearchInput]="false"
+      [formControl]="myForm.controls.gender">
+    </app-multi-select>
+  </div>
+
+  <div class="line">
+    <p class="text">Date of birth</p>
+    <app-date-picker [formControl]="myForm.controls.birthDate"></app-date-picker>
+  </div>
+
+  <div class="line">
+    <p class="text">Phone number</p>
+    <app-input
+      [tabIndex]="5"
+      [placeholder]="'Phone number'"
+      [formControl]="myForm.controls.phone"
+      [mask]="phoneMask"
+      [maskPrefix]="phonePrefix"
+    ></app-input>
+  </div>
+
+  <div class="line">
+    <p class="text">Citizenship</p>
+    <app-multi-select
+      [collection]="citizenshipCollection"
+      [placeholder]=""
+      [isMulti]="false"
+      [showSearchInput]="true"
+      [formControl]="myForm.controls.citizenship"
+    >
+    </app-multi-select>
+  </div>
+
+
+  <div class="line">
+    <p class="text">Campus</p>
+    <app-multi-select
+      [collection]="campusCollection"
+      [placeholder]=""
+      [isMulti]="false"
+      [showSearchInput]="false"
+      [formControl]="myForm.controls.campus">
+    </app-multi-select>
+  </div>
+
+  <div class="line">
+    <p class="text">HSE Faculty</p>
+    <app-multi-select
+      [collection]="facultyCollection"
+      [placeholder]=""
+      [isMulti]="false"
+      [showSearchInput]="true"
+      [formControl]="myForm.controls.localFaculty">
+    </app-multi-select>
+  </div>
+
+  <div class="line">
+    <p class="text">Interest №1</p>
+    <app-multi-select
+      [collection]="tagCollection"
+      [placeholder]=""
+      [isMulti]="false"
+      [showSearchInput]="false"
+      [formControl]="myForm.controls.tagName1"
+    ></app-multi-select>
+  </div>
+
+  <div class="line">
+    <p class="text">Interest №2</p>
+    <app-multi-select
+      [collection]="tagCollection"
+      [placeholder]=""
+      [isMulti]="false"
+      [showSearchInput]="false"
+      [formControl]="myForm.controls.tagName2"
+    ></app-multi-select>
+  </div>
+
+  <div class="line">
+    <p class="text">Interest №3</p>
+    <app-multi-select
+      [collection]="tagCollection"
+      [placeholder]=""
+      [isMulti]="false"
+      [showSearchInput]="false"
+      [formControl]="myForm.controls.tagName3"
+    ></app-multi-select>
+  </div>
+
+  <div class="line">
+    <p class="text">About me</p>
+    <app-textarea [placeholder]="'Information about me'" [formControl]="myForm.controls.about"
+                  [tabIndex]="6"></app-textarea>
+  </div>
+
+  <div class="btn-container">
+    <div class="button1">
+      <button class="btn btn-secondary" [routerLink]="['/sign-up2']">Back</button>
+    </div>
+    <div class="button2">
+
+      <button class="btn btn-primary" *ngIf="!myForm.invalid">Next</button>
+      <button class="disabled" [disabled]="myForm.invalid" *ngIf="myForm.invalid">Next</button>
+    </div>
+  </div>
+
+</form>
+

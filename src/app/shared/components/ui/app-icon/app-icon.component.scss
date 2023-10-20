@@ -1,0 +1,11 @@
+:host {
+  width: 24px;
+  height: 24px;
+  transition: color .3s ease;
+
+  &::ng-deep .app-icon,
+  &::ng-deep .app-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+}

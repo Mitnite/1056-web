@@ -1,0 +1,89 @@
+<div class="table-container">
+  <table class="table">
+    <thead>
+    <tr>
+      <th *ngIf="isEdit"></th>
+      <th>N</th>
+      <th>Full name</th>
+      <th *ngIf="isEmail">Email</th>
+      <th>Faculty</th>
+      <th>Citizenship</th>
+      <th>Buddy</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let d of data; let i = index">
+    <tr *ngIf="d.archived === isArchive">
+      <td *ngIf="isEdit"><input type="checkbox" [checked]="index === i" (change)="setIdHandler(i, d.id)"></td>
+      <td>{{d.id}}</td>
+      <td><span class="buddyName" (click)=getStudentNameHandler(d.id)>{{d.name}} {{d.surname}}</span></td>
+      <td *ngIf="isEmail">{{d.email}}</td>
+      <td><span style="max-width: 400px; white-space: pre-wrap; word-wrap: break-word;">{{d.localFaculty || '-'}}</span></td>
+      <td>{{d.citizenship || '-'}}</td>
+      <td>
+        <span *ngIf="d.buddyInfo" class="buddyName"
+              (click)=getBuddyNameHandler(d.buddyInfo.id)>{{d.buddyInfo.name}} {{d.buddyInfo.surname}}</span>
+        <span *ngIf="!d.buddyInfo" class="buddyName" (click)="isAddStudent ? setStudentId(d.id) : setBuddyId(d.id)">+</span>
+      </td>
+    </tr>
+    </tbody>
+
+  </table>
+  <div *ngIf="isShowBuddyInfo">
+    <app-buddy-info
+      [name]="BuddyName"
+      [surname]="BuddySurname"
+      [gender]="BuddyGender"
+      [birthDate]="BuddyBirthDate"
+      [email]="BuddyEmail"
+      [phone]="BuddyPhone"
+      [citizenship]="BuddyCitizenship"
+      [campus]="BuddyCampus"
+      [HSEFaculty]="BuddyHSEFaculty"
+      [about]="BuddyAbout"
+      [tagList]="BuddyTagList"
+      [isAssign]="false"
+      (clicked)="isShowBuddyInfo = false">
+
+    </app-buddy-info>
+  </div>
+  <div *ngIf="isShowStudentInfo">
+    <app-student-info
+      [gender]="this.StudentGender"
+      [birthDate]="this.StudentBirthDate"
+      [citizenship]="this.StudentCitizenship"
+      [localFaculty]="this.StudentLocalFaculty"
+      [homeUniversity]="this.StudentHomeUniversity"
+      [about]="this.StudentAbout"
+      [tagList]="this.StudentTagList"
+      [name]="StudentName + StudentSurName"
+      [email]="this.StudentEmail"
+      [category]="this.StudentLocalGroup"
+      [arrivalDate]="this.StudentArrivalDate"
+      [arrivalTime]="this.StudentArrivalTime"
+      [arrivalPlace]="this.StudentArrivalPlace"
+      [place]="this.StudentResidencePlace"
+      [address]="this.StudentAddress"
+
+      [isTaken]="true"
+      [isAssign]="false"
+      (clicked)="isShowStudentInfo = false">
+
+    </app-student-info>
+  </div>
+</div>
+
+
+<div *ngIf="showTable" class="backdrop" (click)="showTable=false"></div>
+
+<div *ngIf="showTable" class="main">
+  <div class="title">Assign buddy</div>
+  <div class="showTable">
+    <app-buddy-table (BuddyId)="addBuddy($event)" [isAddBuddy]="true" [isEmail]="false"
+                     [isArchive]="false"></app-buddy-table>
+  </div>
+  <button class="btn btn-secondary btn-close" (click)="showTable=false">Close</button>
+</div>
+
+<span *ngIf="isShowMessage"><app-popup (deny)="isShowMessage = false" (accept)="studentIdHandler()"
+                                       [title]="title"></app-popup></span>
+

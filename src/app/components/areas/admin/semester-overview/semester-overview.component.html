@@ -1,0 +1,65 @@
+<p class="title">Analytics</p>
+
+<div class="wrapper">
+  <app-multi-select
+    [isMulti]="false"
+    [showSearchInput]="false"
+    placeholder="Enter the value"
+    style="width: 620px">
+  </app-multi-select>
+  <button class="btn btn-primary" (click)="downloadPDF()">Export</button>
+</div>
+
+<div id="userChart">
+  <div class="wrapper">
+
+    <div class="diagram-container">
+      <div class="chart-container">
+        <canvas id="citizenShipChart">{{ chart }}</canvas>
+      </div>
+    </div>
+
+    <div class="diagram-container">
+      <div class="chart-container">
+        <canvas id="genderChart">{{ chart }}</canvas>
+      </div>
+    </div>
+
+    <div class="diagram-container">
+      <div class="chart-container">
+        <canvas id="facultyChart">{{ chart }}</canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrapper">
+
+    <div class="diagram-container">
+      <div class="chart-container">
+        <canvas id="facultyPercentChart">{{ chart }}</canvas>
+      </div>
+    </div>
+
+    <div class="diagram-container">
+      <div class="chart-container">
+        <canvas id="timeChart">{{ chart }}</canvas>
+      </div>
+    </div>
+
+    <div class="diagram-container">
+      <div class="chart-container">
+        <canvas id="percentChart">{{ chart }}</canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrapper">
+    <div class="diagram-container">
+      <div class="chart-container">
+        <canvas id="effectiveChart">{{ chart }}</canvas>
+      </div>
+    </div>
+
+  </div>
+
+</div>

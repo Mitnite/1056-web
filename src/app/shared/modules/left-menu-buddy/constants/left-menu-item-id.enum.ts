@@ -1,0 +1,9 @@
+export enum LeftMenuItemId {
+  COLLAPSE,
+  DASHBOARD,
+  MY_STUDENTS,
+  MY_PROFILE,
+  EDIT_PROFILE,
+  BUDDY_MANUAL,
+  GET_HELP
+}

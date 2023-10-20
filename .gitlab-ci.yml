@@ -1,0 +1,36 @@
+image: node:16.13.0-alpine
+
+stages:
+  - build_prod
+  - publish_prod
+
+build_prod:
+  image: node:16.13.0-alpine
+  stage: build_prod
+  when: manual
+  only:
+    refs:
+      - develop
+      - main
+  before_script:
+    - apk add --no-cache bash openssh tar git
+  script:
+    - npm config set unsafe-perm true
+    - npm install
+    - npm install -g @angular/cli
+    - npm run build
+    - tar -cf bundle.tar dist/angular-starter/*
+  tags:
+    - front-buddy_manual
+  artifacts:
+    paths:
+      - bundle.tar
+    expire_in: 20 min
+
+publish_prod:
+  stage: publish_prod
+  script:
+    - tar -xf bundle.tar -C /var/www/buddy_manual/
+  when: manual
+  tags:
+    - front-buddy_manual-deploy

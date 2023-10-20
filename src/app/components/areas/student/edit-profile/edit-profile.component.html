@@ -1,0 +1,118 @@
+
+
+<p class="title">Edit my profile</p>
+
+<div class="wrapper">
+  <div class="line">
+    <p class="text">Given name</p> <app-input [placeholder]="'First name'" [(ngModel)]="name"></app-input>
+  </div>
+  <div class="line">
+    <p class="text">Surname</p> <app-input [placeholder]="'Last name'" [(ngModel)]="surname"></app-input>
+  </div>
+  <div class="line">
+    <p class="text">Gender</p>
+    <app-multi-select
+      [collection]="genderCollection"
+      [placeholder]="gender"
+      [isMulti]="false"
+      [showSearchInput]="false"
+      [(ngModel)]="gender">
+    </app-multi-select>
+  </div>
+  <div class="line">
+    <p class="text">Date of birth</p> <app-date-picker [(ngModel)]="birthDate"></app-date-picker>
+  </div>
+
+  <div class="line">
+    <p class="text">Email</p> <app-input [placeholder]="email" [(ngModel)]="email"></app-input>
+  </div>
+
+  <div class="line">
+    <p class="text">Citizenship</p>
+    <app-multi-select
+      [collection]="citizenshipCollection"
+      [placeholder]="citizenship"
+      [isMulti]="false"
+      [showSearchInput]="true"
+      [(ngModel)]="citizenship"
+    >
+    </app-multi-select>
+  </div>
+
+  <div class="line">
+    <p class="text">Campus</p>
+    <app-multi-select
+      [collection]="campusCollection"
+      [placeholder]="campus"
+      [isMulti]="false"
+      [showSearchInput]="true"
+      [(ngModel)]="campus"
+    >
+    </app-multi-select>
+  </div>
+
+  <div class="line">
+    <p class="text">HSE faculty</p>
+    <app-multi-select
+      [collection]="facultyCollection"
+      [placeholder]="localFaculty"
+      [isMulti]="false"
+      [showSearchInput]="true"
+      [(ngModel)]="localFaculty">
+      ></app-multi-select>
+  </div>
+
+  <div class="line">
+    <p class="text">Home university</p> <app-input [(ngModel)]="homeUniversity"></app-input>
+  </div>
+
+  <div class="line">
+    <p class="text">Category of student</p>
+    <app-multi-select
+      [collection]="localGroupCollection"
+      [placeholder]="localGroup"
+      [isMulti]="false"
+      [showSearchInput]="false"
+      [(ngModel)]="localGroup">
+    </app-multi-select>
+  </div>
+
+  <div class="line">
+    <p class="text">Interest №1</p>
+    <app-multi-select
+      [collection]="tagCollection"
+      [placeholder]="tagName1"
+      [isMulti]="false"
+      [showSearchInput]="false"
+      [(ngModel)]="tagName1"
+    ></app-multi-select>
+  </div>
+  <div class="line">
+    <p class="text">Interest №2</p>
+    <app-multi-select
+      [collection]="tagCollection"
+      [placeholder]="tagName2"
+      [isMulti]="false"
+      [showSearchInput]="false"
+      [(ngModel)]="tagName2"
+    ></app-multi-select>
+  </div><div class="line">
+  <p class="text">Interest №3</p>
+  <app-multi-select
+    [collection]="tagCollection"
+    [placeholder]="tagName3"
+    [isMulti]="false"
+    [showSearchInput]="false"
+    [(ngModel)]="tagName3"
+  ></app-multi-select>
+</div>
+  <div class="line">
+    <p class="text">About me</p> <app-textarea [placeholder]="'More information'" [(ngModel)]="about"></app-textarea>
+  </div>
+  <div class="btn-container">
+    <div class="button2"><button class="btn btn-primary" (click)="isShowPopUp = true">Update</button></div>
+  </div>
+</div>
+
+<span *ngIf="isShowPopUp"><app-popup (deny)="isShowPopUp = false" (accept)="onSubmit()" [title]="title"></app-popup></span>
+

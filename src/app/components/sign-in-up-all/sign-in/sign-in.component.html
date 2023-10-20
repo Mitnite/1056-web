@@ -1,0 +1,24 @@
+<p class="title">Sign in</p>
+
+
+<div class="error" *ngIf="error">{{error}}</div>
+
+<div class="wrapper">
+  <div class="line">
+    <p class="text">Email</p>
+    <app-input class="line12" [placeholder]="'email'" [(ngModel)]="email" [tabIndex]="1">  </app-input>
+  </div>
+  <div class="line">
+    <p class="text">Password</p> <app-input [placeholder]="'password'" [type]="typePassword" [tabIndex]="2" [(ngModel)]="password"> </app-input>
+
+  </div>
+  <div class="button"><button class="btn btn-primary" (click)="onSubmit()" tabindex="3">Next</button></div>
+
+  <!--<div class="button"><button class="btn btn-primary" [routerLink]="['/foreign_student/home']">Next</button></div> -->
+
+  <div class="change">
+    <p class="description">Register if you don't have an account.</p>
+    <button class="btn btn-primary" [routerLink]="['/sign-up2']" >Sign up</button>
+  </div>
+</div>
+

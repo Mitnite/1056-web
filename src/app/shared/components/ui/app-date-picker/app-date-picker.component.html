@@ -1,0 +1,7 @@
+<div class="date-picker-container">
+  <input [matDatepicker]="picker" (dateChange)="dateChange($event)" [(ngModel)]="modelValue">
+  <mat-datepicker-toggle  [for]="picker">
+    <app-icon matDatepickerToggleIcon name="calendar"></app-icon>
+  </mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</div>

@@ -1,0 +1,47 @@
+@import "src/styles/variables";
+
+.wrapper{
+  width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 45px;
+}
+.title{
+  margin-top: 47px;
+  font: $hse-font-family;
+  margin-left: 196px;
+  margin-bottom: 16px;
+  font-weight:400;
+  font-size: 56px;
+  line-height: 64px;
+}
+.all-blocks{
+  display: flex;
+  margin-left: 280px;
+  gap: 24px;
+}
+.block{
+  width: 400px;
+  height: 160px;
+  border: 1px solid $color-grey-morn-1;
+  border-radius: 12px;
+  padding: 24px;
+}
+.subtitle{
+  font-weight: 600;
+  font-size: 16px;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 8px;
+  margin-top: 36px;
+}
+.text{
+  font-weight: 400;
+  font-size: 16px;
+  align-items: center;
+  text-align: center;
+}
+.button{
+  margin-left: 444px;
+  margin-top: 16px;
+}

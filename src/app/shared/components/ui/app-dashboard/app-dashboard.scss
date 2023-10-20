@@ -1,0 +1,53 @@
+@import "src/styles/variables";
+
+.card {
+  max-width: 285px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px solid $color-grey-morn-1;
+  border-radius: 8px;
+  font: $hse-font-size-base;
+}
+
+.card-btn-container{
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  gap: 16px;
+}
+.card-faculty{
+  font: $hse-font-family-alt;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  margin-left: 0px;
+}
+.card-text{
+  font: $hse-font-family-alt;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 20px;
+}
+.card-date{
+  font: $hse-font-family-alt;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 80px;
+  width: 120px;
+  float: left;
+  margin-left: 16px;
+  color: $color-grey-dusk-1;
+  text-align: center;
+}
+.icon{
+  width: 80px;
+  height: 80px;
+  float: left;
+  color: $color-grey-morn-3;
+}
+.one-line{
+  float: left;
+}

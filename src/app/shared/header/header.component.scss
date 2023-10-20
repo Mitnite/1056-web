@@ -1,0 +1,78 @@
+@import "variables";
+
+:host {
+  height: 3.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: $color-base-white;
+  border-bottom: 1px solid $color-grey-morn-3;
+  padding: 0 3.375rem 0 1.25rem;
+}
+
+.header-placement {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  margin-left: 0.75rem;
+}
+
+.hse-header-title {
+  margin-left: 2rem;
+  font-family: $hse-font-family-alt-lt;
+  font-size: .875rem;
+  font-weight: 600;
+  color: $color-grey-dusk-2;
+}
+
+.header-links {
+  display: flex;
+  gap: 16px;
+  height: 100%;
+  width: 100px;
+  justify-content: center;
+}
+
+.profileContainer {
+  display: none;
+}
+
+.header-links:hover .profileContainer, .profileContainer:hover{
+  z-index: 1005;
+  position: absolute;
+  right: 15px;
+  top: 56px;
+  display: block;
+  width: 340px;
+  height: 189px;
+  border-radius: 4px;
+  background: var(--surface-light, #FFF);
+  box-shadow: 0 1px 12px 0 rgba(106, 122, 152, 0.12);
+}
+
+.profileContent{
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding: 24px;
+  border-bottom: 1px solid #EDEFF3;
+}
+
+.profileRole{
+  font-family: $hse-font-family-alt-lt;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 16px;
+  color: var(--text-text-main-secondary, #8596AA);
+
+}
+
+.btn-logout{
+  display: flex;
+  justify-content: left;
+  margin-left: 24px;
+  margin-top: 20px;
+  align-items: center;
+  border: none;
+}

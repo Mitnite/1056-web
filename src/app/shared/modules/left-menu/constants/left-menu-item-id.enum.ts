@@ -1,0 +1,8 @@
+export enum LeftMenuItemId {
+  COLLAPSE,
+  PROFILE,
+  EDIT_PROFILE,
+  EDIT_ARRIVAL,
+  DASHBOARD,
+  GET_HELP
+}

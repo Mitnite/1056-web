@@ -1,0 +1,96 @@
+<div class="backdrop" (click)="onClick()"></div>
+<div class="main">
+
+  <div class="pages">
+    <div class="icon">
+      <app-icon name="arrow-keyboard-right" (click)="addPositionHandler()"></app-icon>
+    </div>
+    <div class="icon">
+      <app-icon name="arrow-keyboard-left" (click)="subtractPositionHandler()"></app-icon>
+    </div>
+    <p class="page-n">0{{position}}/02</p>
+  </div>
+
+
+  <div *ngIf="name !== ''" class="title-name">{{name}}</div>
+  <div class="all-tags">
+    <div class="tag" *ngFor="let tag of tagList"><p class="tag-text">{{tag.name}}</p></div>
+  </div>
+
+  <div class="all-lines">
+    <div *ngIf="position === 1">
+      <div class="line">
+        <p class="text">Gender</p>
+        <app-input [disabled]="disabled" [(ngModel)]="gender"></app-input>
+      </div>
+      <div class="line">
+        <p class="text">Date of birth</p>
+        <app-input [disabled]="disabled" [(ngModel)]="birthDate"></app-input>
+      </div>
+      <ng-container *ngIf="email">
+        <div class="line">
+          <p class="text">Email</p>
+          <app-input [disabled]="disabled" [(ngModel)]="email"></app-input>
+        </div>
+      </ng-container>
+      <div class="line">
+        <p class="text">Citizenship</p>
+        <app-input [disabled]="disabled" [(ngModel)]="citizenship"></app-input>
+      </div>
+      <div class="line">
+        <p class="text">Campus</p>
+        <app-input [disabled]="disabled" [(ngModel)]="campus"></app-input>
+      </div>
+      <div class="line">
+        <p class="text">HSE faculty</p>
+        <app-input [disabled]="disabled" [(ngModel)]="localFaculty"></app-input>
+      </div>
+      <div class="line">
+        <p class="text">Home university</p>
+        <app-input [disabled]="disabled" [(ngModel)]="homeUniversity"></app-input>
+      </div>
+      <div class="line">
+        <p class="text">Category of students</p>
+        <app-input [disabled]="disabled" [(ngModel)]="category"></app-input>
+      </div>
+      <div class="line">
+        <p class="text">About me</p>
+        <app-input [disabled]="disabled" [(ngModel)]="about"></app-input>
+      </div>
+    </div>
+
+    <div *ngIf="position === 2">
+      <div class="line">
+        <p class="text">Arrival date</p>
+        <app-input [disabled]="disabled" [(ngModel)]="arrivalDate"></app-input>
+      </div>
+      <div class="line">
+        <p class="text">Arrival time</p>
+        <app-input [disabled]="disabled" [(ngModel)]="arrivalTime"></app-input>
+      </div>
+      <div class="line">
+        <p class="text">Arrival place</p>
+        <app-input [disabled]="disabled" [(ngModel)]="arrivalPlace"></app-input>
+      </div>
+      <div class="line">
+        <p class="text">Place of residence</p>
+        <app-input [disabled]="disabled" [(ngModel)]="place"></app-input>
+      </div>
+      <div class="line">
+        <p class="text">Address</p>
+        <app-input [disabled]="disabled" [(ngModel)]="address"></app-input>
+      </div>
+    </div>
+
+
+  </div>
+  <button class="btn btn-secondary btn-close" (click)=onClick()>Close</button>
+  <button *ngIf="isAssign" class="btn btn-primary btn-assign" (click)="assign.emit()">Assign</button>
+  <button *ngIf="isTaken" class="btn btn-primary btn-assign" (click)=" takeHandler(id)">Take</button>
+
+
+</div>
+<span *ngIf="isShowPopUp">
+    <app-popup (accept)="onSubmit()" (deny)="isShowPopUp = false" [title]="title"></app-popup>
+  </span>
+

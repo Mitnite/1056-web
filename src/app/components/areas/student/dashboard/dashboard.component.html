@@ -1,0 +1,170 @@
+<p class="title">Dashboard</p>
+
+<div class="tags">
+  <div *ngIf="status === 'searching'" class="main">
+    <div class="icon">
+      <app-icon name="clock"></app-icon>
+    </div>
+    <div class="text02">Looking for a volunteer for you</div>
+    <div class="button">
+      <button class="btn btn-secondary" (click)="onSubmit2()">Stop search</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="status === 'not_matched'" class="main">
+  <div class="icon">
+    <app-icon name="clock"></app-icon>
+  </div>
+  <div class="text02">Volunteer search suspended</div>
+  <div class="text02">  Make sure that the data in your profile is up to date.</div>
+
+  <div class="button">
+    <button class="btn btn-primary" (click)="onStudentInfo()">New application</button>
+  </div>
+
+</div>
+
+<div *ngIf="status === 'matched'" class="main">
+  <div class="icon">
+    <app-icon name="check"></app-icon>
+  </div>
+  <div class="text02">Your Buddy: {{nameBuddy}} </div>
+  <div class="text02">Buddy’s email: {{emailBuddy}}</div>
+  <div class="button">
+    <button class="btn btn-secondary" (click)="isShowDeleteMessage = true">Delete match</button>
+    <button class="btn btn-primary" style="margin-left: 10px" (click)="onInfoBuddy()">
+      Open buddy's profile</button>
+  </div>
+  <div class="info" *ngIf="isInfoBuddy">
+
+    <app-buddy-info
+      [name]="name"
+      [surname]="surname"
+      [gender]="gender"
+      [birthDate]="birthDate"
+      [email]="email"
+      [phone]="phone"
+      [citizenship]="citizenship"
+      [campus]="campus"
+      [HSEFaculty]="HSEFaculty"
+      [about]="about"
+      [tagList]="tagList"
+
+      (clicked)="isInfoBuddy = false"
+
+    ></app-buddy-info>
+  </div>
+</div>
+
+
+
+<div *ngIf="status === 'met'" class="main">
+  <div class="icon">
+    <app-icon name="check"></app-icon>
+  </div>
+  <div class="text02">Your request to find a volunteer has been completed.</div>
+  <div class="text02">Don't forget to leave a review.</div>
+</div>
+
+
+<div *ngIf="status === 'met'" class="leaveReview">
+  <div class="block" (click)="isShow = true">
+    <div class="subtitle">Leave a review</div>
+    <p>Evaluate the work of the service and buddy</p>
+  </div>
+
+
+  <div *ngIf="isShow">
+    <div class="backdrop" (click)="isShow = false"></div>
+
+    <div class="leaveReviewMain">
+
+      <div class="leaveReviewTitle">Leave a review</div>
+      <div class="leaveReviewText">Rate how the meeting with Buddy went.</div>
+
+      <div class="leaveReviewStars">
+        <div style="cursor: pointer"  *ngFor="let _ of [].constructor(numberOfStars), let i = index" (click)="numberOfStars=i+1">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="31" viewBox="0 0 32 31" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M32 11.584L20.496 10.592L16 0L11.504 10.608L0 11.584L8.736 19.152L6.112 30.4L16 24.432L25.888 30.4L23.28 19.152L32 11.584Z"
+                  fill="#ff8000"/>
+          </svg>
+        </div>
+
+
+        <div class="stars" *ngFor="let _ of [].constructor(5 - numberOfStars), let i = index" (click)="numberOfStars=i+1+numberOfStars">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="31" viewBox="0 0 32 31" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M32 11.584L20.496 10.592L16 0L11.504 10.608L0 11.584L8.736 19.152L6.112 30.4L16 24.432L25.888 30.4L23.28 19.152L32 11.584Z"
+                  fill="#ffc796"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="leaveReviewInput">
+        <app-textarea [disabled]="false" [width]=450 [resize]="150" [placeholder]="'Enter the value'"></app-textarea>
+
+      </div>
+
+      <div style="margin-top: 32px">
+        <button  class="btn btn-secondary btn-close" (click)="isShow = false">Close</button>
+        <button style="margin-left: 23px" class="btn btn-primary btn-close" (click)="isAcceptMessage=true">Send</button>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<div *ngIf="isShowDeleteMessage">
+
+  <div class="backdrop" (click)="isShowDeleteMessage = false"></div>
+
+  <div class="messageMain">
+
+    <div class="messageTitle">Write to the email</div>
+    <div class="messageText">{{deleteMatch}}</div>
+
+    <app-input [(ngModel)]="AdminEmail" [disabled]="true"></app-input>
+
+    <div style="margin-top: 32px">
+      <button class="btn btn-primary btn-assign" (click)="isShowDeleteMessage = false">OK</button>
+    </div>
+
+  </div>
+
+
+</div>
+
+<ng-container *ngIf="isAcceptMessage">
+  <div class="backdrop" (click)="isAcceptMessage = false"></div>
+  <app-popup (deny)="isAcceptMessage = false" (accept)="onAcceptReview()" [title]="'Are you sure you want to send the review?'"></app-popup>
+</ng-container>
+
+<ng-container *ngIf="isShowStudentInfo">
+  <div class="backdrop" (click)="isShowStudentInfo = false"></div>
+  <app-student-info
+    [gender]="this.StudentGender"
+    [birthDate]="this.StudentBirthDate"
+    [citizenship]="this.StudentCitizenship"
+    [localFaculty]="this.StudentLocalFaculty"
+    [homeUniversity]="this.StudentHomeUniversity"
+    [about]="this.StudentAbout"
+    [tagList]="this.StudentTagList"
+    [name]="StudentName + ' ' + StudentSurName"
+    [campus]="StudentCampus"
+    [email]="this.StudentEmail"
+    [category]="this.StudentLocalGroup"
+    [arrivalDate]="this.StudentArrivalDate"
+    [arrivalTime]="this.StudentArrivalTime"
+    [arrivalPlace]="this.StudentArrivalPlace"
+    [place]="this.StudentResidencePlace"
+    [address]="this.StudentAddress"
+    [isAssign]="true"
+    (assign)="onSubmit1()"
+    (clicked)="isShowStudentInfo=false">
+
+  </app-student-info>
+
+</ng-container>
