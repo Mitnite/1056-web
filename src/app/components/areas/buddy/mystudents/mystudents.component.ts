@@ -98,4 +98,10 @@ export class MyStudentsComponent implements OnInit {
     this.name = name + ' ' + surname;
     this.campus = campus;
   }
+
+  findStudents(name: string) {
+    const find = this.student && this.student.find((stud) => stud.foreignStudent.isMatched === name)
+    return !!find;
+  }
+
 }
