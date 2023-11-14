@@ -20,8 +20,7 @@
 </div>
 
 <div class="wrapper-table" #internationalStudentTable>
-  <app-student-table [isEmail]="true" (reload)="reloadHandler($event)" [isArchive]="isArchive" [isEdit]="isEdit"
-                     [isSave]="isSave"></app-student-table>
+  <app-student-table [isEmail]="true" (reload)="reloadHandler($event)" [isArchive]="isArchive" [isEdit]="isEdit"></app-student-table>
 </div>
 <span *ngIf="addToArchive"><app-popup (deny)="addToArchive = false" (accept)="acceptHandler()"></app-popup></span>
 

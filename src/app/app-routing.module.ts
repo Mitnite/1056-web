@@ -39,7 +39,7 @@ const routes: Routes = [
   {
     path: '',
     component: SignInComponent,
-    canActivate: [UnAuthorizationGuard],
+    // canActivate: [UnAuthorizationGuard],
   },
   {
     path: 'auth',

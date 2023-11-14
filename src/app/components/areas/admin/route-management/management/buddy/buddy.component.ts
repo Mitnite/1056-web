@@ -3,6 +3,7 @@ import { ExportService } from '@core/export.service';
 import { AuthService } from '@core/auth.service';
 import { CookieService } from 'ngx-cookie';
 import { EditBuddy } from '../../../../../../interfaces';
+import { checkData } from '../../../../../../checkData';
 
 @Component({
   selector: 'app-buddy_manual',
@@ -13,7 +14,6 @@ export class AllBuddiesComponent {
 
   isArchive = false;
   isEdit = false;
-  isSave = false;
   addToArchive = false;
   isDelete = false;
   name = '';
@@ -47,31 +47,15 @@ export class AllBuddiesComponent {
   }
 
   async acceptHandler() {
-    this.isSave = true;
     this.addToArchive = false;
-
-    const USER: EditBuddy = {
-      id: this.buddy.id,
-      email: this.buddy.email,
-      name: this.buddy.name,
-      surname: this.buddy.surname,
-      gender: this.buddy.gender,
-      citizenship: this.buddy.citizenship,
-      campus: this.buddy.campus,
-      tagList: this.buddy.tagList,
-      birthDate: this.buddy.birthDate,
-      phone: this.buddy.phone,
-      localFaculty: this.buddy.localFaculty,
-      about: this.buddy.about,
-      role: this.role,
-      archived: !this.buddy.archived
-    };
-    await this.authService.addBuddyToArchive(USER);
+    this.buddy.archived = !this.buddy.archived;
+    console.log(this.buddy);
+    await this.authService.addBuddyToArchive(this.buddy);
   }
 
-  reloadHandler(buddy: any) {
-    this.buddy = buddy;
-    this.isSave = false;
+  async reloadHandler(id: number) {
+    const userInfo = await this.authService.getById(id);
+    this.buddy = userInfo;
   }
 
   async deleteHandler() {

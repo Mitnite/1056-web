@@ -24,8 +24,7 @@ export class StudentTableComponent implements OnInit {
   @Input() isEmail: boolean;
   @Input() isArchive: boolean;
   @Input() isEdit: boolean;
-  @Input() isSave = false;
-  @Output() reload: EventEmitter<any> = new EventEmitter();
+  @Output() reload: EventEmitter<number> = new EventEmitter();
 
   @Input() isAddStudent: boolean;
   @Output() studentId: EventEmitter<number> = new EventEmitter();
@@ -153,22 +152,6 @@ export class StudentTableComponent implements OnInit {
   setIdHandler(i: number, id: number) {
     this.index = i;
     this.id = id;
+    this.reload.emit(id);
   }
-
-  // tslint:disable-next-line:use-lifecycle-interface
-  ngOnChanges() {
-    if (this.isSave) {
-      this.data.forEach((d) => {
-        if (d.id === this.id) {
-          // d.isArchive = !d.isArchive;
-          this.reload.emit(d);
-        }
-      });
-      this.id = 0;
-      this.index = -1;
-      this.reload.emit();
-    }
-
-  }
-
 }

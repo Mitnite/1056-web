@@ -39,6 +39,7 @@ export class DashboardComponent implements OnInit {
   tagList;
   student;
   date = [];
+  campus = '';
   name = '';
   assignStudentId;
   assignBuddyId;
@@ -60,6 +61,7 @@ export class DashboardComponent implements OnInit {
   async loadData() {
     const userInfo = await this.authService.getListSearching();
     this.student = userInfo;
+    console.log(this.student);
     for (let i = 0; i < this.student.length; i++) {
       this.date[i] = new Date(this.student[i].foreignStudent.arrivalDateTime);
     }
@@ -88,11 +90,13 @@ export class DashboardComponent implements OnInit {
     }*/
 
   async onInfoStudent(tagList, id, gender, birthdate, citizenship, campus, localFaculty, homeUniversity, localGroup, about, arrivalDateTime, arrivalPlace, residencePlace, address, email, name, surname) {
-    this.gender = gender;
+    console.log(campus);
+    this.gender = checkData.gender(gender);
     this.localFaculty = localFaculty;
     this.birthDate = checkData.birthDate(birthdate);
     this.homeCountry = citizenship;
     this.homeUniversity = homeUniversity;
+    this.campus = campus;
     this.about = about;
     this.tagList = tagList;
     this.id = id;

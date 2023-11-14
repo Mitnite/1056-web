@@ -130,21 +130,21 @@ export class DashboardStudentComponent implements OnInit {
     const userInfo = await this.authService.getById(this.USER_ID);
     console.log(userInfo);
     this.StudentGender = checkData.gender(userInfo.gender);
-    this.StudentLocalFaculty = userInfo.foreignStudent.localFaculty;
+    this.StudentLocalFaculty = userInfo.localFaculty;
     this.StudentBirthDate = checkData.birthDate(userInfo.birthDate);
     this.StudentCitizenship = userInfo.foreignStudent.homeCountry;
     this.StudentHomeUniversity = userInfo.foreignStudent.homeUniversity;
     this.StudentAbout = userInfo.about;
     this.StudentTagList = userInfo.tagList;
-    this.StudentLocalGroup = userInfo.foreignStudent.localGroup;
+    this.StudentLocalGroup = checkData.localGroup(userInfo.foreignStudent.localGroup);
     this.StudentArrivalDate = checkData.arrivalDate(userInfo.foreignStudent.arrivalDateTime);
     this.StudentArrivalTime = checkData.arrivalTime(userInfo.foreignStudent.arrivalDateTime);
     this.StudentArrivalPlace = userInfo.foreignStudent.arrivalPlace;
-    this.StudentResidencePlace = userInfo.residencePlace;
+    this.StudentResidencePlace = checkData.placeOfResidence(userInfo.foreignStudent.residencePlace);
     this.StudentAddress = userInfo.foreignStudent.address;
     this.StudentEmail = userInfo.email;
     this.StudentName = userInfo.name;
     this.StudentSurName = userInfo.surname;
-    this.StudentCampus = userInfo.campus;
+    this.StudentCampus = checkData.campus(userInfo.campus)
   }
 }

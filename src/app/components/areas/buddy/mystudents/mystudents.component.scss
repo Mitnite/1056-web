@@ -1,15 +1,10 @@
 @import "src/styles/variables";
 
 .wrapper {
-  width: 960px;
   margin-left: 48px;
-}
-
-.wrapper0 {
-  width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 1px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
 }
 
 .title {
@@ -40,7 +35,7 @@
   box-sizing: border-box;
 }
 
-/* Create two unequal columns that floats next to each other */
+/*!* Create two unequal columns that floats next to each other *!
 .column {
   float: left;
   padding: 10px;
@@ -56,12 +51,12 @@
   padding-top: 25px;
 }
 
-/* Clear floats after the columns */
+!* Clear floats after the columns *!
 .row:after {
   content: "";
   display: table;
   clear: both;
-}
+}*/
 
 .upd {
   padding: 50px;

@@ -13,7 +13,6 @@ export class AllStudentsComponent {
 
   isArchive = false;
   isEdit = false;
-  isSave = false;
   isDelete = false;
   addToArchive = false;
   name = '';
@@ -56,42 +55,14 @@ export class AllStudentsComponent {
   }
 
   async acceptHandler() {
-    this.isSave = true;
     this.addToArchive = false;
-
-    const USER: EditStudent = {
-      id: this.student.id,
-      email: this.student.email,
-      name: this.student.name,
-      surname: this.student.surname,
-      gender: this.student.gender,
-      citizenship: this.student.citizenship,
-      campus: this.student.campus,
-      tagList: this.student.tagList,
-      birthDate: this.student.birthDate,
-      phone: this.student.phone,
-      localFaculty: this.student.localFaculty,
-      about: this.student.about,
-      role: this.role,
-      archived: !this.student.archived,
-
-      foreignStudent: {
-        homeCountry: this.student.foreignStudent.homeCountry,
-        homeFaculty: this.student.foreignStudent.homeFaculty,
-        homeUniversity: this.student.foreignStudent.homeUniversity,
-        arrivalDateTime: this.student.foreignStudent.arrivalDateTime,
-        arrivalPlace: this.student.foreignStudent.arrivalPlace,
-        residencePlace: this.student.foreignStudent.residencePlace,
-        address: this.student.foreignStudent.address,
-        localGroup: this.student.foreignStudent.localGroup
-      }
-    };
-    await this.authService.addStudentToArchive(USER);
+    this.student.archived = !this.student.archived;
+    await this.authService.addStudentToArchive(this.student);
   }
 
-  reloadHandler(student: any) {
-    this.student = student;
-    this.isSave = false;
+  async reloadHandler(id: number) {
+    const userInfo = await this.authService.getById(id);
+    this.student = userInfo;
   }
 
   async deleteHandler() {
