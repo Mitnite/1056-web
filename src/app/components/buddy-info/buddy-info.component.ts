@@ -1,4 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { EditBuddy } from '../../interfaces';
+import { GLOBAL_LOCALIZATION, PLACEHOLDER_LOCALIZATION } from '../../config/constants';
+import { checkData } from '../../checkData';
 
 @Component({
   selector: 'app-buddy-info',
@@ -7,53 +10,24 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class BuddyInfoComponent implements OnInit {
 
-  @Input() name = '';
-  @Input() surname = '';
-  @Input() gender: string;
-  @Input() birthDate: string;
-  @Input() email: string;
-  @Input() phone: string;
-  @Input() citizenship: string;
-  @Input() campus: string;
-  @Input() HSEFaculty: string;
-  @Input() about: string;
-  @Input() tagList: any[];
-  @Input() category: string;
-
+  @Input() buddyInfo: EditBuddy | null = null;
   @Input() isAssign = false;
-  @Output() clicked: EventEmitter<any> = new EventEmitter();
+
+  @Output() deny: EventEmitter<any> = new EventEmitter();
   @Output() assign: EventEmitter<any> = new EventEmitter();
+
+
   position = 1;
 
-  disabled = true;
-  checked = true;
-  typePassword = 'password';
-  typeNumber = 'number';
-  phoneMask = ' (000) 000-00-00';
-  phonePrefix = '+7';
-
-
+  protected readonly PLACEHOLDER_LOCALIZATION = PLACEHOLDER_LOCALIZATION;
+  protected readonly GLOBAL_LOCALIZATION = GLOBAL_LOCALIZATION;
+  protected readonly disabled = true;
+  protected readonly checkData = checkData;
 
   constructor() {
   }
 
   ngOnInit(): void {
-
   }
 
-  subtractPositionHandler() {
-    if (this.position !== 2) {
-      this.position = this.position + 1;
-    }
-  }
-
-  addPositionHandler() {
-    if (this.position !== 1) {
-      this.position = this.position - 1;
-    }
-  }
-
-  onClick(): void {
-    this.clicked.emit();
-  }
 }

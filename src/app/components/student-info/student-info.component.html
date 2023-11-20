@@ -1,5 +1,5 @@
-<div class="backdrop" (click)="onClick()"></div>
-<div class="main">
+<div class="backdrop" (click)="deny.emit()"></div>
+<div class="main" *ngIf="studentInfo">
 
   <div class="pages">
     <div class="icon">
@@ -12,85 +12,90 @@
   </div>
 
 
-  <div *ngIf="name !== ''" class="title-name">{{name}}</div>
+  <div *ngIf="isShowName" class="title-name">{{studentInfo.name}} {{studentInfo.surname}}</div>
   <div class="all-tags">
-    <div class="tag" *ngFor="let tag of tagList"><p class="tag-text">{{tag.name}}</p></div>
+    <div class="tag" *ngFor="let tag of studentInfo.tagList"><p class="tag-text">{{tag.name}}</p></div>
   </div>
 
   <div class="all-lines">
     <div *ngIf="position === 1">
       <div class="line">
-        <p class="text">Gender</p>
-        <app-input [disabled]="disabled" [(ngModel)]="gender"></app-input>
+        <p class="text">{{PLACEHOLDER_LOCALIZATION.GENDER}}</p>
+        <app-input [disabled]="disabled" [ngModel]="checkData.gender(studentInfo.gender)"></app-input>
       </div>
       <div class="line">
-        <p class="text">Date of birth</p>
-        <app-input [disabled]="disabled" [(ngModel)]="birthDate"></app-input>
+        <p class="text">{{PLACEHOLDER_LOCALIZATION.DATE_OF_BIRTH}}</p>
+        <app-input [disabled]="disabled" [ngModel]="checkData.birthDate(studentInfo.birthDate)"></app-input>
       </div>
-      <ng-container *ngIf="email">
+      <ng-container *ngIf="isShowName">
         <div class="line">
-          <p class="text">Email</p>
-          <app-input [disabled]="disabled" [(ngModel)]="email"></app-input>
+          <p class="text">{{PLACEHOLDER_LOCALIZATION.EMAIL}}</p>
+          <app-input [disabled]="disabled" [(ngModel)]="studentInfo.email"></app-input>
         </div>
       </ng-container>
       <div class="line">
-        <p class="text">Citizenship</p>
-        <app-input [disabled]="disabled" [(ngModel)]="citizenship"></app-input>
+        <p class="text">{{PLACEHOLDER_LOCALIZATION.CITIZENSHIP}}</p>
+        <app-input [disabled]="disabled" [(ngModel)]="studentInfo.citizenship"></app-input>
       </div>
       <div class="line">
-        <p class="text">Campus</p>
-        <app-input [disabled]="disabled" [(ngModel)]="campus"></app-input>
+        <p class="text">{{PLACEHOLDER_LOCALIZATION.CAMPUS}}</p>
+        <app-input [disabled]="disabled" [ngModel]="checkData.campus(studentInfo.campus)"></app-input>
       </div>
       <div class="line">
-        <p class="text">HSE faculty</p>
-        <app-input [disabled]="disabled" [(ngModel)]="localFaculty"></app-input>
+        <p class="text">{{PLACEHOLDER_LOCALIZATION.FACULTY}}</p>
+        <app-input [disabled]="disabled" [(ngModel)]="studentInfo.localFaculty"></app-input>
       </div>
       <div class="line">
-        <p class="text">Home university</p>
-        <app-input [disabled]="disabled" [(ngModel)]="homeUniversity"></app-input>
+        <p class="text">{{PLACEHOLDER_LOCALIZATION.HOME_UNIVERSITY}}</p>
+        <app-input [disabled]="disabled" [(ngModel)]="studentInfo.foreignStudent.homeUniversity"></app-input>
       </div>
       <div class="line">
-        <p class="text">Category of students</p>
-        <app-input [disabled]="disabled" [(ngModel)]="category"></app-input>
+        <p class="text">{{PLACEHOLDER_LOCALIZATION.CATEGORY}}</p>
+        <app-input [disabled]="disabled"
+                   [ngModel]="checkData.localGroup(studentInfo.foreignStudent.localGroup)"></app-input>
       </div>
       <div class="line">
-        <p class="text">About me</p>
-        <app-input [disabled]="disabled" [(ngModel)]="about"></app-input>
+        <p class="text">{{PLACEHOLDER_LOCALIZATION.ABOUT}}</p>
+        <app-input [disabled]="disabled" [(ngModel)]="studentInfo.about"></app-input>
       </div>
     </div>
 
     <div *ngIf="position === 2">
       <div class="line">
-        <p class="text">Arrival date</p>
-        <app-input [disabled]="disabled" [(ngModel)]="arrivalDate"></app-input>
+        <p class="text">{{PLACEHOLDER_LOCALIZATION.ARRIVAL_DATE}}</p>
+        <app-input [disabled]="disabled"
+                   [ngModel]="checkData.arrivalDate(studentInfo.foreignStudent.arrivalDateTime)"></app-input>
       </div>
       <div class="line">
-        <p class="text">Arrival time</p>
-        <app-input [disabled]="disabled" [(ngModel)]="arrivalTime"></app-input>
+        <p class="text">{{PLACEHOLDER_LOCALIZATION.ARRIVAL_TIME}}</p>
+        <app-input [disabled]="disabled"
+                   [ngModel]="checkData.arrivalTime(studentInfo.foreignStudent.arrivalDateTime)"></app-input>
       </div>
       <div class="line">
-        <p class="text">Arrival place</p>
-        <app-input [disabled]="disabled" [(ngModel)]="arrivalPlace"></app-input>
+        <p class="text">{{PLACEHOLDER_LOCALIZATION.ARRIVAL_PLACE}}</p>
+        <app-input [disabled]="disabled" [(ngModel)]="studentInfo.foreignStudent.arrivalPlace"></app-input>
       </div>
       <div class="line">
-        <p class="text">Place of residence</p>
-        <app-input [disabled]="disabled" [(ngModel)]="place"></app-input>
+        <p class="text">{{PLACEHOLDER_LOCALIZATION.PLACE_OF_RESIDENCE}}</p>
+        <app-input [disabled]="disabled"
+                   [ngModel]="checkData.placeOfResidence(studentInfo.foreignStudent.residencePlace)"></app-input>
       </div>
       <div class="line">
-        <p class="text">Address</p>
-        <app-input [disabled]="disabled" [(ngModel)]="address"></app-input>
+        <p class="text">{{PLACEHOLDER_LOCALIZATION.ADDRESS}}</p>
+        <app-input [disabled]="disabled" [(ngModel)]="studentInfo.foreignStudent.address"></app-input>
       </div>
     </div>
 
 
   </div>
-  <button class="btn btn-secondary btn-close" (click)=onClick()>Close</button>
-  <button *ngIf="isAssign" class="btn btn-primary btn-assign" (click)="assign.emit()">Assign</button>
-  <button *ngIf="isTaken" class="btn btn-primary btn-assign" (click)=" takeHandler(id)">Take</button>
-
+  <button class="btn btn-secondary btn-close" (click)=deny.emit()>{{GLOBAL_LOCALIZATION.BUTTON_CLOSE_LABEL}}</button>
+  <button *ngIf="isAssign" class="btn btn-primary btn-assign"
+          (click)="assign.emit(studentInfo.id)">{{GLOBAL_LOCALIZATION.BUTTON_ASSIGN_LABEL}}</button>
+  <button *ngIf="isTaken" class="btn btn-primary btn-assign"
+          (click)="isShowPopUp = true">{{GLOBAL_LOCALIZATION.BUTTON_TAKE_LABEL}}</button>
 
 </div>
 <span *ngIf="isShowPopUp">
-    <app-popup (accept)="onSubmit()" (deny)="isShowPopUp = false" [title]="title"></app-popup>
+    <app-popup (accept)="onSubmit()" (deny)="isShowPopUp = false" [title]="TITLE"></app-popup>
   </span>
 

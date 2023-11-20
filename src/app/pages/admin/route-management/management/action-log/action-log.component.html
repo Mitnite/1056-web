@@ -1,0 +1,70 @@
+<p class="subtitle">Action log</p>
+
+<div class="wrapper">
+<!--  <app-multi-select placeholder="Enter the value" style="width: 620px"></app-multi-select>-->
+  <app-input placeholder="Enter the value" style="width: 620px" [disabled]="true"></app-input>
+  <button class="btn btn-primary" (click)="exportElmToExcel()">Export</button>
+</div>
+
+
+<div class="table-container">
+  <table class="table" #actionLogTable>
+    <thead>
+    <tr>
+      <th>Date</th>
+      <th>Type of action</th>
+      <th style="width: 40%;">Participants</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let d of data; let i = index">
+    <tr>
+      <td>{{d.eventDateTime}}</td>
+      <td>{{d.eventType}}</td>
+      <td class="participants">
+				<span *ngIf="d.participants[0]" class="buddyName" (click)="d.participants[0].role.toUpperCase() === 'ROLE_FOREIGN_STUDENT'
+				? getStudentNameHandler(d.participants[0].id)
+				: getBuddyNameHandler(d.participants[0].id)">
+          {{d.participants[0].name}} {{d.participants[0].surname}}</span>
+        &nbsp; &nbsp;
+        <span *ngIf="d.participants[1]" class="buddyName" (click)="d.participants[1].role.toUpperCase() === 'ROLE_FOREIGN_STUDENT'
+				 ? getStudentNameHandler(d.participants[1].id)
+				 : getBuddyNameHandler(d.participants[1].id)">
+          {{d.participants[1].name}} {{d.participants[1].surname}}</span>
+      </td>
+    </tr>
+    </tbody>
+
+  </table>
+  <div *ngIf="isShowBuddyInfo">
+    <app-buddy-info
+      [buddyInfo]="buddyInfo"
+      [isAssign]="false"
+      (deny)="isShowBuddyInfo=false"
+    ></app-buddy-info>
+  </div>
+
+  <div *ngIf="isShowStudentInfo">
+<!--    <app-student-info
+      [gender]="this.studentInfo.gender"
+      [birthDate]="this.studentInfo.birthDate"
+      [citizenship]="this.StudentCitizenship"
+      [localFaculty]="this.StudentLocalFaculty"
+      [homeUniversity]="this.StudentHomeUniversity"
+      [about]="this.StudentAbout"
+      [tagList]="this.StudentTagList"
+      [name]="StudentName + StudentSurName"
+      [email]="this.StudentEmail"
+      [category]="this.StudentLocalGroup"
+      [arrivalDate]="this.StudentArrivalDate"
+      [arrivalTime]="this.StudentArrivalTime"
+      [arrivalPlace]="this.StudentArrivalPlace"
+      [place]="this.StudentResidencePlace"
+      [address]="this.StudentAddress"
+
+      [isTaken]="true"
+      [isAssign]="false"
+      (clicked)="isShowStudentInfo=false">
+
+    </app-student-info>-->
+  </div>
+</div>

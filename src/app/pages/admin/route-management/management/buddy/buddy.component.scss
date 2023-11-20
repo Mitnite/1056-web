@@ -1,0 +1,93 @@
+@import "../../../../../../styles/variables";
+
+.subtitle {
+  font: $hse-font-family;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 40px;
+  color: #0F0F14;
+  margin-top: 60px;
+  margin-left: 107px;
+  width: 650px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.bold {
+  margin-left: 25px;
+  color: #000;
+  text-align: center;
+  font: $hse-font-family;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 32px;
+  cursor: pointer;
+}
+
+.archiveText {
+  margin-left: 25px;
+  cursor: pointer;
+  font: $hse-font-family;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 32px;
+}
+
+.wrapper {
+  width: 1000px;
+  margin-left: 48px;
+  margin-top: 24px;
+  cursor: pointer;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.wrapper-table{
+  margin-left: 48px;
+  margin-top: 50px;
+}
+
+.btn-archive {
+  border-radius: 4px;
+  font-family: $hse-font-family-alt-lt;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 10px 16px;
+  box-shadow: none;
+  background: #0050cf;
+  border-color: #0050cf;
+  color: #fff;
+  height: 40px;
+
+  &:hover {
+    background: #0044b0;
+    border-color: #0044b0;
+    color: #fff;
+  }
+}
+
+.btn-delete {
+  border-radius: 4px;
+  font-family: $hse-font-family-alt-lt;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 10px 16px;
+  box-shadow: none;
+  background: #d82e2e;
+  border-color: #d82e2e;
+  color: #fff;
+  height: 40px;
+
+  &:hover {
+    background: #bd2828;
+    border-color: #bd2828;
+    color: #fff;
+  }
+}
+

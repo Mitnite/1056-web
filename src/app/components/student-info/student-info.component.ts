@@ -3,6 +3,8 @@ import { AuthService } from '@core/auth.service';
 import { CookieService } from 'ngx-cookie';
 import { Router } from '@angular/router';
 import { checkData } from '../../checkData';
+import { GLOBAL_LOCALIZATION, PLACEHOLDER_LOCALIZATION } from '../../config/constants';
+import { EditStudent } from '../../interfaces';
 
 @Component({
   selector: 'app-student-info',
@@ -11,56 +13,30 @@ import { checkData } from '../../checkData';
 })
 export class StudentInfoComponent implements OnInit {
 
-  @Input() name = '';
+  @Input() studentInfo: EditStudent;
+
+  @Input() isShowName = true;
   @Input() isAssign = false;
-  @Input() gender: string;
-  @Input() localFaculty: string;
-  @Input() birthDate: string;
-  @Input() citizenship: string;
-  @Input() homeUniversity: string;
-  @Input() about: string;
-  @Input() tagList: any[];
-  @Input() campus: string;
-  @Input() category: string;
-  @Input() arrivalDate: string;
-  @Input() arrivalTime: string;
-  @Input() arrivalPlace: string;
-  @Input() place: string;
-  @Input() address: string;
-  @Input() email: string;
-  @Input() id;
-  @Input() isTaken: boolean;
-  @Output() clicked: EventEmitter<any> = new EventEmitter();
-  @Output() assign: EventEmitter<any> = new EventEmitter();
+  @Input() isTaken = false;
+
+  @Output() deny: EventEmitter<any> = new EventEmitter();
+  @Output() assign: EventEmitter<number> = new EventEmitter();
 
   position = 1;
 
-  disabled = true;
-  checked = true;
-  typePassword = 'password';
-  typeNumber = 'number';
-  phoneMask = ' (000) 000-00-00';
-  phonePrefix = '+7';
-
-  phone = '';
-  surname = '';
-
   isShowPopUp = false;
-  title = 'Are you sure you want to take?';
-  matchingId;
+
+  protected readonly disabled = true;
+  protected readonly TITLE: string = 'Are you sure you want to take?';
+  protected readonly checkData = checkData;
+  protected readonly PLACEHOLDER_LOCALIZATION = PLACEHOLDER_LOCALIZATION;
+  protected readonly GLOBAL_LOCALIZATION = GLOBAL_LOCALIZATION;
 
   constructor(private authService: AuthService,
-              private cookieService: CookieService,
               private router: Router) {
   }
 
   ngOnInit(): void {
-
-    this.category = checkData.localGroup(this.category);
-
-    this.place = checkData.placeOfResidence(this.place);
-
-    this.campus = checkData.campus(this.campus);
   }
 
   subtractPositionHandler() {
@@ -75,22 +51,13 @@ export class StudentInfoComponent implements OnInit {
     }
   }
 
-  onClick(): void {
-    this.clicked.emit();
-  }
-
-  takeHandler(id: number) {
-    this.matchingId = id;
-    this.isShowPopUp = true;
-  }
 
   // Запрос на формирование пары по id студента
   async onSubmit() {
-    const result = await this.authService.matchWith(this.matchingId);
+    await this.authService.matchWith(this.studentInfo.id);
     this.router.navigate(['/buddy/my_students']).then(() => {
       window.location.reload();
     });
   }
-
 
 }

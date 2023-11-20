@@ -1,0 +1,100 @@
+@import "../../../../../../styles/variables";
+
+.subtitle {
+  font: $hse-font-family;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 40px;
+  color: #0F0F14;
+  margin-top: 60px;
+  margin-left: 107px;
+}
+
+.wrapper {
+  width: 1000px;
+  margin-left: 48px;
+  margin-top: 24px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.table-container {
+  max-width: 1200px;
+  margin-left: 48px;
+  margin-top: 48px;
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  padding: 16px 16px;
+  text-align: center;
+  font: $hse-font-family;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+th {
+  font: $hse-font-family;
+  padding: 16px 0;
+  background-color: #F0F5FF;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  color: #6B7A99;
+  text-align: center;
+}
+
+tbody:nth-child(odd) {
+  background-color: #F8F9FB;
+}
+
+.buddyName {
+  margin-right: 16px;
+  border-radius: 4px;
+  background: #FFF;
+  border: 1px solid #D3D8E6;
+  cursor: pointer;
+  padding: 6px 25px;
+  font: $hse-font-family;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  color: #6B7A99;
+}
+.buddyName:hover{
+  background: #D3D8E6;
+}
+
+.btn-delete {
+  border-radius: 4px;
+  font-family: $hse-font-family-alt-lt;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 10px 16px;
+  box-shadow: none;
+  background: #0050cf;
+  border-color: #0050cf;
+  color: #fff;
+  height: 40px;
+
+  &:hover {
+    background: #0044b0;
+    border-color: #0044b0;
+    color: #fff;
+  }
+}
+

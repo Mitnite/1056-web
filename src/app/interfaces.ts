@@ -93,6 +93,7 @@ export interface EditStudent {
     residencePlace: string
     address: string
     localGroup: string
+    isMatched?: string;
   };
   archived?: boolean;
 }
@@ -102,5 +103,18 @@ export interface EditStudentArrival {
   arrivalDateTime: string;
   /*  residencePlace: string;
     address: string;*/
+}
+
+export interface IActionLog {
+  eventDateTime: string;
+  eventType: string;
+  participants: IParticipants[];
+}
+
+interface IParticipants {
+  id: number;
+  name: string;
+  surname: string;
+  role: string;
 }
 

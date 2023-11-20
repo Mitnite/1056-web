@@ -1,0 +1,70 @@
+<p class="subtitle">Matching chart</p>
+
+<div class="wrapper">
+<!--	<app-multi-select placeholder="Enter the value" style="width: 620px"></app-multi-select>-->
+  <app-input placeholder="Enter the value" style="width: 620px" [disabled]="true"></app-input>
+	<div>
+		<button style="margin-right: 15px" *ngIf="!isEdit" class="btn btn-secondary" (click)="isEdit = true">Edit</button>
+		<button style="margin-right: 15px" *ngIf="isEdit" class="btn btn-secondary" (click)="isEditHandler()">Cancel
+		</button>
+		<button *ngIf="!isEdit" class="btn btn-primary" (click)="exportElmToExcel()">Export</button>
+		<button *ngIf="isEdit" class="btn btn-delete" (click)="addToDelete = true">Delete pair</button>
+	</div>
+</div>
+
+
+<div class="table-container">
+	<table class="table" #matchingChartTable>
+		<thead>
+		<tr>
+			<th *ngIf="isEdit">Choise</th>
+			<th>Student</th>
+			<th>Student’s citizenship</th>
+			<th>Buddy</th>
+			<th>Buddy’s citizenship</th>
+<!--			<th>Matching time</th>-->
+			<th>Score №1</th>
+			<th>Score №2</th>
+		</tr>
+		</thead>
+		<tbody *ngFor="let d of data; let i = index">
+		<tr>
+			<td *ngIf="isEdit"><input type="checkbox" [checked]="index === i" (change)="setIdHandler(i, d.id)"></td>
+			<td><span class="buddyName" (click)=getStudentNameHandler(d.foreignStudent.id)>{{d.foreignStudent.name}} {{d.foreignStudent.surname}}</span></td>
+			<td>{{d.foreignStudent.citizenship}}</td>
+			<td><span class="buddyName" (click)=getBuddyNameHandler(d.buddy.id)>{{d.buddy.name}} {{d.buddy.surname}}</span></td>
+			<td>{{d.buddy.citizenship}}</td>
+<!--			<td>{{d.matching}}</td>-->
+			<td><span class="buddyName" (click)="showScoreHandler(d.score1, d.foreignStudent.id,  '')">{{d.score1 || 0}}</span></td>
+			<td><span class="buddyName" (click)="showScoreHandler(d.score2, d.foreignStudent.id, '')">{{d.score2 || 0}}</span></td>
+		</tr>
+		</tbody>
+
+	</table>
+
+	<div *ngIf="isShowBuddyInfo">
+		<app-buddy-info
+      [buddyInfo]="buddyInfo"
+      (deny)="isShowBuddyInfo = false">
+    </app-buddy-info>
+	</div>
+
+	<div *ngIf="isShowStudentInfo">
+		<app-student-info
+      [studentInfo]="studentInfo"
+      (deny)="isShowStudentInfo=false">
+
+    </app-student-info>
+	</div>
+</div>
+
+<span *ngIf="addToDelete"><app-popup [title]="title" (deny)="addToDelete = false" (accept)="acceptHandler()"></app-popup></span>
+
+<span	*ngIf="isShowScore">
+	<app-students-review [reviewText]="reviewText" [studentsId]="studentsId" [number]="score" (deny)="isShowScore = false"></app-students-review>
+</span>
+
+<span	*ngIf="isShowScore">
+	<app-students-review  [reviewText]="reviewText" [studentsId]="studentsId" [number]="score" (deny)="isShowScore = false"></app-students-review>
+</span>
+

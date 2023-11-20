@@ -1,0 +1,138 @@
+<p class="title">My students</p>
+
+
+<div class="myStudentContainer">
+
+  <ng-container *ngIf="findStudents('matched') && findStudents('met')">
+    <div class="subtitle">There are no students</div>
+  </ng-container>
+
+  <ng-container *ngIf="findStudents('matched')">
+    <div class="subtitle">Active</div>
+    <div>
+      <div class="wrapper">
+        <div class="column" *ngFor="let student of students; let i = index">
+          <div class="card" *ngIf="student.foreignStudent.isMatched !== 'met'">
+            <div class="one-line">
+              <div class="icon">
+                <app-icon name="person"></app-icon>
+              </div>
+              <div class="card-date">{{date[i].toLocaleString("ru-RU")}}</div>
+
+
+              <div *ngIf="date[i] < currentDate && isShowMessage">
+                <div class="backdrop" (click)="isShowMessage = false"></div>
+
+                <div class="messageMeeting">
+
+                  <div class="messageMeetingTitle">Have you met a student?</div>
+
+                  <div class="card">
+                    <div class="one-line">
+                      <div class="icon">
+                        <app-icon name="person"></app-icon>
+                      </div>
+                      <div class="card-date">{{date[i].toLocaleString("ru-RU")}}</div>
+                    </div>
+                    <div class="card-faculty">Faculty: {{student.localFaculty}}</div>
+                    <div class="card-text">Country: {{student.foreignStudent.homeCountry}}</div>
+                    <div class="card-btn-container">
+                      <button class="btn btn-secondary"
+                              (click)="onInfoStudent(student)">
+                        info
+                      </button>
+                      <button class="btn btn-primary" (click)="acceptHandler(student.id)">Accept</button>
+                    </div>
+                  </div>
+
+                  <div style="margin-top: 32px">
+                    <button class="btn btn-secondary btn-assign" (click)="isShowMessage = false">Close</button>
+                  </div>
+
+                </div>
+              </div>
+
+
+            </div>
+            <div class="card-faculty">Faculty: {{student.localFaculty}}</div>
+            <div class="card-text">Country: {{student.foreignStudent.homeCountry}}</div>
+            <div class="card-btn-container">
+              <button class="btn btn-secondary"
+                      (click)="onInfoStudent(student)">
+                info
+              </button>
+
+              <button *ngIf="date[i] < currentDate" class="btn btn-primary"
+                      (click)="acceptHandler(student.id)"> {{date[i] < currentDate ? 'accept' : 'delete'}}
+              </button>
+
+            </div>
+          </div>
+          <div *ngIf="id === student.id">
+
+            <app-student-info
+              [studentInfo]="studentInfo"
+              (deny)="id = -1"
+            ></app-student-info>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="findStudents('met')">
+    <div class="subtitle">Archive</div>
+    <div>
+      <div class="wrapper">
+        <div class="column" *ngFor="let student of students; let i = index">
+          <div class="card" *ngIf="student.foreignStudent.isMatched === 'met'">
+            <div class="one-line">
+              <div class="icon">
+                <app-icon name="person"></app-icon>
+              </div>
+              <div class="card-date">{{date[i].toLocaleString("ru-RU")}}</div>
+            </div>
+            <div class="card-faculty">Faculty: {{student.localFaculty}}</div>
+            <div class="card-text">Country: {{student.foreignStudent.homeCountry}}</div>
+            <div class="card-btn-container">
+              <button class="btn btn-secondary"
+                      (click)="onInfoStudent(student)">
+                info
+              </button>
+            </div>
+          </div>
+          <div *ngIf="id === student.id">
+
+            <app-student-info
+              [studentInfo]="studentInfo"
+              (deny)="id = -1"
+            ></app-student-info>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+
+
+<div *ngIf="isShowPopUp">
+
+  <div class="backdrop" (click)="isShowPopUp = false"></div>
+
+  <div class="messageMain">
+
+    <div class="messageTitle">Write to the email</div>
+    <div class="messageText">{{deleteMatch}}</div>
+
+    <app-input [(ngModel)]="adminEmail" [disabled]="true"></app-input>
+
+    <div style="margin-top: 32px">
+      <button class="btn btn-primary btn-assign" (click)="isShowPopUp = false">OK</button>
+    </div>
+
+  </div>
+</div>
+
+
+

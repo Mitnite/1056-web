@@ -93,10 +93,6 @@ export class AuthService {
     return firstValueFrom(this.http.get(`/api/logs/view`));
   }
 
-  // Создание пары у Админа
-  match(studentID: number, buddyID: number) {
-    // return firstValueFrom(this.http.post(`/api/admin/match`), studentID, buddyID);
-  }
 
   deleteMatch(studentID: number, buddyID: number) {
     return firstValueFrom(this.http.delete(`/api/admin/match?studentId=${studentID}&buddyId=${buddyID}`));
@@ -105,6 +101,11 @@ export class AuthService {
   // Запрос на формирование пары по id студента
   matchWith(id) {
     return firstValueFrom(this.http.post(`/api/match/${id}`, null));
+  }
+
+  // Создание пары у Админа
+  matchBuddyStudent(studentID: number, buddyID: number){
+    return firstValueFrom(this.http.post(`/api/admin/match?studentId=${studentID}&buddyId=${buddyID}`, null));
   }
 
   // Запрос на изменение статуса -> поиск

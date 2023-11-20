@@ -1,54 +1,60 @@
-<div class="backdrop" (click)="onClick()"></div>
-<div class="main">
+<div class="backdrop" (click)="deny.emit()"></div>
+<div class="main" *ngIf="buddyInfo">
 
-	<div class="title-name">{{name}} {{surname}}</div>
+	<div class="title-name">{{buddyInfo.name}} {{buddyInfo.surname}}</div>
 	<div class="all-tags" >
-    <div class="tag" *ngFor="let tag of tagList"><p class="tag-text">{{tag.name}}</p></div>
+    <div class="tag" *ngFor="let tag of buddyInfo.tagList"><p class="tag-text">{{tag.name}}</p></div>
 	</div>
 
 	<div class="all-lines">
-		<div *ngIf="position === 1">
+
 			<div class="line">
-				<p class="text">Gender</p>
-				<app-input [disabled]="disabled" [(ngModel)]="gender"></app-input>
+				<p class="text">{{PLACEHOLDER_LOCALIZATION.GENDER}}</p>
+				<app-input [disabled]="disabled" [ngModel]="checkData.gender(buddyInfo.gender)"></app-input>
 			</div>
+
 			<div class="line">
-				<p class="text">Date of birth</p>
-				<app-input [disabled]="disabled" [(ngModel)]="birthDate"></app-input>
+				<p class="text">{{PLACEHOLDER_LOCALIZATION.DATE_OF_BIRTH}}</p>
+				<app-input [disabled]="disabled" [ngModel]="checkData.birthDate(buddyInfo.birthDate)"></app-input>
 			</div>
+
 			<div class="line">
-				<p class="text">Phone number</p>
+				<p class="text">{{PLACEHOLDER_LOCALIZATION.PHONE_NUMBER}}</p>
 				<app-input [disabled]="disabled"
-                   [(ngModel)]="phone"
-                   [mask]="phoneMask"
-                   [maskPrefix]="phonePrefix"></app-input>
+                   [(ngModel)]="buddyInfo.phone"
+                   [mask]="PLACEHOLDER_LOCALIZATION.PHONE_MASK"
+                   [maskPrefix]="PLACEHOLDER_LOCALIZATION.PHONE_PREFIX"></app-input>
 			</div>
+
 			<div class="line">
-				<p class="text">Email</p>
-				<app-input [disabled]="disabled" [(ngModel)]="email"></app-input>
+				<p class="text">{{PLACEHOLDER_LOCALIZATION.EMAIL}}</p>
+				<app-input [disabled]="disabled" [(ngModel)]="buddyInfo.email"></app-input>
 			</div>
+
 			<div class="line">
-				<p class="text">Citizenship</p>
-				<app-input [disabled]="disabled" [(ngModel)]="citizenship"></app-input>
+				<p class="text">{{PLACEHOLDER_LOCALIZATION.CITIZENSHIP}}</p>
+				<app-input [disabled]="disabled" [(ngModel)]="buddyInfo.citizenship"></app-input>
 			</div>
+
 			<div class="line">
-				<p class="text">Campus</p>
-				<app-input [disabled]="disabled" [(ngModel)]="campus"></app-input>
+				<p class="text">{{PLACEHOLDER_LOCALIZATION.CAMPUS}}</p>
+				<app-input [disabled]="disabled" [ngModel]="checkData.campus(buddyInfo.campus)"></app-input>
 			</div>
+
 			<div class="line">
-				<p class="text">HSE faculty</p>
-				<app-input [disabled]="disabled" [(ngModel)]="HSEFaculty"></app-input>
+				<p class="text">{{PLACEHOLDER_LOCALIZATION.FACULTY}}</p>
+				<app-input [disabled]="disabled" [(ngModel)]="buddyInfo.localFaculty"></app-input>
 			</div>
+
 			<div class="line">
-				<p class="text">About me</p>
-				<app-input [disabled]="disabled" [(ngModel)]="about"></app-input>
+				<p class="text">{{PLACEHOLDER_LOCALIZATION.ABOUT}}</p>
+				<app-input [disabled]="disabled" [(ngModel)]="buddyInfo.about"></app-input>
 			</div>
-		</div>
 
 
 	</div>
-	<button class="btn btn-secondary btn-close" (click)=onClick()>Close</button>
-	<button *ngIf  = "isAssign" class="btn btn-primary btn-assign" (click)="assign.emit()">Assign</button>
+	<button class="btn btn-secondary btn-close" (click)=deny.emit()>{{GLOBAL_LOCALIZATION.BUTTON_CLOSE_LABEL}}</button>
+	<button *ngIf  = "isAssign" class="btn btn-primary btn-assign" (click)="assign.emit()">{{GLOBAL_LOCALIZATION.BUTTON_ASSIGN_LABEL}}</button>
 </div>
 
 

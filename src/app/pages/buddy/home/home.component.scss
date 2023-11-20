@@ -1,0 +1,67 @@
+@import "../../../../styles/variables";
+
+.header-layout {
+  position: fixed;
+  left: 0;
+  top: 0;
+
+  z-index: 1001;
+  width: 100%;
+}
+
+.layout {
+  top: 50px;
+  position: fixed;
+  z-index: 1000;
+  height: 100%;
+}
+
+.page-layout {
+  position: relative;
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+}
+
+
+.main-layout {
+  max-width: 1920px;
+  padding: 0 16px;
+  margin: 0 100px 50px 100px;
+  grid-column: content;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+.footer {
+  z-index: 1001;
+  padding: 14px 0;
+  width: 100%;
+  background: rgba(107, 122, 153, 0.05);
+  display: flex;
+  justify-content: center;
+}
+
+.wrapper {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icons {
+  width: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+
+
+
+

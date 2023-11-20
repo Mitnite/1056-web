@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@core/auth.service';
-import data from '../../areas/dataCollections.json';
+import data from '../../../config/dataCollections.json';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { checkData } from '../../../checkData';

@@ -9,26 +9,26 @@ import { SignUp4Component } from './components/sign-in-up-all/sign-up4/sign-up4.
 import { AuthorizationGuard, UnAuthorizationGuard } from './authorization.guard';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { GetHelpComponent } from './components/get-help/get-help.component';
-import { EditProfileComponent } from './components/areas/buddy/edit-profile/edit-profile.component';
-import { HomeBuddyComponent } from './components/areas/buddy/home/home.component';
-import { DashboardBuddyComponent } from './components/areas/buddy/dashboard/dashboard.component';
-import { ProfileBuddyComponent } from './components/areas/buddy/profile/profile.component';
-import { MyStudentsComponent } from './components/areas/buddy/mystudents/mystudents.component';
-import { BuddyComponent } from './components/areas/buddy/buddy_manual/buddy.component';
-import { HomeStudentComponent } from './components/areas/student/home/home.component';
-import { DashboardStudentComponent } from './components/areas/student/dashboard/dashboard.component';
-import { ProfileStudentComponent } from './components/areas/student/profile/profile.component';
-import { EditProfileStudentComponent } from './components/areas/student/edit-profile/edit-profile.component';
-import { EditArrivalComponent } from './components/areas/student/edit-arrival/edit-arrival.component';
-import { DashboardComponent } from './components/areas/admin/dashboard/dashboard.component';
-import { RouteManagementComponent } from './components/areas/admin/route-management/route-management.component';
-import { ManagementComponent } from './components/areas/admin/route-management/management/management.component';
-import { SemesterOverviewComponent } from './components/areas/admin/semester-overview/semester-overview.component';
-import { AllBuddiesComponent } from './components/areas/admin/route-management/management/buddy/buddy.component';
-import { MatchingChartComponent } from './components/areas/admin/route-management/management/matching-chart/matching-chart.component';
-import { AllStudentsComponent } from './components/areas/admin/route-management/management/student/student.component';
-import { ActionLogComponent } from './components/areas/admin/route-management/management/action-log/action-log.component';
-import { HomeComponent } from './components/areas/admin/home/home.component';
+import { EditProfileComponent } from './pages/buddy/edit-profile/edit-profile.component';
+import { HomeBuddyComponent } from './pages/buddy/home/home.component';
+import { DashboardBuddyComponent } from './pages/buddy/dashboard/dashboard.component';
+import { ProfileBuddyComponent } from './pages/buddy/profile/profile.component';
+import { MyStudentsComponent } from './pages/buddy/mystudents/mystudents.component';
+import { BuddyComponent } from './pages/buddy/buddy_manual/buddy.component';
+import { HomeStudentComponent } from './pages/student/home/home.component';
+import { DashboardStudentComponent } from './pages/student/dashboard/dashboard.component';
+import { ProfileStudentComponent } from './pages/student/profile/profile.component';
+import { EditProfileStudentComponent } from './pages/student/edit-profile/edit-profile.component';
+import { EditArrivalComponent } from './pages/student/edit-arrival/edit-arrival.component';
+import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
+import { RouteManagementComponent } from './pages/admin/route-management/route-management.component';
+import { ManagementComponent } from './pages/admin/route-management/management/management.component';
+import { SemesterOverviewComponent } from './pages/admin/semester-overview/semester-overview.component';
+import { AllBuddiesComponent } from './pages/admin/route-management/management/buddy/buddy.component';
+import { MatchingChartComponent } from './pages/admin/route-management/management/matching-chart/matching-chart.component';
+import { AllStudentsComponent } from './pages/admin/route-management/management/student/student.component';
+import { ActionLogComponent } from './pages/admin/route-management/management/action-log/action-log.component';
+import { HomeComponent } from './pages/admin/home/home.component';
 
 
 const routes: Routes = [

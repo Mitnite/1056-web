@@ -1,0 +1,60 @@
+<div class="table-container">
+  <table class="table">
+    <thead>
+    <tr>
+      <th *ngIf="isEdit"></th>
+      <th>N</th>
+      <th>Full name</th>
+      <th *ngIf="isEmail">Email</th>
+      <th>Faculty</th>
+      <th>Citizenship</th>
+      <th>Buddy</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let item of data; let i = index">
+    <tr *ngIf="item.archived === isArchive">
+      <td *ngIf="isEdit"><input type="checkbox" [checked]="index === i" (change)="setIdHandler(i, item.id)"></td>
+      <td>{{item.id}}</td>
+      <td><span class="buddyName" (click)=isShowStudentInfoHandler(item.id)>{{item.name}} {{item.surname}}</span></td>
+      <td *ngIf="isEmail">{{item.email}}</td>
+      <td><span style="max-width: 400px; white-space: pre-wrap; word-wrap: break-word;">{{item.localFaculty || '-'}}</span></td>
+      <td>{{item.citizenship || '-'}}</td>
+      <td>
+        <span *ngIf="item.buddyInfo" class="buddyName"
+              (click)=isShowBuddyInfoHandler(item.buddyInfo.id)>{{item.buddyInfo.name}} {{item.buddyInfo.surname}}</span>
+        <span *ngIf="!item.buddyInfo" class="buddyName" (click)="isAddStudent ? showMessage(item.id) : showTable(item.id)">+</span>
+      </td>
+    </tr>
+    </tbody>
+
+  </table>
+  <div *ngIf="isShowBuddyInfo">
+    <app-buddy-info
+      [buddyInfo]="buddyInfo"
+      (deny)="isShowBuddyInfo = false">
+    </app-buddy-info>
+
+  </div>
+  <div *ngIf="isShowStudentInfo">
+    <app-student-info
+      [studentInfo]="studentInfo"
+      (deny)="isShowStudentInfo = false">
+    </app-student-info>
+  </div>
+</div>
+
+
+<div *ngIf="isShowTable" class="backdrop" (click)="isShowTable=false"></div>
+
+<div *ngIf="isShowTable" class="main">
+  <div class="title">Assign buddy</div>
+  <div class="showTable">
+    <app-buddy-table (BuddyId)="addBuddy($event)" [isAddBuddy]="true" [isEmail]="false"
+                     [isArchive]="false"></app-buddy-table>
+  </div>
+  <button class="btn btn-secondary btn-close" (click)="isShowTable=false">Close</button>
+</div>
+
+<span *ngIf="isShowMessage"><app-popup (deny)="isShowMessage = false" (accept)="studentIdHandler()"
+                                       [title]="TITLE"></app-popup></span>
+
