@@ -1,13 +1,13 @@
-<p class="title">Dashboard</p>
+<p class="title">{{STUDENT_DASHBOARD_LOCALIZATION.HEADER}}</p>
 
 <div class="tags">
   <div *ngIf="status === 'searching'" class="main">
     <div class="icon">
       <app-icon name="clock"></app-icon>
     </div>
-    <div class="text02">Looking for a volunteer for you</div>
+    <div class="text02">{{STUDENT_DASHBOARD_LOCALIZATION.SEARCHING_TITLE}}</div>
     <div class="button">
-      <button class="btn btn-secondary" (click)="onSubmit2()">Stop search</button>
+      <button class="btn btn-secondary" (click)="onSubmit2()">{{STUDENT_DASHBOARD_LOCALIZATION.SEARCHING_BUTTON_LABEL}}</button>
     </div>
   </div>
 </div>
@@ -16,11 +16,11 @@
   <div class="icon">
     <app-icon name="clock"></app-icon>
   </div>
-  <div class="text02">Volunteer search suspended</div>
-  <div class="text02">  Make sure that the data in your profile is up to date.</div>
+  <div class="text02">{{STUDENT_DASHBOARD_LOCALIZATION.NOT_MATCHED_TITLE}}</div>
+  <div class="text02">{{STUDENT_DASHBOARD_LOCALIZATION.NOT_MATCHED_TEXT}}</div>
 
   <div class="button">
-    <button class="btn btn-primary" (click)="onStudentInfo()">New application</button>
+    <button class="btn btn-primary" (click)="onStudentInfo()">{{STUDENT_DASHBOARD_LOCALIZATION.NOT_MATCHED_BUTTON_LABEL}}</button>
   </div>
 
 </div>
@@ -29,12 +29,12 @@
   <div class="icon">
     <app-icon name="check"></app-icon>
   </div>
-  <div class="text02">Your Buddy: {{nameBuddy}} </div>
-  <div class="text02">Buddy’s email: {{emailBuddy}}</div>
+  <div class="text02">{{STUDENT_DASHBOARD_LOCALIZATION.MATCHED_BUDDY_NAME}} {{nameBuddy}} </div>
+  <div class="text02">{{STUDENT_DASHBOARD_LOCALIZATION.MATCHED_BUDDY_EMAIL}} {{emailBuddy}}</div>
   <div class="button">
-    <button class="btn btn-secondary" (click)="isShowDeleteMessage = true">Delete match</button>
+    <button class="btn btn-secondary" (click)="isShowDeleteMessage = true">{{STUDENT_DASHBOARD_LOCALIZATION.MATCHED_DELETE_MATCH_BUTTON_LABEL}}</button>
     <button class="btn btn-primary" style="margin-left: 10px" (click)="onInfoBuddy()">
-      Open buddy's profile</button>
+      {{STUDENT_DASHBOARD_LOCALIZATION.MATCHED_BUDDY_PROFILE_BUTTON_LABEL}}</button>
   </div>
 
   <div class="info" *ngIf="isInfoBuddy">
@@ -52,15 +52,15 @@
   <div class="icon">
     <app-icon name="check"></app-icon>
   </div>
-  <div class="text02">Your request to find a volunteer has been completed.</div>
-  <div class="text02">Don't forget to leave a review.</div>
+  <div class="text02">{{STUDENT_DASHBOARD_LOCALIZATION.MET_TITLE}}</div>
+  <div class="text02">{{STUDENT_DASHBOARD_LOCALIZATION.MET_TEXT}}</div>
 </div>
 
 
 <div *ngIf="status === 'met'" class="leaveReview">
   <div class="block" (click)="isShow = true">
-    <div class="subtitle">Leave a review</div>
-    <p>Evaluate the work of the service and buddy</p>
+    <div class="subtitle">{{STUDENT_DASHBOARD_LOCALIZATION.MET_LEAVE_REVIEW_TITLE}}</div>
+    <p>{{STUDENT_DASHBOARD_LOCALIZATION.MET_LEAVE_REVIEW_TEXT}}</p>
   </div>
 
 
@@ -69,8 +69,8 @@
 
     <div class="leaveReviewMain">
 
-      <div class="leaveReviewTitle">Leave a review</div>
-      <div class="leaveReviewText">Rate how the meeting with Buddy went.</div>
+      <div class="leaveReviewTitle">{{STUDENT_DASHBOARD_LOCALIZATION.MET_LEAVE_REVIEW_TITLE}}</div>
+      <div class="leaveReviewText">{{STUDENT_DASHBOARD_LOCALIZATION.LEAVE_REVIEW_TEXT}}</div>
 
       <div class="leaveReviewStars">
         <div style="cursor: pointer"  *ngFor="let _ of [].constructor(numberOfStars), let i = index" (click)="numberOfStars=i+1">
@@ -92,13 +92,13 @@
       </div>
 
       <div class="leaveReviewInput">
-        <app-textarea [disabled]="false" [width]=450 [resize]="150" [placeholder]="'Enter the value'"></app-textarea>
+        <app-textarea [disabled]="false" [width]=450 [resize]="150" [placeholder]="STUDENT_DASHBOARD_LOCALIZATION.LEAVE_REVIEW_PLACEHOLDER"></app-textarea>
 
       </div>
 
       <div style="margin-top: 32px">
-        <button  class="btn btn-secondary btn-close" (click)="isShow = false">Close</button>
-        <button style="margin-left: 23px" class="btn btn-primary btn-close" (click)="isAcceptMessage=true">Send</button>
+        <button  class="btn btn-secondary btn-close" (click)="isShow = false">{{GLOBAL_LOCALIZATION.BUTTON_CLOSE_LABEL}}</button>
+        <button style="margin-left: 23px" class="btn btn-primary btn-close" (click)="isAcceptMessage=true">{{GLOBAL_LOCALIZATION.BUTTON_SEND_LABEL}}</button>
       </div>
 
     </div>
@@ -112,13 +112,13 @@
 
   <div class="messageMain">
 
-    <div class="messageTitle">Write to the email</div>
-    <div class="messageText">{{deleteMatch}}</div>
+    <div class="messageTitle">{{DELETE_MATCH.TITLE}}</div>
+    <div class="messageText">{{DELETE_MATCH.TEXT}}</div>
 
-    <app-input [(ngModel)]="AdminEmail" [disabled]="true"></app-input>
+    <app-input [ngModel]="EMAIL_LOCALIZATION.EMAIL" [disabled]="true"></app-input>
 
     <div style="margin-top: 32px">
-      <button class="btn btn-primary btn-assign" (click)="isShowDeleteMessage = false">OK</button>
+      <button class="btn btn-primary btn-assign" (click)="isShowDeleteMessage = false">{{GLOBAL_LOCALIZATION.BUTTON_OK_LABEL}}</button>
     </div>
 
   </div>
@@ -128,7 +128,7 @@
 
 <ng-container *ngIf="isAcceptMessage">
   <div class="backdrop" (click)="isAcceptMessage = false"></div>
-  <app-popup (deny)="isAcceptMessage = false" (accept)="onAcceptReview()" [title]="'Are you sure you want to send the review?'"></app-popup>
+  <app-popup (deny)="isAcceptMessage = false" (accept)="onAcceptReview()" [title]="POPUP_LOCALIZATION.LEAVE_REVIEW"></app-popup>
 </ng-container>
 
 <ng-container *ngIf="isShowStudentInfo">

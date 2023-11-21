@@ -1,8 +1,8 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {AuthService} from '@core/auth.service';
-import {CookieService} from 'ngx-cookie';
-import {Router} from '@angular/router';
-import {EditBuddy, EditStudent} from "../../../../interfaces";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AuthService } from '@core/auth.service';
+import { CookieService } from 'ngx-cookie';
+import { Router } from '@angular/router';
+import { EditBuddy, EditStudent } from '../../../../interfaces';
 
 interface IBuddyTable {
   isArchive: boolean;

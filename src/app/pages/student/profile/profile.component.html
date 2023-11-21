@@ -1,153 +1,161 @@
-<div *ngIf="isLoading" >
+<ng-container *ngIf="!studentInfo">
   <app-loader></app-loader>
-</div>
+</ng-container>
 
 
-<ng-container *ngIf="!isLoading">
-  <div class="main" >
+<ng-container *ngIf="studentInfo">
+  <div class="main">
     <div class="profile-desc">
-      <img *ngIf="gender.toLowerCase() === 'female'" src="../../../../assets/icons/avatar_female.svg" width="100">
-      <img *ngIf="gender.toLowerCase() === 'male'" src="../../../../assets/icons/avatar-male.svg" width="100">
+
+      <img [src]="studentInfo.gender.toLowerCase() === 'female'
+      ? '../../../../assets/icons/avatar_female.svg'
+      : '../../../../assets/icons/avatar-male.svg'"
+           width="100" alt="avatar" height="98">
       <div class="profile-you">
-        <div class="profile-name">{{name}}</div> <div class="profile-name">{{surname}}</div>
+        <div class="profile-name">{{studentInfo.name}}</div>
+        <div class="profile-name">{{studentInfo.surname}}</div>
         <div class="profile-description">Student profile</div>
       </div>
     </div>
   </div>
+
   <div class="tags">
-    <div *ngFor="let tag of tagList" class="main11">
+    <div *ngFor="let tag of studentInfo.tagList" class="main11">
       <p class="text11">{{tag.name}}</p>
     </div>
   </div>
+
   <div class="wrapper">
-    <p class="title">Personal information</p>
+    <p class="title">{{INFORMATION_TITLE}}</p>
 
     <div class="row">
       <div class="column left">
-        <h3 class="text2">Gender</h3>
+        <h3 class="text2">{{PLACEHOLDER_LOCALIZATION.GENDER}}</h3>
       </div>
       <div class="column right">
-        <app-input [disabled]="disabled" [(ngModel)]="gender"></app-input>
+        <app-input [disabled]="disabled" [ngModel]="checkData.gender(studentInfo.gender)"></app-input>
       </div>
     </div>
 
     <div class="row">
       <div class="column left">
-        <h3 class="text2">Date of birth</h3>
+        <h3 class="text2">{{PLACEHOLDER_LOCALIZATION.DATE_OF_BIRTH}}</h3>
       </div>
       <div class="column right">
-        <app-input [disabled]="disabled" [(ngModel)]="birthDate"></app-input>
+        <app-input [disabled]="disabled" [ngModel]="checkData.birthDate(studentInfo.birthDate)"></app-input>
       </div>
     </div>
 
     <div class="row">
       <div class="column left">
-        <h3 class="text2">Email</h3>
+        <h3 class="text2">{{PLACEHOLDER_LOCALIZATION.EMAIL}}</h3>
       </div>
       <div class="column right">
-        <app-input [disabled]="disabled" [(ngModel)]="email"></app-input>
+        <app-input [disabled]="disabled" [(ngModel)]="studentInfo.email"></app-input>
       </div>
     </div>
 
     <div class="row">
       <div class="column left">
-        <h3 class="text2">Citizenship</h3>
+        <h3 class="text2">{{PLACEHOLDER_LOCALIZATION.CITIZENSHIP}}</h3>
       </div>
       <div class="column right">
-        <app-input [disabled]="disabled" [(ngModel)]="homeCountry"></app-input>
+        <app-input [disabled]="disabled" [(ngModel)]="studentInfo.foreignStudent.homeCountry"></app-input>
       </div>
     </div>
 
     <div class="row">
       <div class="column left">
-        <h3 class="text2">Campus</h3>
+        <h3 class="text2">{{PLACEHOLDER_LOCALIZATION.CAMPUS}}</h3>
       </div>
       <div class="column right">
-        <app-input [disabled]="disabled" [(ngModel)]="campus"></app-input>
+        <app-input [disabled]="disabled" [ngModel]="checkData.campus(studentInfo.campus)"></app-input>
       </div>
     </div>
 
     <div class="row">
       <div class="column left">
-        <h3 class="text2">HSE faculty</h3>
+        <h3 class="text2">{{PLACEHOLDER_LOCALIZATION.FACULTY}}</h3>
       </div>
       <div class="column right">
-        <app-input [disabled]="disabled" [(ngModel)]="localFaculty"></app-input>
+        <app-input [disabled]="disabled" [(ngModel)]="studentInfo.localFaculty"></app-input>
       </div>
     </div>
 
     <div class="row">
       <div class="column left">
-        <h3 class="text2">Home university</h3>
+        <h3 class="text2">{{PLACEHOLDER_LOCALIZATION.HOME_UNIVERSITY}}</h3>
       </div>
       <div class="column right">
-        <app-input [disabled]="disabled" [(ngModel)]="homeUniversity"></app-input>
+        <app-input [disabled]="disabled" [(ngModel)]="studentInfo.foreignStudent.homeUniversity"></app-input>
       </div>
     </div>
 
     <div class="row">
       <div class="column left">
-        <h3 class="text2">Category of student</h3>
+        <h3 class="text2">{{PLACEHOLDER_LOCALIZATION.CATEGORY}}</h3>
       </div>
       <div class="column right">
-        <app-input [disabled]="disabled" [(ngModel)]="localGroup"></app-input>
+        <app-input [disabled]="disabled"
+                   [ngModel]="checkData.localGroup(studentInfo.foreignStudent.localGroup)"></app-input>
       </div>
     </div>
     <div class="row">
       <div class="column left">
-        <h3 class="text2">About me</h3>
+        <h3 class="text2">{{PLACEHOLDER_LOCALIZATION.ABOUT}}</h3>
       </div>
       <div class="column right">
-        <app-input [disabled]="disabled" [(ngModel)]="about"></app-input>
+        <app-input [disabled]="disabled" [(ngModel)]="studentInfo.about"></app-input>
       </div>
     </div>
 
 
-
-    <p class="title">Arrival & residence</p>
-
-    <div class="row">
-      <div class="column left">
-        <h3 class="text2">Arrival date</h3>
-      </div>
-      <div class="column right">
-        <app-input [disabled]="disabled" [(ngModel)]="arrivalDate"></app-input>
-      </div>
-    </div>
+    <p class="title">{{ARRIVAL_TITLE}}</p>
 
     <div class="row">
       <div class="column left">
-        <h3 class="text2">Arrival time</h3>
+        <h3 class="text2">{{PLACEHOLDER_LOCALIZATION.ARRIVAL_DATE}}</h3>
       </div>
       <div class="column right">
-        <app-input [disabled]="disabled" [(ngModel)]="arrivalTime"></app-input>
+        <app-input [disabled]="disabled"
+                   [ngModel]="checkData.arrivalDate(studentInfo.foreignStudent.arrivalDateTime)"></app-input>
       </div>
     </div>
 
     <div class="row">
       <div class="column left">
-        <h3 class="text2">Arrival place</h3>
+        <h3 class="text2">{{PLACEHOLDER_LOCALIZATION.ARRIVAL_TIME}}</h3>
       </div>
       <div class="column right">
-        <app-input [disabled]="disabled" [(ngModel)]="arrivalPlace"></app-input>
+        <app-input [disabled]="disabled"
+                   [ngModel]="checkData.arrivalTime(studentInfo.foreignStudent.arrivalDateTime)"></app-input>
       </div>
     </div>
 
     <div class="row">
       <div class="column left">
-        <h3 class="text2">Place of residence</h3>
+        <h3 class="text2">{{PLACEHOLDER_LOCALIZATION.ARRIVAL_PLACE}}</h3>
       </div>
       <div class="column right">
-        <app-input [disabled]="disabled" [(ngModel)]="residencePlace"></app-input>
+        <app-input [disabled]="disabled" [(ngModel)]="studentInfo.foreignStudent.arrivalPlace"></app-input>
       </div>
     </div>
 
     <div class="row">
       <div class="column left">
-        <h3 class="text2">Address</h3>
+        <h3 class="text2">{{PLACEHOLDER_LOCALIZATION.PLACE_OF_RESIDENCE}}</h3>
       </div>
       <div class="column right">
-        <app-input [disabled]="disabled" [(ngModel)]="address"></app-input>
+        <app-input [disabled]="disabled" [ngModel]="checkData.placeOfResidence(studentInfo.foreignStudent.residencePlace)"></app-input>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="column left">
+        <h3 class="text2">{{PLACEHOLDER_LOCALIZATION.ADDRESS}}</h3>
+      </div>
+      <div class="column right">
+        <app-input [disabled]="disabled" [(ngModel)]="studentInfo.foreignStudent.address"></app-input>
       </div>
     </div>
   </div>

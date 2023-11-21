@@ -118,3 +118,10 @@ interface IParticipants {
   role: string;
 }
 
+export interface IArrivalInfo {
+  arrivalDateTime: string;
+  arrivalPlace: string;
+  address: string;
+  residencePlace: string;
+}
+

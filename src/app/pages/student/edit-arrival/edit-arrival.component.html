@@ -1,27 +1,33 @@
-<p class="title">Edit my arrival & residence</p>
-<div class="wrapper">
+<p class="title">{{HEADER}}</p>
+
+<ng-container *ngIf="!studentInfo">
+  <app-loader></app-loader>
+</ng-container>
+
+
+<div class="wrapper" *ngIf="studentInfo">
   <div class="arrival">
 
     <div class="line">
-      <p class="text">Arrival date</p> <app-date-picker [(ngModel)]="arrivalDate"></app-date-picker>
+      <p class="text">{{PLACEHOLDER_LOCALIZATION.ARRIVAL_DATE}}</p> <app-date-picker [(ngModel)]="arrivalDate"></app-date-picker>
     </div>
 
     <div class="line">
-      <p class="text">Arrival time</p>
+      <p class="text">{{PLACEHOLDER_LOCALIZATION.ARRIVAL_TIME}}</p>
       <app-input
         [placeholder]="'00:00'"
         [(ngModel)]="arrivalTime"
-        [mask]="timeMask"
+        [mask]="PLACEHOLDER_LOCALIZATION.TIME_MASK"
       ></app-input>
     </div>
 
     <div class="line">
-      <p class="text">Arrival place</p> <app-input [placeholder]="'Arrival place'" [(ngModel)]="arrivalPlace"></app-input>
+      <p class="text">{{PLACEHOLDER_LOCALIZATION.ARRIVAL_PLACE}}</p> <app-input [placeholder]="'Arrival place'" [(ngModel)]="studentInfo.arrivalPlace"></app-input>
     </div>
 
 
     <div class="line">
-      <p class="text">Place of residence</p>
+      <p class="text">{{PLACEHOLDER_LOCALIZATION.PLACE_OF_RESIDENCE}}</p>
       <app-multi-select
         [collection]="residenceCollection"
         [placeholder]="residencePlace"
@@ -31,13 +37,13 @@
       </app-multi-select>
     </div>
     <div class="line">
-      <p class="text">Address</p> <app-input [placeholder]="'Address'" [(ngModel)]="address"></app-input>
+      <p class="text">{{PLACEHOLDER_LOCALIZATION.ADDRESS}}</p> <app-input [placeholder]="'Address'" [(ngModel)]="studentInfo.address"></app-input>
     </div>
   </div>
 
   <div class="btn-container">
-    <div class="button2"><button class="btn btn-primary" (click)="isShowPopUp = true" >Update</button></div>
+    <div class="button2"><button class="btn btn-primary" (click)="isShowPopUp = true">{{GLOBAL_LOCALIZATION.BUTTON_UPDATE_LABEL}}</button></div>
   </div>
 </div>
 
-<span *ngIf="isShowPopUp"><app-popup (deny)="isShowPopUp = false" (accept)="onSubmit()" [title]="title"></app-popup></span>
+<span *ngIf="isShowPopUp"><app-popup (deny)="isShowPopUp = false" (accept)="onSubmit()" [title]="TITLE"></app-popup></span>

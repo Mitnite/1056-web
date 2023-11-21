@@ -122,10 +122,10 @@
 
   <div class="messageMain">
 
-    <div class="messageTitle">Write to the email</div>
-    <div class="messageText">{{deleteMatch}}</div>
+    <div class="messageTitle">{{DELETE_MATCH_LOCALIZATION.TITLE}}</div>
+    <div class="messageText">{{DELETE_MATCH_LOCALIZATION.TEXT}}</div>
 
-    <app-input [(ngModel)]="adminEmail" [disabled]="true"></app-input>
+    <app-input [ngModel]="EMAIL_LOCALIZATION.EMAIL" [disabled]="true"></app-input>
 
     <div style="margin-top: 32px">
       <button class="btn btn-primary btn-assign" (click)="isShowPopUp = false">OK</button>

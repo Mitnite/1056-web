@@ -31,8 +31,8 @@
 
     <div class="problemTitle">{{title}}</div>
     <div *ngIf="isEmail" class="problemContacts">
-      <span class="emailText">Contact e-mail:</span>
-      <app-input [(ngModel)]="email" [disabled]="true"></app-input>
+      <span class="emailText">{{EMAIL_LOCALIZATION.EMAIL_TITLE}}</span>
+      <app-input [(ngModel)]="EMAIL_LOCALIZATION.EMAIL" [disabled]="true"></app-input>
     </div>
 
     <div style="margin-top: 48px">

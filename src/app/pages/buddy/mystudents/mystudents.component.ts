@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@core/auth.service';
 import { Router } from '@angular/router';
-import { acceptPopup, deleteMatch, Email } from '../../../textIntoBlock';
 import { EditStudent } from '../../../interfaces';
+import { DELETE_MATCH_LOCALIZATION, EMAIL_LOCALIZATION } from '../../../config/constants';
 
 @Component({
   selector: 'app-mystudents',
@@ -17,13 +17,13 @@ export class MyStudentsComponent implements OnInit {
 
   matchingId;
   isShowPopUp = false;
-  title = acceptPopup;
   date = [];
   isShowMessage = true;
   address = '';
-  deleteMatch = deleteMatch;
-  adminEmail = Email;
   currentDate = new Date();
+
+  protected readonly DELETE_MATCH_LOCALIZATION = DELETE_MATCH_LOCALIZATION;
+  protected readonly EMAIL_LOCALIZATION = EMAIL_LOCALIZATION;
 
   constructor(private authService: AuthService,
               private router: Router) {

@@ -4,7 +4,7 @@ import { CookieService } from 'ngx-cookie';
 import data from '../../../config/dataCollections.json';
 import { Router } from '@angular/router';
 import { checkData } from '../../../checkData';
-import { UpdatePopup } from '../../../textIntoBlock';
+import { POPUP_LOCALIZATION } from '../../../config/constants';
 
 @Component({
   selector: 'app-edit-profile',
@@ -39,17 +39,16 @@ export class EditProfileComponent implements OnInit {
   citizenship = '';
   password = '';
   isShowPopUp = false;
-  title = UpdatePopup;
 
-  private USER_ID;
+  private readonly USER_ID: string;
 
   constructor(private authService: AuthService,
               private cookieService: CookieService,
               private router: Router) {
+    this.USER_ID = this.cookieService.get('user-id');
   }
 
   ngOnInit(): void {
-    this.USER_ID = this.cookieService.get('user-id');
     this.loadData();
   }
 
@@ -97,5 +96,6 @@ export class EditProfileComponent implements OnInit {
 
   }
 
+  protected readonly POPUP_LOCALIZATION = POPUP_LOCALIZATION;
 }
 

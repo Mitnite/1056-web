@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BuddyManual, Email } from '../../../textIntoBlock';
+import { BUDDY_MANUAL_LOCALIZATION, EMAIL_LOCALIZATION } from '../../../config/constants';
 
 
 
@@ -13,12 +13,9 @@ export class BuddyComponent {
 
   isShow = false;
   isEmail = false;
-  problems = BuddyManual;
-  title = 'Buddy manual';
-  email = Email;
 
-
-
-
+  protected readonly TITLE: string = 'Buddy manual';
+  protected readonly PROBLEMS: string[] = BUDDY_MANUAL_LOCALIZATION;
+  protected readonly EMAIL_LOCALIZATION = EMAIL_LOCALIZATION;
 }
 

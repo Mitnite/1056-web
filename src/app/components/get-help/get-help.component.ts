@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { orgProblem, TechProblem, FAQ, Email} from '../../textIntoBlock';
+import { orgProblem, TechProblem, FAQ, EMAIL_LOCALIZATION } from '../../config/constants';
 
 @Component({
   selector: 'app-get-help',
@@ -12,7 +12,8 @@ export class GetHelpComponent {
   isEmail = false;
   problems = [];
   title = '';
-  email = Email;
+
+  protected readonly EMAIL_LOCALIZATION = EMAIL_LOCALIZATION;
 
   isShowHandler() {
     this.isShow = !this.isShow;

@@ -3,14 +3,14 @@
 <div>
 
 
-  <!--    <div class="messageMain">
+      <div class="messageMain">
 
-        <div class="messageTitle">Write to the email</div>
+        <div class="messageTitle">{{EMAIL_LOCALIZATION.EMAIL_TITLE}}</div>
         <div class="messageText">Your account is archived. Please send an email to the email address below.</div>
 
-        <app-input [(ngModel)]="ADMIN_EMAIL" [disabled]="true"></app-input>
+        <app-input [(ngModel)]="EMAIL_LOCALIZATION.EMAIL" [disabled]="true"></app-input>
 
-      </div>-->
+      </div>
 
   <div class="wrapper">
     <div class="column" *ngFor="let student of students; let i = index">
@@ -47,6 +47,6 @@
 
 
 <span *ngIf="isShowPopUp">
-    <app-popup (accept)="onSubmit()" (deny)="isShowPopUp = false" [title]="TITLE"></app-popup>
+    <app-popup (accept)="onSubmit()" (deny)="isShowPopUp = false" [title]="POPUP_LOCALIZATION.ACCEPT_POPUP"></app-popup>
   </span>
 
