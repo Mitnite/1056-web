@@ -54,41 +54,20 @@ export const GLOBAL_LOCALIZATION = {
 
 };
 
-// Блок Get help c описанием проблемы для каждого подблока
-export const orgProblem = [
-    'За 25 c лишним лет Высшая школа экономики стала для многих символом качественного образования',
-    'За 25 c лишним лет Высшая школа экономики стала для многих символом качественного образования',
-    'За 25 c лишним лет Высшая школа экономики стала для многих символом качественного образования'
-];
-
-export const FAQ = [
-    'За 25 c лишним лет Высшая школа экономики стала для многих символом качественного образования',
-    'За 25 c лишним лет Высшая школа экономики стала для многих символом качественного образования',
-    'За 25 c лишним лет Высшая школа экономики стала для многих символом качественного образования'
-];
-
-export const TechProblem = [
-    'За 25 c лишним лет Высшая школа экономики стала для многих символом качественного образования',
-    'За 25 c лишним лет Высшая школа экономики стала для многих символом качественного образования',
-    'За 25 c лишним лет Высшая школа экономики стала для многих символом качественного образования'
-];
-
-export const BUDDY_MANUAL_LOCALIZATION = [
-    'За 25 c лишним лет Высшая школа экономики стала для многих символом качественного образования',
-    'За 25 c лишним лет Высшая школа экономики стала для многих символом качественного образования',
-    'За 25 c лишним лет Высшая школа экономики стала для многих символом качественного образования'
-];
-
-/*--------------------------------------------------------------------------------------------*/
-
 export const EMAIL_LOCALIZATION = {
-    EMAIL_TITLE: 'Contact e-mail:',
     EMAIL: 'mail@hse.ru', // Email, который используется для связи с тех. поддержкой или администратором
 
-    TEXT: 'Your account is archived. Please send an email to the email address below.' // Текст при блокировке пользователя
+
+    EMAIL_CONTACT_TITLE: 'Contact e-mail:',
+    EMAIL_WRITE_TITLE: 'Write to the email',
+
+    ARCHIVED_ACCOUNT_TEXT: 'Your account is archived. Please send an email to the email address below.', // Текст при блокировке пользователя
+    DELETE_PAIR_TEXT: 'Describe the reason for deleting the match. Send an email to the email address below.'
 };
 
 export const POPUP_LOCALIZATION = {
+    HEADER_REVIEW: 'Perform an action?',
+
     LEAVE_REVIEW: 'Are you sure you want to send the review?',
     UPDATE_POPUP: 'Are you sure you want to update?',
     ACCEPT_POPUP: 'Are you sure you want to take?',
@@ -96,11 +75,6 @@ export const POPUP_LOCALIZATION = {
     ARCHIVE_POPUP: 'Are you sure you want to add to archive?',
     DELETE_POPUP: 'Are you sure you want to delete',
     DELETE_PAIR_POPUP: 'Are you sure you want to delete a pair?',
-};
-
-export const DELETE_MATCH_LOCALIZATION = {
-    TITLE: 'Write to the email',
-    TEXT: 'Describe the reason for deleting the match. Send an email to the email address below.'
 };
 
 export const FOOTER_LOCALIZATION = {

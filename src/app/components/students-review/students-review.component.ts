@@ -1,24 +1,23 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { GLOBAL_LOCALIZATION } from '../../config/constants';
 
 @Component({
-  selector: 'app-students-review',
-  templateUrl: './students-review.component.html',
-  styleUrls: ['./students-review.component.scss']
+    selector: 'app-students-review',
+    templateUrl: './students-review.component.html',
+    styleUrls: ['./students-review.component.scss']
 })
-export class StudentsReviewComponent implements OnInit {
+export class StudentsReviewComponent {
 
-  @Output() deny: EventEmitter<any> = new EventEmitter();
+    @Output() deny: EventEmitter<any> = new EventEmitter();
 
-  @Input() number: number;
+    @Input() number = 0;
 
-  @Input() studentsId: number;
+    @Input() studentsId: number;
 
-  @Input() reviewText: string;
+    @Input() reviewText: string;
 
-  ngOnInit(): void {
-    const stars = this.number;
-    stars ? this.number = stars : this.number = 0;
-
-  }
+    protected readonly REVIEW: string = 'Student\'s review ';
+    protected readonly SCORE: string = 'Score';
+    protected readonly GLOBAL_LOCALIZATION = GLOBAL_LOCALIZATION;
 
 }

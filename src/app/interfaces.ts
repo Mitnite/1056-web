@@ -132,6 +132,18 @@ export interface IStudentTable extends EditStudent{
 }
 
 export interface IBuddyTable extends EditBuddy{
-
     foreignStudent: EditStudent[];
+}
+
+export interface IMatchingChart {
+    id: number;
+    buddy: EditBuddy;
+    foreignStudent: EditStudent;
+    reviews: IReviews[];
+}
+
+interface IReviews {
+    name: string;
+    score: number;
+    comment: string;
 }

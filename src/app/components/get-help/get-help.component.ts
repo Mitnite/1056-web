@@ -1,45 +1,50 @@
 import { Component } from '@angular/core';
-import { orgProblem, TechProblem, FAQ, EMAIL_LOCALIZATION } from '../../config/constants';
+import { EMAIL_LOCALIZATION } from '../../config/constants';
+import { GET_HELP_LOCALIZATION } from './config/constants';
 
 @Component({
-  selector: 'app-get-help',
-  templateUrl: './get-help.component.html',
-  styleUrls: ['./get-help.component.scss']
+    selector: 'app-get-help',
+    templateUrl: './get-help.component.html',
+    styleUrls: ['./get-help.component.scss']
 })
 export class GetHelpComponent {
 
-  isShow = false;
-  isEmail = false;
-  problems = [];
-  title = '';
+    isShow = false;
 
-  protected readonly EMAIL_LOCALIZATION = EMAIL_LOCALIZATION;
+    isEmail = false;
 
-  isShowHandler() {
-    this.isShow = !this.isShow;
-  }
+    problems: {text: string}[] = [];
 
-  setProblemHandler(problem: string) {
-    switch (problem) {
-      case 'org':
-        this.isShowHandler();
-        this.isEmail = true;
-        this.problems = orgProblem;
-        this.title = 'Organization problem';
-        break;
-      case 'tech':
-        this.isShowHandler();
-        this.isEmail = true;
-        this.problems = TechProblem;
-        this.title = 'Technical problem';
-        break;
-      case 'faq':
-        this.isShowHandler();
-        this.isEmail = false;
-        this.problems = FAQ;
-        this.title = 'FAQ';
-        break;
+    title: string | null = null;
+
+    protected readonly EMAIL_LOCALIZATION = EMAIL_LOCALIZATION;
+    protected readonly GET_HELP_LOCALIZATION = GET_HELP_LOCALIZATION;
+
+    isShowHandler() {
+        this.isShow = !this.isShow;
     }
-  }
+
+    setProblemHandler(problem: string) {
+        switch (problem) {
+            case 'org':
+                this.isShowHandler();
+                this.isEmail = true;
+                this.problems = GET_HELP_LOCALIZATION.ORGANIZATION_PROBLEM;
+                this.title = 'Organization problem';
+                break;
+            case 'tech':
+                this.isShowHandler();
+                this.isEmail = true;
+                this.problems = GET_HELP_LOCALIZATION.TECHNICAL_PROBLEM;
+                this.title = 'Technical problem';
+                break;
+            case 'faq':
+                this.isShowHandler();
+                this.isEmail = false;
+                this.problems = GET_HELP_LOCALIZATION.FAQ;
+                this.title = 'FAQ';
+                break;
+        }
+    }
 
 }

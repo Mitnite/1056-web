@@ -2,8 +2,8 @@
 
 <div class="main">
 
-	<div class="title">Student's review #{{studentsId || 0}}</div>
-	<div class="text">Score: {{number}}</div>
+	<div class="title">{{REVIEW}} #{{studentsId || 0}}</div>
+	<div class="text">{{SCORE}}: {{number}}</div>
 
 	<div class="stars">
 		<div *ngFor="let _ of [].constructor(number)">
@@ -28,6 +28,6 @@
     <app-textarea [disabled]="true" [width]=450 [(ngModel)]="reviewText" [resize]="150"> </app-textarea>
 	</div>
 
-	<button style="margin-top: 32px" class="btn btn-secondary btn-close" (click)="deny.emit()">Close</button>
+	<button style="margin-top: 32px" class="btn btn-secondary btn-close" (click)="deny.emit()">{{GLOBAL_LOCALIZATION.BUTTON_CLOSE_LABEL}}</button>
 
 </div>

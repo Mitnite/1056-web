@@ -1,11 +1,9 @@
-<p class="title">{{HEADER}}</p>
+<p class="title">{{BUDDY_MANUAL_LOCALIZATION.HEADER}}</p>
 
-<div class="wrapper">
   <div class="block" (click)="isShow = true">
-    <div class="subtitle">{{SUBTITLE}}</div>
-    <p>{{TEXT}}</p>
+    <div class="subtitle">{{BUDDY_MANUAL_LOCALIZATION.TITLE}}</div>
+    <p>{{BUDDY_MANUAL_LOCALIZATION.TEXT}}</p>
   </div>
-
 
 
 <div *ngIf="isShow">
@@ -19,8 +17,8 @@
     </div>
 
     <div>
-      <span class="problemSubTitle">{{HEADER}}</span>
-      <div *ngFor="let problem of PROBLEMS" class="problemText">{{problem}}</div>
+      <span class="problemSubTitle">{{BUDDY_MANUAL_LOCALIZATION.HEADER}}</span>
+      <div *ngFor="let problem of BUDDY_MANUAL_LOCALIZATION.DESCRIPTION" class="problemText">{{problem.text}}</div>
     </div>
   </div>
 

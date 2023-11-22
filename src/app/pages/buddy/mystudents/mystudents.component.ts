@@ -3,7 +3,6 @@ import { AuthService } from '@core/auth.service';
 import { Router } from '@angular/router';
 import { EditStudent } from '../../../interfaces';
 import {
-    DELETE_MATCH_LOCALIZATION,
     EMAIL_LOCALIZATION,
     GLOBAL_LOCALIZATION,
     PLACEHOLDER_LOCALIZATION
@@ -26,7 +25,6 @@ export class MyStudentsComponent implements OnInit {
     isShowMessage = true;
     protected readonly currentDate: Date = new Date();
 
-    protected readonly DELETE_MATCH_LOCALIZATION = DELETE_MATCH_LOCALIZATION;
     protected readonly EMAIL_LOCALIZATION = EMAIL_LOCALIZATION;
     protected readonly MY_STUDENTS_LOCALIZATION = MY_STUDENTS_LOCALIZATION;
     protected readonly PLACEHOLDER_LOCALIZATION = PLACEHOLDER_LOCALIZATION;

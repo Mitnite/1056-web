@@ -43,12 +43,12 @@
 		</svg>
 	</div>
 
-	<div class="title">Perform an action?</div>
+	<div class="title">{{POPUP_LOCALIZATION.HEADER_REVIEW}}</div>
 	<div class="text">{{title}}</div>
 
 <div style="margin-top: 32px">
-	<button class="btn btn-primary btn-assign" (click)="accept.emit()">OK</button>
-	<button style="margin-left: 16px" class="btn btn-secondary btn-close" (click)="deny.emit()">Cancel</button>
+	<button class="btn btn-primary btn-assign" (click)="accept.emit()">{{GLOBAL_LOCALIZATION.BUTTON_OK_LABEL}}</button>
+	<button style="margin-left: 16px" class="btn btn-secondary btn-close" (click)="deny.emit()">{{GLOBAL_LOCALIZATION.BUTTON_CANSEL_LABEL}}</button>
 </div>
 
 </div>

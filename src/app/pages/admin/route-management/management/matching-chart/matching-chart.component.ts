@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ExportService } from '@core/export.service';
 import { AuthService } from '@core/auth.service';
-import { EditBuddy, EditStudent } from '../../../../../interfaces';
+import { EditBuddy, EditStudent, IMatchingChart } from '../../../../../interfaces';
 import { GLOBAL_LOCALIZATION, POPUP_LOCALIZATION } from '../../../../../config/constants';
 
 @Component({
@@ -11,7 +11,7 @@ import { GLOBAL_LOCALIZATION, POPUP_LOCALIZATION } from '../../../../../config/c
 })
 export class MatchingChartComponent implements OnInit {
 
-    allMatches = [];
+    allMatches: IMatchingChart[] = [];
     isEdit = false;
     isShowStudentInfo = false;
     isShowBuddyInfo = false;
@@ -63,8 +63,8 @@ export class MatchingChartComponent implements OnInit {
         this.authService.getAllMatches()
             .then((response) => {
                 this.allMatches = response;
+                console.log(this.allMatches);
             });
-        // console.log(this.data);
     }
 
 
@@ -72,9 +72,8 @@ export class MatchingChartComponent implements OnInit {
         this.exportService.exportTableElmToExcel(this.userTable, 'matchingChartTable');
     }
 
-    async acceptHandler() {
+    acceptHandler() {
         this.addToDelete = false;
-
         this.authService.deleteMatch(this.allMatches[this.index].foreignStudent.id, this.allMatches[this.index].buddy.id)
             .then(() => {
                 this.loadData();

@@ -6,7 +6,6 @@ import { EditBuddy, EditStudent } from '../../../interfaces';
 import { STUDENT_DASHBOARD_LOCALIZATION } from './config/constants';
 import {
     GLOBAL_LOCALIZATION,
-    DELETE_MATCH_LOCALIZATION,
     EMAIL_LOCALIZATION,
     POPUP_LOCALIZATION
 } from '../../../config/constants';
@@ -36,7 +35,6 @@ export class DashboardStudentComponent implements OnInit {
 
     isShowStudentInfo = false;
 
-    protected readonly DELETE_MATCH = DELETE_MATCH_LOCALIZATION;
     protected readonly EMAIL_LOCALIZATION = EMAIL_LOCALIZATION;
     protected readonly STUDENT_DASHBOARD_LOCALIZATION = STUDENT_DASHBOARD_LOCALIZATION;
     protected readonly GLOBAL_LOCALIZATION = GLOBAL_LOCALIZATION;

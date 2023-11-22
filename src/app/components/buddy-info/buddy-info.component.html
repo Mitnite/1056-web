@@ -1,60 +1,61 @@
 <div class="backdrop" (click)="deny.emit()"></div>
 <div class="main" *ngIf="buddyInfo">
 
-	<div class="title-name">{{buddyInfo.name}} {{buddyInfo.surname}}</div>
-	<div class="all-tags" >
-    <div class="tag" *ngFor="let tag of buddyInfo.tagList"><p class="tag-text">{{tag.name}}</p></div>
-	</div>
+    <div class="title-name">{{buddyInfo.name}} {{buddyInfo.surname}}</div>
+    <div class="all-tags">
+        <div class="tag" *ngFor="let tag of buddyInfo.tagList"><p class="tag-text">{{tag.name}}</p></div>
+    </div>
 
-	<div class="all-lines">
+    <div class="all-lines">
 
-			<div class="line">
-				<p class="text">{{PLACEHOLDER_LOCALIZATION.GENDER}}</p>
-				<app-input [disabled]="disabled" [ngModel]="checkData.gender(buddyInfo.gender)"></app-input>
-			</div>
+        <div class="line">
+            <p class="text">{{PLACEHOLDER_LOCALIZATION.GENDER}}</p>
+            <app-input [disabled]="disabled" [ngModel]="checkData.gender(buddyInfo.gender)"></app-input>
+        </div>
 
-			<div class="line">
-				<p class="text">{{PLACEHOLDER_LOCALIZATION.DATE_OF_BIRTH}}</p>
-				<app-input [disabled]="disabled" [ngModel]="checkData.birthDate(buddyInfo.birthDate)"></app-input>
-			</div>
+        <div class="line">
+            <p class="text">{{PLACEHOLDER_LOCALIZATION.DATE_OF_BIRTH}}</p>
+            <app-input [disabled]="disabled" [ngModel]="checkData.birthDate(buddyInfo.birthDate)"></app-input>
+        </div>
 
-			<div class="line">
-				<p class="text">{{PLACEHOLDER_LOCALIZATION.PHONE_NUMBER}}</p>
-				<app-input [disabled]="disabled"
-                   [(ngModel)]="buddyInfo.phone"
-                   [mask]="PLACEHOLDER_LOCALIZATION.PHONE_MASK"
-                   [maskPrefix]="PLACEHOLDER_LOCALIZATION.PHONE_PREFIX"></app-input>
-			</div>
+        <div class="line">
+            <p class="text">{{PLACEHOLDER_LOCALIZATION.PHONE_NUMBER}}</p>
+            <app-input [disabled]="disabled"
+                       [(ngModel)]="buddyInfo.phone"
+                       [mask]="PLACEHOLDER_LOCALIZATION.PHONE_MASK"
+                       [maskPrefix]="PLACEHOLDER_LOCALIZATION.PHONE_PREFIX"></app-input>
+        </div>
 
-			<div class="line">
-				<p class="text">{{PLACEHOLDER_LOCALIZATION.EMAIL}}</p>
-				<app-input [disabled]="disabled" [(ngModel)]="buddyInfo.email"></app-input>
-			</div>
+        <div class="line">
+            <p class="text">{{PLACEHOLDER_LOCALIZATION.EMAIL}}</p>
+            <app-input [disabled]="disabled" [(ngModel)]="buddyInfo.email"></app-input>
+        </div>
 
-			<div class="line">
-				<p class="text">{{PLACEHOLDER_LOCALIZATION.CITIZENSHIP}}</p>
-				<app-input [disabled]="disabled" [(ngModel)]="buddyInfo.citizenship"></app-input>
-			</div>
+        <div class="line">
+            <p class="text">{{PLACEHOLDER_LOCALIZATION.CITIZENSHIP}}</p>
+            <app-input [disabled]="disabled" [(ngModel)]="buddyInfo.citizenship"></app-input>
+        </div>
 
-			<div class="line">
-				<p class="text">{{PLACEHOLDER_LOCALIZATION.CAMPUS}}</p>
-				<app-input [disabled]="disabled" [ngModel]="checkData.campus(buddyInfo.campus)"></app-input>
-			</div>
+        <div class="line">
+            <p class="text">{{PLACEHOLDER_LOCALIZATION.CAMPUS}}</p>
+            <app-input [disabled]="disabled" [ngModel]="checkData.campus(buddyInfo.campus)"></app-input>
+        </div>
 
-			<div class="line">
-				<p class="text">{{PLACEHOLDER_LOCALIZATION.HSE_FACULTY}}</p>
-				<app-input [disabled]="disabled" [(ngModel)]="buddyInfo.localFaculty"></app-input>
-			</div>
+        <div class="line">
+            <p class="text">{{PLACEHOLDER_LOCALIZATION.HSE_FACULTY}}</p>
+            <app-input [disabled]="disabled" [(ngModel)]="buddyInfo.localFaculty"></app-input>
+        </div>
 
-			<div class="line">
-				<p class="text">{{PLACEHOLDER_LOCALIZATION.ABOUT}}</p>
-				<app-input [disabled]="disabled" [(ngModel)]="buddyInfo.about"></app-input>
-			</div>
+        <div class="line">
+            <p class="text">{{PLACEHOLDER_LOCALIZATION.ABOUT}}</p>
+            <app-input [disabled]="disabled" [(ngModel)]="buddyInfo.about"></app-input>
+        </div>
 
 
-	</div>
-	<button class="btn btn-secondary btn-close" (click)=deny.emit()>{{GLOBAL_LOCALIZATION.BUTTON_CLOSE_LABEL}}</button>
-	<button *ngIf  = "isAssign" class="btn btn-primary btn-assign" (click)="assign.emit()">{{GLOBAL_LOCALIZATION.BUTTON_ASSIGN_LABEL}}</button>
+    </div>
+    <button class="btn btn-secondary btn-close" (click)=deny.emit()>{{GLOBAL_LOCALIZATION.BUTTON_CLOSE_LABEL}}</button>
+    <button *ngIf="isAssign" class="btn btn-primary btn-assign"
+            (click)="assign.emit()">{{GLOBAL_LOCALIZATION.BUTTON_ASSIGN_LABEL}}</button>
 </div>
 
 

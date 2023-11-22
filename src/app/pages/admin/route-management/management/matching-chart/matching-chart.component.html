@@ -38,10 +38,12 @@
                       (click)=isShowBuddyInfoHandler(match.buddy.id)>{{match.buddy.name}} {{match.buddy.surname}}</span></td>
             <td>{{match.buddy.citizenship}}</td>
             <!--			<td>{{d.matching}}</td>-->
+
+
+            <!--<td><span class="buddyName"
+                      (click)="showScoreHandler(match.reviews[0].score, match.foreignStudent.id,  match.reviews[0].comment)">{{match.reviews[0].score || 0}}</span></td>
             <td><span class="buddyName"
-                      (click)="showScoreHandler(match.score1, match.foreignStudent.id,  '')">{{match.score1 || 0}}</span></td>
-            <td><span class="buddyName"
-                      (click)="showScoreHandler(match.score2, match.foreignStudent.id, '')">{{match.score2 || 0}}</span></td>
+                      (click)="showScoreHandler(match.reviews[1].score, match.foreignStudent.id, match.reviews[1].comment)">{{match.reviews[1].score || 0}}</span></td>-->
         </tr>
         </tbody>
 
