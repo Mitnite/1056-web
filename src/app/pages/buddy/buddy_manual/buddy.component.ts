@@ -12,9 +12,10 @@ import { BUDDY_MANUAL_LOCALIZATION, EMAIL_LOCALIZATION } from '../../../config/c
 export class BuddyComponent {
 
   isShow = false;
-  isEmail = false;
 
-  protected readonly TITLE: string = 'Buddy manual';
+  protected readonly HEADER: string = 'Buddy manual';
+  protected readonly SUBTITLE: string = 'Information';
+  protected readonly TEXT: string = 'Buddy manual text';
   protected readonly PROBLEMS: string[] = BUDDY_MANUAL_LOCALIZATION;
   protected readonly EMAIL_LOCALIZATION = EMAIL_LOCALIZATION;
 }

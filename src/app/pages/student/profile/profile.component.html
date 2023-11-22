@@ -14,7 +14,7 @@
       <div class="profile-you">
         <div class="profile-name">{{studentInfo.name}}</div>
         <div class="profile-name">{{studentInfo.surname}}</div>
-        <div class="profile-description">Student profile</div>
+        <div class="profile-description">{{TITLE}}</div>
       </div>
     </div>
   </div>
@@ -75,7 +75,7 @@
 
     <div class="row">
       <div class="column left">
-        <h3 class="text2">{{PLACEHOLDER_LOCALIZATION.FACULTY}}</h3>
+        <h3 class="text2">{{PLACEHOLDER_LOCALIZATION.HSE_FACULTY}}</h3>
       </div>
       <div class="column right">
         <app-input [disabled]="disabled" [(ngModel)]="studentInfo.localFaculty"></app-input>

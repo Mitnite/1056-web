@@ -15,14 +15,14 @@
     <div class="line">
       <p class="text">{{PLACEHOLDER_LOCALIZATION.ARRIVAL_TIME}}</p>
       <app-input
-        [placeholder]="'00:00'"
+        [placeholder]="PLACEHOLDER_LOCALIZATION.TIME_MASK"
         [(ngModel)]="arrivalTime"
         [mask]="PLACEHOLDER_LOCALIZATION.TIME_MASK"
       ></app-input>
     </div>
 
     <div class="line">
-      <p class="text">{{PLACEHOLDER_LOCALIZATION.ARRIVAL_PLACE}}</p> <app-input [placeholder]="'Arrival place'" [(ngModel)]="studentInfo.arrivalPlace"></app-input>
+      <p class="text">{{PLACEHOLDER_LOCALIZATION.ARRIVAL_PLACE}}</p> <app-input [placeholder]="PLACEHOLDER_LOCALIZATION.ARRIVAL_PLACE" [(ngModel)]="studentInfo.arrivalPlace"></app-input>
     </div>
 
 
@@ -37,7 +37,7 @@
       </app-multi-select>
     </div>
     <div class="line">
-      <p class="text">{{PLACEHOLDER_LOCALIZATION.ADDRESS}}</p> <app-input [placeholder]="'Address'" [(ngModel)]="studentInfo.address"></app-input>
+      <p class="text">{{PLACEHOLDER_LOCALIZATION.ADDRESS}}</p> <app-input [placeholder]="PLACEHOLDER_LOCALIZATION.ADDRESS" [(ngModel)]="studentInfo.address"></app-input>
     </div>
   </div>
 

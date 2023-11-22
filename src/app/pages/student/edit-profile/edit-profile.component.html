@@ -7,11 +7,11 @@
 <div class="wrapper" *ngIf="studentInfo">
     <div class="line">
         <p class="text">{{PLACEHOLDER_LOCALIZATION.STUDENT_NAME}}</p>
-        <app-input [placeholder]="'First name'" [(ngModel)]="studentInfo.name"></app-input>
+        <app-input [placeholder]="PLACEHOLDER_LOCALIZATION.FIRST_NAME" [(ngModel)]="studentInfo.name"></app-input>
     </div>
     <div class="line">
         <p class="text">{{PLACEHOLDER_LOCALIZATION.SURNAME}}</p>
-        <app-input [placeholder]="'Last name'" [(ngModel)]="studentInfo.surname"></app-input>
+        <app-input [placeholder]="PLACEHOLDER_LOCALIZATION.LAST_NAME" [(ngModel)]="studentInfo.surname"></app-input>
     </div>
     <div class="line">
         <p class="text">{{PLACEHOLDER_LOCALIZATION.GENDER}}</p>
@@ -58,7 +58,7 @@
     </div>
 
     <div class="line">
-        <p class="text">{{PLACEHOLDER_LOCALIZATION.FACULTY}}</p>
+        <p class="text">{{PLACEHOLDER_LOCALIZATION.HSE_FACULTY}}</p>
         <app-multi-select
                 [collection]="facultyCollection"
                 [placeholder]="studentInfo.localFaculty"
@@ -120,7 +120,7 @@
 
     <div class="line">
         <p class="text">{{PLACEHOLDER_LOCALIZATION.ABOUT}}</p>
-        <app-textarea [placeholder]="'More information'" [(ngModel)]="studentInfo.about"></app-textarea>
+        <app-textarea [placeholder]="PLACEHOLDER_LOCALIZATION.MORE_INFORMATION" [(ngModel)]="studentInfo.about"></app-textarea>
     </div>
     <div class="btn-container">
         <div class="button2">

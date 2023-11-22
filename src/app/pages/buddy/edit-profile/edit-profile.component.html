@@ -1,15 +1,20 @@
-<p class="title">Edit my profile</p>
-<div class="wrapper">
+<p class="title">{{HEADER}}</p>
+
+<ng-container *ngIf="!buddyInfo">
+  <app-loader></app-loader>
+</ng-container>
+
+<div class="wrapper" *ngIf="buddyInfo">
   <div class="line">
-    <p class="text">Given name</p>
-    <app-input [placeholder]="'First name'" [(ngModel)]=name></app-input>
+    <p class="text">{{PLACEHOLDER_LOCALIZATION.STUDENT_NAME}}</p>
+    <app-input [placeholder]="PLACEHOLDER_LOCALIZATION.FIRST_NAME" [(ngModel)]=buddyInfo.name></app-input>
   </div>
   <div class="line">
-    <p class="text">Surname</p>
-    <app-input [placeholder]="'Last name'" [(ngModel)]="surname"></app-input>
+    <p class="text">{{PLACEHOLDER_LOCALIZATION.SURNAME}}</p>
+    <app-input [placeholder]="PLACEHOLDER_LOCALIZATION.LAST_NAME" [(ngModel)]="buddyInfo.surname"></app-input>
   </div>
   <div class="line">
-    <p class="text">Gender</p>
+    <p class="text">{{PLACEHOLDER_LOCALIZATION.GENDER}}</p>
     <app-multi-select
       [collection]="genderCollection"
       [placeholder]="gender"
@@ -19,38 +24,38 @@
     </app-multi-select>
   </div>
   <div class="line">
-    <p class="text">Date of birth</p>
-    <app-date-picker [(ngModel)]="birthDate"></app-date-picker>
+    <p class="text">{{PLACEHOLDER_LOCALIZATION.DATE_OF_BIRTH}}</p>
+    <app-date-picker [(ngModel)]="buddyInfo.birthDate"></app-date-picker>
   </div>
   <div class="line">
-    <p class="text">Phone number</p>
+    <p class="text">{{PLACEHOLDER_LOCALIZATION.PHONE_NUMBER}}</p>
     <app-input
-      [placeholder]="'Phone number'"
-      [(ngModel)]="phone"
-      [mask]="phoneMask"
-      [maskPrefix]="phonePrefix"
+      [placeholder]="PLACEHOLDER_LOCALIZATION.PHONE_NUMBER"
+      [(ngModel)]="buddyInfo.phone"
+      [mask]="PLACEHOLDER_LOCALIZATION.PHONE_MASK"
+      [maskPrefix]="PLACEHOLDER_LOCALIZATION.PHONE_PREFIX"
     ></app-input>
   </div>
 
   <div class="line">
-    <p class="text">Email</p>
-    <app-input [placeholder]="'Email'" [(ngModel)]=email></app-input>
+    <p class="text">{{PLACEHOLDER_LOCALIZATION.EMAIL}}</p>
+    <app-input [placeholder]="PLACEHOLDER_LOCALIZATION.EMAIL" [(ngModel)]=buddyInfo.email></app-input>
   </div>
 
   <div class="line">
-    <p class="text">Citizenship</p>
+    <p class="text">{{PLACEHOLDER_LOCALIZATION.CITIZENSHIP}}</p>
     <app-multi-select
       [collection]="citizenshipCollection"
-      [placeholder]="citizenship"
+      [placeholder]="buddyInfo.citizenship"
       [isMulti]="false"
       [showSearchInput]="true"
-      [(ngModel)]="citizenship"
+      [(ngModel)]="buddyInfo.citizenship"
     >
     </app-multi-select>
   </div>
 
   <div class="line">
-    <p class="text">Campus</p>
+    <p class="text">{{PLACEHOLDER_LOCALIZATION.CAMPUS}}</p>
     <app-multi-select
       [collection]="campusCollection"
       [placeholder]="campus"
@@ -62,19 +67,19 @@
   </div>
 
   <div class="line">
-    <p class="text">HSE Faculty</p>
+    <p class="text">{{PLACEHOLDER_LOCALIZATION.HSE_FACULTY}}</p>
     <app-multi-select
       [collection]="facultyCollection"
-      [placeholder]="'Faculty'"
+      [placeholder]="PLACEHOLDER_LOCALIZATION.FACULTY"
       [isMulti]="false"
       [showSearchInput]="true"
-      [(ngModel)]="localFaculty"
+      [(ngModel)]="buddyInfo.localFaculty"
     >
     </app-multi-select>
   </div>
 
   <div class="line">
-    <p class="text">Interest №1</p>
+    <p class="text">{{PLACEHOLDER_LOCALIZATION.INTEREST_1}}</p>
     <app-multi-select
       [collection]="tagCollection"
       [isMulti]="false"
@@ -84,7 +89,7 @@
     ></app-multi-select>
   </div>
   <div class="line">
-    <p class="text">Interest №2</p>
+    <p class="text">{{PLACEHOLDER_LOCALIZATION.INTEREST_2}}</p>
     <app-multi-select
       [collection]="tagCollection"
       [placeholder]="tagName2"
@@ -94,7 +99,7 @@
     ></app-multi-select>
   </div>
   <div class="line">
-    <p class="text">Interest №3</p>
+    <p class="text">{{PLACEHOLDER_LOCALIZATION.INTEREST_3}}</p>
     <app-multi-select
       [collection]="tagCollection"
       [placeholder]="tagName3"
@@ -105,14 +110,14 @@
   </div>
 
   <div class="line">
-    <p class="text">About me</p>
-    <app-textarea [(ngModel)]="about"></app-textarea>
+    <p class="text">{{PLACEHOLDER_LOCALIZATION.ABOUT}}</p>
+    <app-textarea [placeholder]="PLACEHOLDER_LOCALIZATION.MORE_INFORMATION"  [(ngModel)]="buddyInfo.about"></app-textarea>
   </div>
 
   <div class="btn-container">
     <div class="button2">
       <button class="btn btn-primary" (click)="isShowPopUp = true" >
-        Update
+        {{GLOBAL_LOCALIZATION.BUTTON_UPDATE_LABEL}}
       </button>
     </div>
   </div>

@@ -3,15 +3,15 @@
     <thead>
     <tr>
       <th *ngIf="isEdit"></th>
-      <th>N</th>
-      <th>Full name</th>
-      <th *ngIf="isEmail">Email</th>
-      <th>Faculty</th>
-      <th>Citizenship</th>
-      <th>Buddy</th>
+      <th>№</th>
+      <th>{{PLACEHOLDER_LOCALIZATION.FULL_NAME}}</th>
+      <th *ngIf="isEmail">{{PLACEHOLDER_LOCALIZATION.EMAIL}}</th>
+      <th>{{PLACEHOLDER_LOCALIZATION.FACULTY}}</th>
+      <th>{{PLACEHOLDER_LOCALIZATION.CITIZENSHIP}}</th>
+      <th>{{BUDDY}}</th>
     </tr>
     </thead>
-    <tbody *ngFor="let item of data; let i = index">
+    <tbody *ngFor="let item of students; let i = index">
     <tr *ngIf="item.archived === isArchive">
       <td *ngIf="isEdit"><input type="checkbox" [checked]="index === i" (change)="setIdHandler(i, item.id)"></td>
       <td>{{item.id}}</td>
@@ -47,14 +47,14 @@
 <div *ngIf="isShowTable" class="backdrop" (click)="isShowTable=false"></div>
 
 <div *ngIf="isShowTable" class="main">
-  <div class="title">Assign buddy</div>
+  <div class="title">{{ASSIGN_BUDDY}}</div>
   <div class="showTable">
     <app-buddy-table (BuddyId)="addBuddy($event)" [isAddBuddy]="true" [isEmail]="false"
                      [isArchive]="false"></app-buddy-table>
   </div>
-  <button class="btn btn-secondary btn-close" (click)="isShowTable=false">Close</button>
+  <button class="btn btn-secondary btn-close" (click)="isShowTable=false">{{GLOBAL_LOCALIZATION.BUTTON_CLOSE_LABEL}}</button>
 </div>
 
 <span *ngIf="isShowMessage"><app-popup (deny)="isShowMessage = false" (accept)="studentIdHandler()"
-                                       [title]="TITLE"></app-popup></span>
+                                       [title]="POPUP_LOCALIZATION.ASSIGN_POPUP"></app-popup></span>
 

@@ -1,65 +1,71 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ExportService } from '@core/export.service';
 import { AuthService } from '@core/auth.service';
-import { CookieService } from 'ngx-cookie';
 import { EditBuddy } from '../../../../../interfaces';
-import { checkData } from '../../../../../checkData';
+import { GLOBAL_LOCALIZATION, POPUP_LOCALIZATION } from '../../../../../config/constants';
 
 @Component({
-  selector: 'app-buddy_manual',
-  templateUrl: './buddy.component.html',
-  styleUrls: ['./buddy.component.scss']
+    selector: 'app-buddy_manual',
+    templateUrl: './buddy.component.html',
+    styleUrls: ['./buddy.component.scss']
 })
 export class AllBuddiesComponent {
 
-  isArchive = false;
-  isEdit = false;
-  addToArchive = false;
-  isDelete = false;
-  name = '';
-  role = 'role_volunteer';
-  buddy!: EditBuddy;
-  title = 'Are you sure you want to add?';
-  deleteTitle = 'Are you sure you want to delete';
+    isArchive = false;
+    isEdit = false;
+    addToArchive = false;
+    isDelete = false;
 
-  @ViewChild('buddyTable') userTable: ElementRef;
+    buddyInfo: EditBuddy | null = null;
 
-  constructor(
-    private exportService: ExportService,
-    private authService: AuthService,
-    private cookieService: CookieService,
-  ) {
-  }
+    @ViewChild('buddyTable') userTable: ElementRef;
 
-  exportElmToExcel(): void {
-    this.exportService.exportTableElmToExcel(this.userTable, 'buddyTable');
-  }
+    protected readonly HEADER: string = 'All buddies';
+    protected readonly POPUP_LOCALIZATION = POPUP_LOCALIZATION;
+    protected readonly GLOBAL_LOCALIZATION = GLOBAL_LOCALIZATION;
 
-  setArchiveHandler(component: string) {
-    switch (component) {
-      case 'arc':
-        this.isArchive = true;
-        break;
-      case 'act':
-        this.isArchive = false;
-        break;
+    constructor(
+        private exportService: ExportService,
+        private authService: AuthService,
+    ) {
     }
-  }
 
-  async acceptHandler() {
-    this.addToArchive = false;
-    this.buddy.archived = !this.buddy.archived;
-    console.log(this.buddy);
-    await this.authService.addBuddyToArchive(this.buddy);
-  }
+    exportElmToExcel(): void {
+        this.exportService.exportTableElmToExcel(this.userTable, 'buddyTable');
+    }
 
-  async reloadHandler(id: number) {
-    const userInfo = await this.authService.getById(id);
-    this.buddy = userInfo;
-  }
+    setArchiveHandler(component: string) {
+        switch (component) {
+            case 'arc':
+                this.isArchive = true;
+                break;
+            case 'act':
+                this.isArchive = false;
+                break;
+        }
+    }
 
-  async deleteHandler() {
-    await this.authService.deleteUser(this.buddy.id);
-  }
+    acceptHandler() {
+        this.addToArchive = false;
+        this.buddyInfo.archived = !this.buddyInfo.archived;
+        this.authService.addBuddyToArchive(this.buddyInfo)
+            .then(() => {
+                window.location.reload();
+            });
+    }
+
+    reloadHandler(id: number) {
+        this.authService.getById(id)
+            .then((response) => {
+                this.buddyInfo = response;
+            });
+    }
+
+    deleteHandler() {
+        this.authService.deleteUser(this.buddyInfo.id)
+            .then(() => {
+                window.location.reload();
+            });
+    }
 
 }

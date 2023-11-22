@@ -80,4 +80,5 @@ export class EditProfileStudentComponent implements OnInit {
                 this.router.navigate(['/foreign_student/profile']);
             });
     }
+
 }

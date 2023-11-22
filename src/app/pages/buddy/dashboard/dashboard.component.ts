@@ -2,7 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@core/auth.service';
 import { CookieService } from 'ngx-cookie';
 import { Router } from '@angular/router';
-import { POPUP_LOCALIZATION, EMAIL_LOCALIZATION } from '../../../config/constants';
+import {
+    POPUP_LOCALIZATION,
+    EMAIL_LOCALIZATION,
+    PLACEHOLDER_LOCALIZATION,
+    GLOBAL_LOCALIZATION
+} from '../../../config/constants';
 import { EditStudent } from '../../../interfaces';
 
 @Component({
@@ -16,31 +21,30 @@ export class DashboardBuddyComponent implements OnInit {
     students: EditStudent[] = [];
 
     disabled = true;
-    checked = true;
-    id = -1;
+    studentID = -1;
 
     date = [];
     matchingId = -1;
     isShowPopUp = false;
 
+    protected readonly HEADER: string = 'Dashboard';
     protected readonly POPUP_LOCALIZATION = POPUP_LOCALIZATION;
     protected readonly EMAIL_LOCALIZATION = EMAIL_LOCALIZATION;
-
+    protected readonly PLACEHOLDER_LOCALIZATION = PLACEHOLDER_LOCALIZATION;
+    protected readonly GLOBAL_LOCALIZATION = GLOBAL_LOCALIZATION;
     constructor(private authService: AuthService,
                 private cookieService: CookieService,
                 private router: Router) {
     }
 
     ngOnInit(): void {
-        this.loadData();
-    }
-
-    async loadData() {
-        this.students = await this.authService.getListSearching();
-        for (let i = 0; i < this.students.length; i++) {
-            this.date[i] = new Date(this.students[i].foreignStudent.arrivalDateTime);
-        }
-
+        this.authService.getListSearching()
+            .then((response) => {
+                this.students = response;
+                for (let i = 0; i < this.students.length; i++) {
+                    this.date[i] = new Date(this.students[i].foreignStudent.arrivalDateTime);
+                }
+            });
     }
 
     takeHandler(id: number) {
@@ -50,17 +54,19 @@ export class DashboardBuddyComponent implements OnInit {
 
     // Запрос на формирование пары по id студента
     async onSubmit() {
-        const result = await this.authService.matchWith(this.matchingId);
-        this.router.navigate(['/buddy/my_students']).then(() => {
-            window.location.reload();
-        });
+        this.authService.matchWith(this.matchingId)
+            .then(() => {
+                this.router.navigate(['/buddy/my_students']);
+            });
+
     }
 
     async onInfoStudent(student: EditStudent) {
         this.studentInfo = student;
-        this.id = student.id;
+        this.studentID = student.id;
 
     }
+
 
 
 }

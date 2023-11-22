@@ -1,101 +1,105 @@
-<div *ngIf="isLoading">
-  <app-loader></app-loader>
+<div *ngIf="!buddyInfo">
+    <app-loader></app-loader>
 </div>
 
 
-<ng-container *ngIf="!isLoading">
+<ng-container *ngIf="buddyInfo">
 
-  <div class="main">
-    <div class="profile-desc">
-      <img *ngIf="gender === 'female'" src="../../../../assets/icons/avatar_female.svg" width="100">
-      <img *ngIf="gender === 'male'" src="../../../../assets/icons/avatar-male.svg" width="100">
-      <div class="profile-you">
-        <div class="profile-name">{{name}}</div>
-        <div class="profile-name">{{surname}}</div>
-        <div class="profile-description">Buddy profile</div>
-      </div>
-    </div>
-  </div>
-  <div class="tags">
-    <div *ngFor="let tag of tagList" class="main11">
-      <p class="text11">{{tag.name}}</p>
-    </div>
-  </div>
-  <div class="wrapper">
+    <div class="main">
+        <div class="profile-desc">
+            <img [src]="buddyInfo.gender.toLowerCase() === 'female'
+              ? '../../../../assets/icons/avatar_female.svg'
+              : '../../../../assets/icons/avatar-male.svg'"
+                 width="100" alt="avatar" height="98">
 
-    <div class="row">
-      <div class="column left">
-        <h3 class="text2">Gender</h3>
-      </div>
-      <div class="column right">
-        <app-input [disabled]="disabled" [(ngModel)]="gender"></app-input>
-      </div>
+            <div class="profile-you">
+                <div class="profile-name">{{buddyInfo.name}}</div>
+                <div class="profile-name">{{buddyInfo.surname}}</div>
+                <div class="profile-description">{{TITLE}}</div>
+            </div>
+        </div>
     </div>
 
-    <div class="row">
-      <div class="column left">
-        <h3 class="text2">Date of birth</h3>
-      </div>
-      <div class="column right">
-        <app-input [disabled]="disabled" [(ngModel)]="birthDate"></app-input>
-      </div>
+    <div class="tags">
+        <div *ngFor="let tag of buddyInfo.tagList" class="main11">
+            <p class="text11">{{tag.name}}</p>
+        </div>
     </div>
+    <div class="wrapper">
 
-    <div class="row">
-      <div class="column left">
-        <h3 class="text2">Phone number</h3>
-      </div>
-      <div class="column right">
-        <app-input [disabled]="disabled"
-                   [mask]="phoneMask"
-                   [maskPrefix]="phonePrefix"
-                   [(ngModel)]="phone"></app-input>
-      </div>
-    </div>
+        <div class="row">
+            <div class="column left">
+                <h3 class="text2">{{PLACEHOLDER_LOCALIZATION.GENDER}}</h3>
+            </div>
+            <div class="column right">
+                <app-input [disabled]="disabled" [ngModel]="checkData.gender(buddyInfo.gender)"></app-input>
+            </div>
+        </div>
 
-    <div class="row">
-      <div class="column left">
-        <h3 class="text2">Email</h3>
-      </div>
-      <div class="column right">
-        <app-input [disabled]="disabled" [(ngModel)]="email"></app-input>
-      </div>
-    </div>
+        <div class="row">
+            <div class="column left">
+                <h3 class="text2">{{PLACEHOLDER_LOCALIZATION.DATE_OF_BIRTH}}</h3>
+            </div>
+            <div class="column right">
+                <app-input [disabled]="disabled" [ngModel]="checkData.birthDate(buddyInfo.birthDate)"></app-input>
+            </div>
+        </div>
 
-    <div class="row">
-      <div class="column left">
-        <h3 class="text2">Citizenship</h3>
-      </div>
-      <div class="column right">
-        <app-input [disabled]="disabled" [(ngModel)]="citizenship"></app-input>
-      </div>
-    </div>
+        <div class="row">
+            <div class="column left">
+                <h3 class="text2">{{PLACEHOLDER_LOCALIZATION.PHONE_NUMBER}}</h3>
+            </div>
+            <div class="column right">
+                <app-input [disabled]="disabled"
+                           [mask]="PLACEHOLDER_LOCALIZATION.PHONE_MASK"
+                           [maskPrefix]="PLACEHOLDER_LOCALIZATION.PHONE_PREFIX"
+                           [(ngModel)]="buddyInfo.phone"></app-input>
+            </div>
+        </div>
 
-    <div class="row">
-      <div class="column left">
-        <h3 class="text2">Campus</h3>
-      </div>
-      <div class="column right">
-        <app-input [disabled]="disabled" [(ngModel)]="campus"></app-input>
-      </div>
-    </div>
+        <div class="row">
+            <div class="column left">
+                <h3 class="text2">{{PLACEHOLDER_LOCALIZATION.EMAIL}}</h3>
+            </div>
+            <div class="column right">
+                <app-input [disabled]="disabled" [(ngModel)]="buddyInfo.email"></app-input>
+            </div>
+        </div>
 
-    <div class="row">
-      <div class="column left">
-        <h3 class="text2">HSE Faculty</h3>
-      </div>
-      <div class="column right">
-        <app-input [disabled]="disabled" [(ngModel)]="localFaculty"></app-input>
-      </div>
-    </div>
+        <div class="row">
+            <div class="column left">
+                <h3 class="text2">{{PLACEHOLDER_LOCALIZATION.CITIZENSHIP}}</h3>
+            </div>
+            <div class="column right">
+                <app-input [disabled]="disabled" [(ngModel)]="buddyInfo.citizenship"></app-input>
+            </div>
+        </div>
 
-    <div class="row">
-      <div class="column left">
-        <h3 class="text2">About me</h3>
-      </div>
-      <div class="column right">
-        <app-textarea [disabled]="disabled" [(ngModel)]="about"></app-textarea>
-      </div>
+        <div class="row">
+            <div class="column left">
+                <h3 class="text2">{{PLACEHOLDER_LOCALIZATION.CAMPUS}}</h3>
+            </div>
+            <div class="column right">
+                <app-input [disabled]="disabled" [ngModel]="checkData.campus(buddyInfo.campus)"></app-input>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="column left">
+                <h3 class="text2">{{PLACEHOLDER_LOCALIZATION.HSE_FACULTY}}</h3>
+            </div>
+            <div class="column right">
+                <app-input [disabled]="disabled" [(ngModel)]="buddyInfo.localFaculty"></app-input>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="column left">
+                <h3 class="text2">{{PLACEHOLDER_LOCALIZATION.ABOUT}}</h3>
+            </div>
+            <div class="column right">
+                <app-textarea [disabled]="disabled" [(ngModel)]="buddyInfo.about"></app-textarea>
+            </div>
+        </div>
     </div>
-  </div>
 </ng-container>

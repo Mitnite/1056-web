@@ -1,4 +1,4 @@
-<p class="title">Dashboard</p>
+<p class="title">{{HEADER}}</p>
 
 <div>
   <div class="wrapper">
@@ -10,21 +10,21 @@
           </div>
           <div class="card-date">{{date[i].toLocaleString("ru-RU")}}</div>
         </div>
-        <div class="card-faculty"> Faculty: {{student.localFaculty}}</div>
-        <div class="card-text">Country: {{student.foreignStudent.homeCountry}}</div>
+        <div class="card-faculty"> {{PLACEHOLDER_LOCALIZATION.FACULTY}}: {{student.localFaculty}}</div>
+        <div class="card-text">{{PLACEHOLDER_LOCALIZATION.COUNTRY}}: {{student.foreignStudent.homeCountry}}</div>
         <div class="card-btn-container">
           <button class="btn btn-secondary"
                   (click)="onInfoStudent(student)">
-            info
+            {{GLOBAL_LOCALIZATION.BUTTON_INFO_LABEL}}
           </button>
-          <button class="btn btn-primary" (click)="addStudentId(student.id)">Assign</button>
+          <button class="btn btn-primary" (click)="addStudentId(student.id)">{{GLOBAL_LOCALIZATION.BUTTON_ASSIGN_LABEL}}</button>
         </div>
       </div>
-      <div class="info" *ngIf="id === student.id">
+      <div class="info" *ngIf="studentID === student.id">
 
         <app-student-info
           [studentInfo]="studentInfo"
-          (deny)="id = -1"
+          (deny)="studentID = -1"
           (assign)="addStudentId($event)"
           [isAssign]="true"
         ></app-student-info>
@@ -35,24 +35,15 @@
 </div>
 
 
-
-
-
-
-
-
-
-
-
 <div *ngIf="isShowTable" class="backdrop" (click)="isShowTable=false"></div>
 
 <div *ngIf="isShowTable" class="main">
-	<div class="tableTitle">Assign buddy</div>
+	<div class="tableTitle">{{ASSIGN_BUDDY}}</div>
 	<div class="showTable">
 		<app-buddy-table (BuddyId)="addBuddyId($event)" [isAddBuddy]="true" [isEmail]="false"
 											 [isArchive]="false"></app-buddy-table>
 	</div>
-	<button class="btn btn-secondary btn-close" (click)="isShowTable=false">Close</button>
+	<button class="btn btn-secondary btn-close" (click)="isShowTable=false">{{GLOBAL_LOCALIZATION.BUTTON_CLOSE_LABEL}}</button>
 </div>
 
 

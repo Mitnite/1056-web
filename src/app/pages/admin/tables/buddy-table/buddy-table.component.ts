@@ -1,105 +1,104 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AuthService } from '@core/auth.service';
-import { CookieService } from 'ngx-cookie';
-import { Router } from '@angular/router';
-import { EditBuddy, EditStudent } from '../../../../interfaces';
-
-interface IBuddyTable {
-  isArchive: boolean;
-  id: number;
-  name: string;
-  Email: string;
-  faculty: string;
-  citizenship: string;
-  students: { id: number, name: string }[];
-}
+import { EditBuddy, EditStudent, IBuddyTable } from '../../../../interfaces';
+import { GLOBAL_LOCALIZATION, PLACEHOLDER_LOCALIZATION, POPUP_LOCALIZATION } from '../../../../config/constants';
 
 @Component({
-  selector: 'app-buddy-table',
-  templateUrl: './buddy-table.component.html',
-  styleUrls: ['./buddy-table.component.scss']
+    selector: 'app-buddy-table',
+    templateUrl: './buddy-table.component.html',
+    styleUrls: ['./buddy-table.component.scss']
 })
 export class BuddyTableComponent implements OnInit {
 
-  @Input() isEmail: boolean;
-  @Input() isArchive: boolean;
-  @Input() isEdit: boolean;
-  @Output() reload: EventEmitter<any> = new EventEmitter();
-  @Input() isExcel: boolean;
-  @Input() isAddBuddy: boolean;
+    @Input() isEmail: boolean;
+    @Input() isArchive: boolean;
+    @Input() isEdit: boolean;
+    @Output() reload: EventEmitter<any> = new EventEmitter();
+    @Input() isExcel: boolean;
+    @Input() isAddBuddy: boolean;
 
-  @Output() BuddyId: EventEmitter<number> = new EventEmitter();
+    @Output() BuddyId: EventEmitter<number> = new EventEmitter();
 
-  buddyInfo: EditBuddy | null = null;
-  studentInfo: EditStudent | null = null;
+    buddyInfo: EditBuddy | null = null;
+    studentInfo: EditStudent | null = null;
 
-  data = [];
+    buddies: IBuddyTable[] = [];
 
-  isShowStudentInfo = false;
+    isShowStudentInfo = false;
 
-  isShowBuddyInfo = false;
+    isShowBuddyInfo = false;
+    index = -1;
 
-  name = '';
+    buddyID = 0;
 
-  index = -1;
+    isShowTable = false;
 
-  buddyID = 0;
+    isShowMessage = false;
 
-  isShowTable = false;
+    protected readonly GLOBAL_LOCALIZATION = GLOBAL_LOCALIZATION;
+    protected readonly PLACEHOLDER_LOCALIZATION = PLACEHOLDER_LOCALIZATION;
+    protected readonly POPUP_LOCALIZATION = POPUP_LOCALIZATION;
+    protected readonly STUDENT: string = '';
+    protected readonly ASSIGN_STUDENT: string = 'Assign student';
+    protected readonly NUMBER_OF_IS: string = 'Number of is';
 
-  isShowMessage = false;
+    constructor(private authService: AuthService) {
+    }
 
-  protected readonly TITLE: string = 'Are you sure you want to assign?';
+    ngOnInit(): void {
+        this.getData();
+    }
 
-  constructor(private authService: AuthService,
-              private cookieService: CookieService,
-              private router: Router) {
-  }
+    getData() {
+        this.authService.getAllBuddy()
+            .then((response) => {
+                this.buddies = response;
+            });
+    }
 
-  ngOnInit(): void {
-    this.loadData();
-  }
+    isShowStudentInfoHandler(id: number) {
+        this.isShowStudentInfo = true;
+        this.authService.getById(id)
+            .then((response) => {
+                this.studentInfo = response;
+            });
+    }
 
-  async loadData() {
-    this.data = await this.authService.getAllBuddy();
-    // console.log(this.data);
-  }
+    isShowBuddyInfoHandler(id: number) {
+        this.isShowBuddyInfo = true;
+        this.authService.getById(id)
+            .then((response) => {
+                this.buddyInfo = response;
+            });
+    }
 
-  async isShowStudentInfoHandler(id: number) {
-    this.isShowStudentInfo = true;
-    this.studentInfo = await this.authService.getById(id);
-  }
+    setIdHandler(i: number, id: number) {
+        this.index = i;
+        this.buddyID = id;
+        this.reload.emit(id);
+    }
 
-  async isShowBuddyInfoHandler(id: number) {
-    this.isShowBuddyInfo = true;
-    this.buddyInfo = await this.authService.getById(id);
-  }
+    showTable(index: number) {
+        this.buddyID = index;
+        this.isShowTable = true;
+    }
 
-  setIdHandler(i: number, id: number) {
-    this.index = i;
-    this.buddyID = id;
-    this.reload.emit(id);
-  }
+    showMessage(id: number) {
+        this.buddyID = id;
+        this.isShowMessage = true;
+    }
 
-  showTable(index: number) {
-    this.buddyID = index;
-    this.isShowTable = true;
-  }
+    addStudent(StudentId: number) {
+        this.isShowTable = false;
+        this.authService.matchBuddyStudent(StudentId, this.buddyID)
+            .then(() => {
+                this.getData();
+            });
+    }
 
-  showMessage(id: number) {
-    this.buddyID = id;
-    this.isShowMessage = true;
-  }
+    buddyIdHandler() {
+        this.BuddyId.emit(this.buddyID);
+    }
 
-  async addStudent(StudentId: number) {
-    this.isShowTable = false;
-    await this.authService.matchBuddyStudent(StudentId, this.buddyID);
-    this.router.navigate(['admin/management/all-buddies']).then(() => {
-      window.location.reload();
-    });
-  }
 
-  buddyIdHandler() {
-    this.BuddyId.emit(this.buddyID);
-  }
 }

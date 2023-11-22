@@ -2,71 +2,69 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ExportService } from '@core/export.service';
 import { EditStudent } from '../../../../../interfaces';
 import { AuthService } from '@core/auth.service';
-import { CookieService } from 'ngx-cookie';
+import { GLOBAL_LOCALIZATION, POPUP_LOCALIZATION } from '../../../../../config/constants';
 
 @Component({
-  selector: 'app-student',
-  templateUrl: './student.component.html',
-  styleUrls: ['./student.component.scss']
+    selector: 'app-student',
+    templateUrl: './student.component.html',
+    styleUrls: ['./student.component.scss']
 })
 export class AllStudentsComponent {
 
-  isArchive = false;
-  isEdit = false;
-  isDelete = false;
-  addToArchive = false;
-  name = '';
-  student!: EditStudent;
-  nameCollection = [
-    {name: 'name'},
-    {name: 'name1'},
-    {name: 'name2'}
-  ];
-  role = 'ROLE_FOREIGN_STUDENT';
-  title = 'Are you sure you want to add?';
-  deleteTitle = 'Are you sure you want to delete';
+    isArchive = false;
+    isEdit = false;
+    isDelete = false;
+    addToArchive = false;
+    studentInfo: EditStudent | null = null;
 
-  @ViewChild('internationalStudentTable') userTable: ElementRef;
 
-  constructor(
-    private exportService: ExportService,
-    private authService: AuthService,
-    private cookieService: CookieService,
-  ) {
-  }
+    @ViewChild('internationalStudentTable') userTable: ElementRef;
 
-  exportElmToExcel(): void {
-    this.exportService.exportTableElmToExcel(this.userTable, 'internationalStudentTable');
-  }
+    protected readonly HEADER: string = 'All international students';
+    protected readonly POPUP_LOCALIZATION = POPUP_LOCALIZATION;
+    protected readonly GLOBAL_LOCALIZATION = GLOBAL_LOCALIZATION;
 
-  setArchiveHandler(component: string) {
-    switch (component) {
-      case 'arc':
-        this.isArchive = true;
-        break;
-      case 'act':
-        this.isArchive = false;
-        break;
+    constructor(
+        private exportService: ExportService,
+        private authService: AuthService,
+    ) {
     }
-  }
 
-  isEditHandler() {
-    this.isEdit = !this.isEdit;
-  }
+    exportElmToExcel(): void {
+        this.exportService.exportTableElmToExcel(this.userTable, 'internationalStudentTable');
+    }
 
-  async acceptHandler() {
-    this.addToArchive = false;
-    this.student.archived = !this.student.archived;
-    await this.authService.addStudentToArchive(this.student);
-  }
+    setArchiveHandler(component: string) {
+        switch (component) {
+            case 'arc':
+                this.isArchive = true;
+                break;
+            case 'act':
+                this.isArchive = false;
+                break;
+        }
+    }
 
-  async reloadHandler(id: number) {
-    const userInfo = await this.authService.getById(id);
-    this.student = userInfo;
-  }
+    acceptHandler() {
+        this.addToArchive = false;
+        this.studentInfo.archived = !this.studentInfo.archived;
+        this.authService.addStudentToArchive(this.studentInfo)
+            .then(() => {
+                window.location.reload();
+            });
+    }
 
-  async deleteHandler() {
-    await this.authService.deleteUser(this.student.id);
-  }
+    reloadHandler(id: number) {
+        this.authService.getById(id)
+            .then((response) => {
+                this.studentInfo = response;
+            });
+    }
 
+    deleteHandler() {
+        this.authService.deleteUser(this.studentInfo.id)
+            .then(() => {
+                window.location.reload();
+            });
+    }
 }

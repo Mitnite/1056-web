@@ -1,3 +1,4 @@
+
 <div class="table-container">
 
 
@@ -5,29 +6,29 @@
 		<thead>
 		<tr>
 			<th *ngIf="isEdit"></th>
-			<th>N</th>
-			<th>Full name</th>
-			<th *ngIf="isEmail">Email</th>
-			<th>Faculty</th>
-			<th>Citizenship</th>
-			<th>Number of is</th>
-			<th>Student</th>
+			<th>№</th>
+			<th>{{PLACEHOLDER_LOCALIZATION.FULL_NAME}}</th>
+			<th *ngIf="isEmail">{{PLACEHOLDER_LOCALIZATION.EMAIL}}</th>
+			<th>{{PLACEHOLDER_LOCALIZATION.FACULTY}}</th>
+			<th>{{PLACEHOLDER_LOCALIZATION.CITIZENSHIP}}</th>
+			<th>{{NUMBER_OF_IS}}</th>
+			<th>{{STUDENT}}</th>
 		</tr>
 		</thead>
-		<tbody *ngFor="let item of data; let i = index">
-		<tr *ngIf="item.archived === isArchive">
-			<td *ngIf="isEdit"><input type="checkbox" [checked]="index === i" (change)="setIdHandler(i, item.id)"></td>
-			<td>{{item.id}}</td>
-			<td><span class="buddyName" (click)=isShowBuddyInfoHandler(item.id)>{{item.name}} {{item.surname}}</span></td>
-			<td *ngIf="isEmail">{{item.email}}</td>
-			<td><span style="max-width: 400px; white-space: pre-wrap; word-wrap: break-word;">{{item.localFaculty}}</span></td>
-			<td>{{item.citizenship || '-'}}</td>
-			<td>{{item.foreignStudent ? item.foreignStudent.length : 0}}</td>
+		<tbody *ngFor="let buddy of buddies; let i = index">
+		<tr *ngIf="buddy.archived === isArchive">
+			<td *ngIf="isEdit"><input type="checkbox" [checked]="index === i" (change)="setIdHandler(i, buddy.id)"></td>
+			<td>{{buddy.id}}</td>
+			<td><span class="buddyName" (click)=isShowBuddyInfoHandler(buddy.id)>{{buddy.name}} {{buddy.surname}}</span></td>
+			<td *ngIf="isEmail">{{buddy.email}}</td>
+			<td><span style="max-width: 400px; white-space: pre-wrap; word-wrap: break-word;">{{buddy.localFaculty}}</span></td>
+			<td>{{buddy.citizenship || '-'}}</td>
+			<td>{{buddy.foreignStudent ? buddy.foreignStudent.length : 0}}</td>
 			<td>
 					<span class="buddyName" (click)=isShowStudentInfoHandler(student.id)
-								*ngFor="let student of item.foreignStudent">{{student.name}} {{student.surname}}
+								*ngFor="let student of buddy.foreignStudent">{{student.name}} {{student.surname}}
           </span>
-				<span class="buddyName" (click)="isAddBuddy ? showMessage(item.id) : showTable(item.id)">+</span>
+				<span class="buddyName" (click)="isAddBuddy ? showMessage(buddy.id) : showTable(buddy.id)">+</span>
 			</td>
 		</tr>
 		</tbody>
@@ -53,15 +54,15 @@
 
 
 <div *ngIf="isShowTable" class="main">
-	<div class="title">Assign student</div>
+	<div class="title">{{ASSIGN_STUDENT}}</div>
 
 	<div class="showTable">
 		<app-student-table (studentId)="addStudent($event)" [isAddStudent]="true" [isEmail]="false"
 											 [isArchive]="false"></app-student-table>
 	</div>
 
-	<button class="btn btn-secondary btn-close" (click)="isShowTable=false">Close</button>
+	<button class="btn btn-secondary btn-close" (click)="isShowTable=false">{{GLOBAL_LOCALIZATION.BUTTON_CLOSE_LABEL}}</button>
 </div>
 
-<span *ngIf="isShowMessage"><app-popup (deny)="isShowMessage = false" (accept)="buddyIdHandler()" [title]="TITLE"></app-popup></span>
+<span *ngIf="isShowMessage"><app-popup (deny)="isShowMessage = false" (accept)="buddyIdHandler()" [title]="POPUP_LOCALIZATION.ASSIGN_POPUP"></app-popup></span>
 

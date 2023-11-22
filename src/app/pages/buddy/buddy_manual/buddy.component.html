@@ -1,9 +1,9 @@
-<p class="title">Buddy manual</p>
+<p class="title">{{HEADER}}</p>
 
 <div class="wrapper">
   <div class="block" (click)="isShow = true">
-    <div class="subtitle">Information</div>
-    <p>Buddy manual text</p>
+    <div class="subtitle">{{SUBTITLE}}</div>
+    <p>{{TEXT}}</p>
   </div>
 
 
@@ -18,14 +18,8 @@
       </svg>
     </div>
 
-    <div class="problemTitle">{{TITLE}}</div>
-    <div *ngIf="isEmail" class="problemContacts">
-      <span class="emailText">{{EMAIL_LOCALIZATION.EMAIL_TITLE}}</span>
-      <app-input  [(ngModel)]="EMAIL_LOCALIZATION.EMAIL" [disabled]="true"> </app-input>
-    </div>
-
-    <div style="margin-top: 48px">
-      <span class="problemSubTitle">Buddy manual</span>
+    <div>
+      <span class="problemSubTitle">{{HEADER}}</span>
       <div *ngFor="let problem of PROBLEMS" class="problemText">{{problem}}</div>
     </div>
   </div>

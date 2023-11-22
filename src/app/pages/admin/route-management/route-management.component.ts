@@ -5,4 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './route-management.component.html',
   styleUrls: ['./route-management.component.scss']
 })
-export class RouteManagementComponent { }
+export class RouteManagementComponent {
+  protected readonly HEADER: string = 'Buddy-Student management';
+}

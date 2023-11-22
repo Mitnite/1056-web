@@ -1,69 +1,74 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@core/auth.service';
-import { CookieService } from 'ngx-cookie';
-import { Router } from '@angular/router';
 import { EditStudent } from '../../../interfaces';
+import { GLOBAL_LOCALIZATION, PLACEHOLDER_LOCALIZATION } from '../../../config/constants';
 
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.scss']
 })
 
 
 export class DashboardComponent implements OnInit {
 
-  studentInfo: EditStudent | null = null;
-  students: EditStudent[] = [];
-  id = -1;
+    studentInfo: EditStudent | null = null;
+    students: EditStudent[] = [];
+    studentID = -1;
 
-  date = [];
-  assignStudentId;
-  assignBuddyId;
-  isShowTable = false;
+    date: Date[] = [];
+    assignStudentId = -1;
+    isShowTable = false;
 
-  // protected readonly TITLE: string = 'Are you sure you want to take?';
+    protected readonly HEADER: string = 'Dashboard';
+    protected readonly ASSIGN_BUDDY: string = 'Assign buddy';
+    protected readonly GLOBAL_LOCALIZATION = GLOBAL_LOCALIZATION;
+    protected readonly PLACEHOLDER_LOCALIZATION = PLACEHOLDER_LOCALIZATION;
 
-  constructor(private authService: AuthService,
-              private cookieService: CookieService,
-              private router: Router) {
-  }
-
-  ngOnInit(): void {
-    this.loadData();
-  }
-
-  async loadData() {
-    this.students = await this.authService.getListSearching();
-    for (let i = 0; i < this.students.length; i++) {
-      this.date[i] = new Date(this.students[i].foreignStudent.arrivalDateTime);
-    }
-  }
-
-  // Сохранение id студента
-  addStudentId(id: number) {
-    this.assignStudentId = id;
-    this.id = -1;
-    this.isShowTable = true;
-  }
-
-  // Сохранение id Buddy
-  addBuddyId(assignBuddyId: number) {
-    this.isShowTable = false;
-    this.onSubmit(assignBuddyId);
-  }
-
-  // Запрос на формирование пары по id студента и id бадди
-    async onSubmit(assignBuddyId: number) {
-      await this.authService.matchBuddyStudent(this.assignStudentId, assignBuddyId);
-      this.router.navigate(['dashboard']).then(() => {
-        window.location.reload();
-      });
+    constructor(private authService: AuthService) {
     }
 
-  async onInfoStudent(student: EditStudent) {
-    this.id = student.id;
-    this.studentInfo = student;
-  }
+    ngOnInit(): void {
+        this.loadData();
+    }
+
+    loadData() {
+        this.authService.getListSearching()
+            .then((response) => {
+                this.students = response;
+                for (let i = 0; i < this.students.length; i++) {
+                    this.date[i] = new Date(this.students[i].foreignStudent.arrivalDateTime);
+                }
+            });
+
+    }
+
+    // Сохранение id студента
+    addStudentId(id: number) {
+        this.assignStudentId = id;
+        this.studentID = -1;
+        this.isShowTable = true;
+    }
+
+    // Сохранение id Buddy
+    addBuddyId(assignBuddyId: number) {
+        this.isShowTable = false;
+        this.onSubmit(assignBuddyId);
+    }
+
+    // Запрос на формирование пары по id студента и id бадди
+    onSubmit(assignBuddyId: number) {
+        this.authService.matchBuddyStudent(this.assignStudentId, assignBuddyId)
+            .then(() => {
+                this.loadData();
+            });
+
+    }
+
+    onInfoStudent(student: EditStudent) {
+        this.studentID = student.id;
+        this.studentInfo = student;
+    }
+
 }

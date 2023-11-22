@@ -1,16 +1,16 @@
-<p class="title">Dashboard</p>
+<p class="title">{{HEADER}}</p>
 
 <div>
 
 
-      <div class="messageMain">
+<!--      <div class="messageMain">
 
         <div class="messageTitle">{{EMAIL_LOCALIZATION.EMAIL_TITLE}}</div>
-        <div class="messageText">Your account is archived. Please send an email to the email address below.</div>
+        <div class="messageText">{{EMAIL_LOCALIZATION.TEXT}}</div>
 
         <app-input [(ngModel)]="EMAIL_LOCALIZATION.EMAIL" [disabled]="true"></app-input>
 
-      </div>
+      </div>-->
 
   <div class="wrapper">
     <div class="column" *ngFor="let student of students; let i = index">
@@ -21,21 +21,21 @@
           </div>
           <div class="card-date">{{date[i].toLocaleString("ru-RU")}}</div>
         </div>
-        <div class="card-faculty"> Faculty: {{student.localFaculty}}</div>
-        <div class="card-text">Country: {{student.foreignStudent.homeCountry}}</div>
+        <div class="card-faculty"> {{PLACEHOLDER_LOCALIZATION.FACULTY}}: {{student.localFaculty}}</div>
+        <div class="card-text">{{PLACEHOLDER_LOCALIZATION.COUNTRY}}: {{student.foreignStudent.homeCountry}}</div>
         <div class="card-btn-container">
           <button class="btn btn-secondary"
                   (click)="onInfoStudent(student)">
-            info
+            {{GLOBAL_LOCALIZATION.BUTTON_INFO_LABEL}}
           </button>
-          <button class="btn btn-primary" (click)="takeHandler(student.id)">take</button>
+          <button class="btn btn-primary" (click)="takeHandler(student.id)">{{GLOBAL_LOCALIZATION.BUTTON_TAKE_LABEL}}</button>
         </div>
       </div>
-      <div class="info" *ngIf="id === student.id">
+      <div class="info" *ngIf="studentID === student.id">
 
         <app-student-info
           [studentInfo]="studentInfo"
-          (deny)="id = -1"
+          (deny)="studentID = -1"
           [isTaken]="true"
 
         ></app-student-info>

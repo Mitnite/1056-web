@@ -18,6 +18,7 @@ export class ProfileStudentComponent implements OnInit {
   protected readonly PLACEHOLDER_LOCALIZATION = PLACEHOLDER_LOCALIZATION;
   protected readonly INFORMATION_TITLE: string = 'Personal information';
   protected readonly ARRIVAL_TITLE: string = 'Arrival & residence';
+  protected readonly TITLE: string = 'Student profile';
   protected readonly checkData = checkData;
   private readonly USER_ID: string;
 

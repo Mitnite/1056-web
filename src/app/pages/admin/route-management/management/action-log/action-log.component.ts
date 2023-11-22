@@ -4,6 +4,7 @@ import { AuthService } from '@core/auth.service';
 import { CookieService } from 'ngx-cookie';
 import { checkData } from '../../../../../checkData';
 import { EditBuddy, EditStudent, IActionLog } from '../../../../../interfaces';
+import {GLOBAL_LOCALIZATION} from "../../../../../config/constants";
 
 @Component({
   selector: 'app-action-log',
@@ -14,48 +15,52 @@ export class ActionLogComponent implements OnInit {
 
   isShowStudentInfo = false;
   isShowBuddyInfo = false;
-  name: string | null = null;
-  data: IActionLog[] = [];
+  actionLogs: IActionLog[] = [];
 
   buddyInfo: EditBuddy | null = null;
   studentInfo: EditStudent | null = null;
 
   @ViewChild('actionLogTable') userTable: ElementRef;
+  protected readonly GLOBAL_LOCALIZATION = GLOBAL_LOCALIZATION;
 
   constructor(
     private authService: AuthService,
-    private cookieService: CookieService,
     private exportService: ExportService,
   ) {
   }
 
 
   ngOnInit(): void {
-    this.loadData();
-  }
-
-  async loadData() {
-    this.data = await this.authService.getAllLogs();
-
-    this.data.forEach((d: any) => {
-      const dateTime = d.eventDateTime;
-      d.eventDateTime = `${checkData.arrivalDate(dateTime)} ${checkData.arrivalTime(d.eventDateTime)}`;
-    });
-
-    console.log(this.data);
+    this.authService.getAllLogs()
+        .then((response) => {
+          this.actionLogs = response;
+        })
+        .then(() => {
+          this.actionLogs.forEach((actionLog: IActionLog) => {
+            const dateTime: string = actionLog.eventDateTime;
+            actionLog.eventDateTime = `${checkData.arrivalDate(dateTime)} ${checkData.arrivalTime(actionLog.eventDateTime)}`;
+          });
+        });
   }
 
   exportElmToExcel(): void {
     this.exportService.exportTableElmToExcel(this.userTable, 'actionLogTable');
   }
 
-  async getStudentNameHandler(id: number) {
+  isShowStudentInfoHandler(id: number) {
     this.isShowStudentInfo = true;
-    this.studentInfo = await this.authService.getById(id);
+    this.authService.getById(id)
+        .then((response) => {
+          this.studentInfo = response;
+        });
   }
 
-  async getBuddyNameHandler(id: number) {
+  isShowBuddyInfoHandler(id: number) {
     this.isShowBuddyInfo = true;
-    this.buddyInfo = await this.authService.getById(id);
+    this.authService.getById(id)
+        .then((response) => {
+          this.buddyInfo = response;
+        });
   }
+
 }

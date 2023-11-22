@@ -1,28 +1,37 @@
-<p class="subtitle">All international students
-  <span>
-	<span (click)="setArchiveHandler('act')" class="{{!isArchive ? 'bold' : 'archiveText'}}">Active</span>
-	<span (click)="setArchiveHandler('arc')" class="{{isArchive ? 'bold' : 'archiveText'}}">Archive</span>
+<p class="subtitle">{{HEADER}}
+    <span>
+	<span (click)="setArchiveHandler('act')"
+          class="{{!isArchive ? 'bold' : 'archiveText'}}">{{GLOBAL_LOCALIZATION.ACTIVE}}</span>
+	<span (click)="setArchiveHandler('arc')"
+          class="{{isArchive ? 'bold' : 'archiveText'}}">{{GLOBAL_LOCALIZATION.ARCHIVE}}</span>
 	</span>
 </p>
 
 <div class="wrapper">
-<!--  <app-multi-select placeholder="Enter the value" style="width: 620px"></app-multi-select>-->
-  <app-input placeholder="Enter the value" style="width: 620px" [disabled]="true"></app-input>
-  <div>
-    <button style="margin: 0 15px" *ngIf="!isEdit" class="btn btn-secondary" (click)="isEditHandler()">Edit</button>
-    <button style="margin: 0 15px" *ngIf="isEdit" class="btn btn-secondary" (click)="isEditHandler()">Cancel
-    </button>
-    <button *ngIf="!isEdit" class="btn btn-primary" (click)="exportElmToExcel()">Export</button>
-    <button *ngIf="isEdit && !isArchive" class="btn btn-archive" (click)="addToArchive = true">Add to archive</button>
-    <button *ngIf="isEdit && isArchive" class="btn btn-archive" (click)="addToArchive = true">Add to active</button>
-    <button style="margin-left: 15px" *ngIf="isEdit && isArchive" class="btn btn-delete" (click)="isDelete = true">Delete</button>
-  </div>
+    <!--  <app-multi-select placeholder="Enter the value" style="width: 620px"></app-multi-select>-->
+    <app-input placeholder="Enter the value" style="width: 620px" [disabled]="true"></app-input>
+    <div>
+        <button style="margin: 0 15px" class="btn btn-secondary" (click)="isEdit = !isEdit">
+            {{!isEdit ? GLOBAL_LOCALIZATION.BUTTON_EDIT_LABEL : GLOBAL_LOCALIZATION.BUTTON_CANSEL_LABEL}}
+        </button>
+        <button *ngIf="!isEdit" class="btn btn-primary"
+                (click)="exportElmToExcel()">{{GLOBAL_LOCALIZATION.BUTTON_EXPORT_LABEL}}</button>
+        <button *ngIf="isEdit && !isArchive" class="btn btn-archive"
+                (click)="addToArchive = true">{{GLOBAL_LOCALIZATION.ARCHIVE_BUTTON_LABEL}}</button>
+        <button *ngIf="isEdit && isArchive" class="btn btn-archive"
+                (click)="addToArchive = true">{{GLOBAL_LOCALIZATION.ACTIVE_BUTTON_LABEL}}</button>
+        <button style="margin-left: 15px" *ngIf="isEdit && isArchive" class="btn btn-delete"
+                (click)="isDelete = true">{{GLOBAL_LOCALIZATION.BUTTON_DELETE_LABEL}}</button>
+    </div>
 </div>
 
 <div class="wrapper-table" #internationalStudentTable>
-  <app-student-table [isEmail]="true" (reload)="reloadHandler($event)" [isArchive]="isArchive" [isEdit]="isEdit"></app-student-table>
+    <app-student-table [isEmail]="true" (reload)="reloadHandler($event)" [isArchive]="isArchive"
+                       [isEdit]="isEdit"></app-student-table>
 </div>
-<span *ngIf="addToArchive"><app-popup (deny)="addToArchive = false" (accept)="acceptHandler()"></app-popup></span>
+<span *ngIf="addToArchive"><app-popup (deny)="addToArchive = false" [title]="POPUP_LOCALIZATION.ARCHIVE_POPUP"
+                                      (accept)="acceptHandler()"></app-popup></span>
 
-<span *ngIf="isDelete"><app-popup (deny)="isDelete = false" (accept)="deleteHandler()" [title]="deleteTitle"></app-popup></span>
+<span *ngIf="isDelete"><app-popup (deny)="isDelete = false" (accept)="deleteHandler()"
+                                  [title]="POPUP_LOCALIZATION.DELETE_POPUP"></app-popup></span>
 

@@ -2,58 +2,33 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@core/auth.service';
 import { CookieService } from 'ngx-cookie';
 import { checkData } from '../../../checkData';
+import { EditBuddy } from '../../../interfaces';
+import { PLACEHOLDER_LOCALIZATION } from '../../../config/constants';
 
 @Component({
-  selector: 'app-buddy-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+    selector: 'app-buddy-profile',
+    templateUrl: './profile.component.html',
+    styleUrls: ['./profile.component.scss']
 })
 export class ProfileBuddyComponent implements OnInit {
 
-  disabled = true;
-  checked = true;
-  typePassword = 'password';
-  typeNumber = 'number';
-  phoneMask = ' (000) 000-00-00';
-  phonePrefix = '+7';
+    buddyInfo: EditBuddy | null = null;
 
-  about = '';
-  birthDate = '';
-  localFaculty = '';
-  campus = '';
-  citizenship = '';
-  phone = '';
-  email = '';
-  gender = '';
-  name = '';
-  surname = '';
-  tagList: any[];
-  isLoading = true;
-  private USER_ID;
+    protected readonly PLACEHOLDER_LOCALIZATION = PLACEHOLDER_LOCALIZATION;
+    protected readonly checkData = checkData;
+    protected readonly TITLE: string = 'Buddy profile';
+    protected readonly disabled = true;
+    private readonly USER_ID: string;
 
-  constructor(private authService: AuthService,
-              private cookieService: CookieService) {
-  }
+    constructor(private authService: AuthService,
+                private cookieService: CookieService) {
+        this.USER_ID = this.cookieService.get('user-id');
+    }
 
-  ngOnInit(): void {
-    this.USER_ID = this.cookieService.get('user-id');
-    this.loadData();
-  }
-
-  async loadData() {
-    const userInfo = await this.authService.getById(this.USER_ID);
-    this.isLoading = false;
-    this.about = userInfo.about;
-    this.birthDate = checkData.birthDate(userInfo.birthDate);
-    this.localFaculty = userInfo.localFaculty;
-    this.phone = userInfo.phone;
-    this.email = userInfo.email;
-    this.gender = checkData.gender(userInfo.gender);
-    this.campus = checkData.campus(userInfo.campus);
-    this.citizenship = userInfo.citizenship;
-    this.name = userInfo.name;
-    this.surname = userInfo.surname;
-    this.tagList = userInfo.tagList;
-  }
-
+    ngOnInit(): void {
+        this.authService.getById(this.USER_ID)
+            .then((response) => {
+                this.buddyInfo = response;
+            });
+    }
 }
