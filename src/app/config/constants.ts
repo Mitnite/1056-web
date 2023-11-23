@@ -7,6 +7,7 @@ export const PLACEHOLDER_LOCALIZATION = {
     GENDER: 'Gender',
     DATE_OF_BIRTH: 'Date of birth',
 
+    TYPE_PASSWORD: 'password',
     PHONE_NUMBER: 'Phone number',
     PHONE_MASK: ' (000) 000-00-00',
     PHONE_PREFIX: '+7',
@@ -16,6 +17,7 @@ export const PLACEHOLDER_LOCALIZATION = {
     INTEREST_2: 'Interest №2',
     INTEREST_3: 'Interest №3',
 
+    PASSWORD: 'Password',
     EMAIL: 'Email',
     CITIZENSHIP: 'Citizenship',
     CAMPUS: 'Campus',
@@ -46,6 +48,10 @@ export const GLOBAL_LOCALIZATION = {
     BUTTON_CANSEL_LABEL: 'Cancel',
     BUTTON_EXPORT_LABEL: 'Export',
     BUTTON_DELETE_LABEL: 'Delete',
+    BUTTON_SIGN_UP_LABEL: 'Sign up',
+    BUTTON_SIGN_IN_LABEL: 'Sign in',
+    BUTTON_NEXT_LABEL: 'Next',
+    BUTTON_BACK_LABEL: 'Back',
 
     ACTIVE: 'Active',
     ARCHIVE: 'Archive',

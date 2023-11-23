@@ -16,7 +16,6 @@ import { AppDashboardComponent } from '@shared/components/ui/app-dashboard/app-d
 import { AppTagComponent } from '@shared/components/ui/app-tag/app-tag';
 import { AppProfileComponent } from '@shared/components/ui/app-profile/app-profile.component';
 import { SignInComponent } from './components/sign-in-up-all/sign-in/sign-in.component';
-import { SignUp1Component } from './components/sign-in-up-all/sign-up1/sign-up1.component';
 import { SignUp2Component } from './components/sign-in-up-all/sign-up2/sign-up2.component';
 import { SignUpBuddyComponent } from './components/sign-in-up-all/sign-up-buddy/sign-up-buddy.component';
 import { SignUpStudentComponent } from './components/sign-in-up-all/sign-up-student/sign-up-student.component';
@@ -58,7 +57,6 @@ import { BuddyInfoComponent } from './components/buddy-info/buddy-info.component
 import { StudentsReviewComponent } from './components/students-review/students-review.component';
 import { AuthorizationGuard, UnAuthorizationGuard } from './authorization.guard';
 import { LoaderComponent } from './components/loader/loader.component';
-import {NgOptimizedImage} from "@angular/common";
 
 
 @NgModule({
@@ -70,7 +68,6 @@ import {NgOptimizedImage} from "@angular/common";
     AppTagComponent,
     AppProfileComponent,
     SignInComponent,
-    SignUp1Component,
     SignUp2Component,
     SignUpBuddyComponent,
     SignUpStudentComponent,
@@ -123,7 +120,6 @@ import {NgOptimizedImage} from "@angular/common";
         LeftMenuAdminModule,
         SlickCarouselModule,
         LoaderComponent,
-        NgOptimizedImage,
     ],
   providers: [
     {

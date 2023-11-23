@@ -1,24 +1,28 @@
-<p class="title">Sign in</p>
+<p class="title">{{HEADER}}</p>
 
 
 <div class="error" *ngIf="error">{{error}}</div>
 
 <div class="wrapper">
-  <div class="line">
-    <p class="text">Email</p>
-    <app-input class="line12" [placeholder]="'email'" [(ngModel)]="email" [tabIndex]="1">  </app-input>
-  </div>
-  <div class="line">
-    <p class="text">Password</p> <app-input [placeholder]="'password'" [type]="typePassword" [tabIndex]="2" [(ngModel)]="password"> </app-input>
+    <div class="line">
+        <p class="text">{{PLACEHOLDER_LOCALIZATION.EMAIL}}</p>
+        <app-input class="line12" [placeholder]="PLACEHOLDER_LOCALIZATION.EMAIL" [(ngModel)]="email" [tabIndex]="1"></app-input>
+    </div>
+    <div class="line">
+        <p class="text">{{PLACEHOLDER_LOCALIZATION.PASSWORD}}</p>
+        <app-input [placeholder]="PLACEHOLDER_LOCALIZATION.PASSWORD" [type]="typePassword" [tabIndex]="2"
+                   [(ngModel)]="password"></app-input>
 
-  </div>
-  <div class="button"><button class="btn btn-primary" (click)="onSubmit()" tabindex="3">Next</button></div>
+    </div>
+    <div class="button">
+        <button class="btn btn-primary" (click)="onSubmit()" tabindex="3">{{GLOBAL_LOCALIZATION.BUTTON_NEXT_LABEL}}</button>
+    </div>
 
-  <!--<div class="button"><button class="btn btn-primary" [routerLink]="['/foreign_student/home']">Next</button></div> -->
+    <!--<div class="button"><button class="btn btn-primary" [routerLink]="['/foreign_student/home']">Next</button></div> -->
 
-  <div class="change">
-    <p class="description">Register if you don't have an account.</p>
-    <button class="btn btn-primary" [routerLink]="['/sign-up2']" >Sign up</button>
-  </div>
+    <div class="change">
+        <p class="description">{{DESCRIPTION}}</p>
+        <button class="btn btn-primary" [routerLink]="['/sign-up2']">{{GLOBAL_LOCALIZATION.BUTTON_SIGN_UP_LABEL}}</button>
+    </div>
 </div>
 

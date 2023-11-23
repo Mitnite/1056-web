@@ -3,7 +3,6 @@ import { Router, RouterModule, Routes } from '@angular/router';
 import { SignInComponent } from './components/sign-in-up-all/sign-in/sign-in.component';
 import { SignUpBuddyComponent } from './components/sign-in-up-all/sign-up-buddy/sign-up-buddy.component';
 import { SignUpStudentComponent } from './components/sign-in-up-all/sign-up-student/sign-up-student.component';
-import { SignUp1Component } from './components/sign-in-up-all/sign-up1/sign-up1.component';
 import { SignUp2Component } from './components/sign-in-up-all/sign-up2/sign-up2.component';
 import { SignUp4Component } from './components/sign-in-up-all/sign-up4/sign-up4.component';
 import { AuthorizationGuard, UnAuthorizationGuard } from './authorization.guard';
@@ -56,11 +55,7 @@ const routes: Routes = [
     component: SignUpStudentComponent,
     canActivate: [UnAuthorizationGuard],
   },
-  {
-    path: 'sign-up1',
-    component: SignUp1Component,
-    canActivate: [UnAuthorizationGuard],
-  },
+
   {
     path: 'sign-up2',
     component: SignUp2Component,

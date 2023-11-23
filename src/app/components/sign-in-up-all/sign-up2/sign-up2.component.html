@@ -1,17 +1,17 @@
-<p class="title">Sign up</p>
+<p class="title">{{HEADER}}</p>
 <div class="wrapper">
   <div class="all-blocks">
     <div class="block"  [routerLink]="['/sign-up-buddy_manual']">
-      <p class="subtitle">Buddy</p>
-      <p class="text">Volunteer from a student organization</p>
+      <p class="subtitle">{{BUDDY_TITLE}}</p>
+      <p class="text">{{BUDDY_TEXT}}</p>
     </div>
     <div class="block" [routerLink]="['/sign-up-student']">
-      <p class="subtitle" >Student</p>
-      <p class="text">A foreigner who studies at the HSE</p>
+      <p class="subtitle" >{{STUDENT_TITLE}}</p>
+      <p class="text">{{STUDENT_TEXT}}</p>
     </div>
   </div>
-  <p class="description">Select the profile type</p>
+  <p class="description">{{SELECT}}</p>
   <div class="button" >
-  <button class="btn btn-secondary"  [routerLink]="['']">Back</button>
+  <button class="btn btn-secondary"  [routerLink]="['']">{{GLOBAL_LOCALIZATION.BUTTON_BACK_LABEL}}</button>
   </div>
 </div>

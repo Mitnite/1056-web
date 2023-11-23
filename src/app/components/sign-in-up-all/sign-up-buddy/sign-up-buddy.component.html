@@ -1,5 +1,5 @@
 
-<p class="title">Personal information</p>
+<p class="title">{{HEADER}}</p>
 
 <div class="error" *ngIf="error">{{error}}</div>
 
@@ -7,29 +7,29 @@
 
 
   <div class="line">
-    <p class="text">Email</p>
-    <app-input [placeholder]="'Email'" [formControl]="myForm.controls.email" [tabIndex]="1"
+    <p class="text">{{PLACEHOLDER_LOCALIZATION.EMAIL}}</p>
+    <app-input [placeholder]="PLACEHOLDER_LOCALIZATION.EMAIL" [formControl]="myForm.controls.email" [tabIndex]="1"
                [rounded]="true"></app-input>
   </div>
 
   <div class="line">
-    <p class="text">Password</p>
-    <app-input [placeholder]="'Password'" [type]="typePassword" [tabIndex]="2"
+    <p class="text">{{PLACEHOLDER_LOCALIZATION.PASSWORD}}</p>
+    <app-input [placeholder]="PLACEHOLDER_LOCALIZATION.PASSWORD" [type]="PLACEHOLDER_LOCALIZATION.TYPE_PASSWORD" [tabIndex]="2"
                [formControl]="myForm.controls.password"></app-input>
   </div>
 
   <div class="line">
-    <p class="text">Given name</p>
-    <app-input [placeholder]="'First name'" [formControl]="myForm.controls.name" [tabIndex]="3"></app-input>
+    <p class="text">{{PLACEHOLDER_LOCALIZATION.STUDENT_NAME}}</p>
+    <app-input [placeholder]="PLACEHOLDER_LOCALIZATION.FIRST_NAME" [formControl]="myForm.controls.name" [tabIndex]="3"></app-input>
   </div>
 
   <div class="line">
-    <p class="text">Surname</p>
-    <app-input [placeholder]="'Last name'" [formControl]="myForm.controls.surname" [tabIndex]="4"></app-input>
+    <p class="text">{{PLACEHOLDER_LOCALIZATION.SURNAME}}</p>
+    <app-input [placeholder]="PLACEHOLDER_LOCALIZATION.LAST_NAME" [formControl]="myForm.controls.surname" [tabIndex]="4"></app-input>
   </div>
 
   <div class="line">
-    <p class="text">Gender</p>
+    <p class="text">{{PLACEHOLDER_LOCALIZATION.GENDER}}</p>
     <app-multi-select
       [collection]="genderCollection"
       [placeholder]=""
@@ -40,23 +40,23 @@
   </div>
 
   <div class="line">
-    <p class="text">Date of birth</p>
+    <p class="text">{{PLACEHOLDER_LOCALIZATION.DATE_OF_BIRTH}}</p>
     <app-date-picker [formControl]="myForm.controls.birthDate"></app-date-picker>
   </div>
 
   <div class="line">
-    <p class="text">Phone number</p>
+    <p class="text">{{PLACEHOLDER_LOCALIZATION.PHONE_NUMBER}}</p>
     <app-input
       [tabIndex]="5"
-      [placeholder]="'Phone number'"
+      [placeholder]="PLACEHOLDER_LOCALIZATION.PHONE_NUMBER"
       [formControl]="myForm.controls.phone"
-      [mask]="phoneMask"
-      [maskPrefix]="phonePrefix"
+      [mask]="PLACEHOLDER_LOCALIZATION.PHONE_MASK"
+      [maskPrefix]="PLACEHOLDER_LOCALIZATION.PHONE_PREFIX"
     ></app-input>
   </div>
 
   <div class="line">
-    <p class="text">Citizenship</p>
+    <p class="text">{{PLACEHOLDER_LOCALIZATION.CITIZENSHIP}}</p>
     <app-multi-select
       [collection]="citizenshipCollection"
       [placeholder]=""
@@ -69,7 +69,7 @@
 
 
   <div class="line">
-    <p class="text">Campus</p>
+    <p class="text">{{PLACEHOLDER_LOCALIZATION.CAMPUS}}</p>
     <app-multi-select
       [collection]="campusCollection"
       [placeholder]=""
@@ -80,7 +80,7 @@
   </div>
 
   <div class="line">
-    <p class="text">HSE Faculty</p>
+    <p class="text">{{PLACEHOLDER_LOCALIZATION.HSE_FACULTY}}</p>
     <app-multi-select
       [collection]="facultyCollection"
       [placeholder]=""
@@ -91,7 +91,7 @@
   </div>
 
   <div class="line">
-    <p class="text">Interest №1</p>
+    <p class="text">{{PLACEHOLDER_LOCALIZATION.INTEREST_1}}</p>
     <app-multi-select
       [collection]="tagCollection"
       [placeholder]=""
@@ -102,7 +102,7 @@
   </div>
 
   <div class="line">
-    <p class="text">Interest №2</p>
+    <p class="text">{{PLACEHOLDER_LOCALIZATION.INTEREST_2}}</p>
     <app-multi-select
       [collection]="tagCollection"
       [placeholder]=""
@@ -113,7 +113,7 @@
   </div>
 
   <div class="line">
-    <p class="text">Interest №3</p>
+    <p class="text">{{PLACEHOLDER_LOCALIZATION.INTEREST_3}}</p>
     <app-multi-select
       [collection]="tagCollection"
       [placeholder]=""
@@ -124,19 +124,19 @@
   </div>
 
   <div class="line">
-    <p class="text">About me</p>
-    <app-textarea [placeholder]="'Information about me'" [formControl]="myForm.controls.about"
+    <p class="text">{{PLACEHOLDER_LOCALIZATION.ABOUT}}</p>
+    <app-textarea [placeholder]="PLACEHOLDER_LOCALIZATION.MORE_INFORMATION" [formControl]="myForm.controls.about"
                   [tabIndex]="6"></app-textarea>
   </div>
 
   <div class="btn-container">
     <div class="button1">
-      <button class="btn btn-secondary" [routerLink]="['/sign-up2']">Back</button>
+      <button class="btn btn-secondary" [routerLink]="['/sign-up2']">{{GLOBAL_LOCALIZATION.BUTTON_BACK_LABEL}}</button>
     </div>
     <div class="button2">
 
-      <button class="btn btn-primary" *ngIf="!myForm.invalid">Next</button>
-      <button class="disabled" [disabled]="myForm.invalid" *ngIf="myForm.invalid">Next</button>
+      <button class="btn btn-primary" *ngIf="!myForm.invalid">{{GLOBAL_LOCALIZATION.BUTTON_NEXT_LABEL}}</button>
+      <button class="disabled" [disabled]="myForm.invalid" *ngIf="myForm.invalid">{{GLOBAL_LOCALIZATION.BUTTON_NEXT_LABEL}}</button>
     </div>
   </div>
 
