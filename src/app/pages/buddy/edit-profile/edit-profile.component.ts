@@ -23,12 +23,14 @@ export class EditProfileComponent implements OnInit {
 
   isShowPopUp = false;
 
+  isShowErrorPopup = false;
+
   protected readonly HEADER: string = 'Edit my profile';
   protected readonly POPUP_LOCALIZATION = POPUP_LOCALIZATION;
   protected readonly PLACEHOLDER_LOCALIZATION = PLACEHOLDER_LOCALIZATION;
   protected readonly GLOBAL_LOCALIZATION = GLOBAL_LOCALIZATION;
 
-  protected readonly genderCollection  = data.genderData;
+  protected readonly genderCollection = data.genderData;
   protected readonly campusCollection = data.campusData;
   protected readonly citizenshipCollection = data.citizenshipData;
   protected readonly tagCollection = data.tagData;
@@ -44,14 +46,14 @@ export class EditProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.getById(this.USER_ID)
-        .then((response) => {
-          this.buddyInfo = response;
-          this.gender = checkData.gender( this.buddyInfo.gender);
-          this.campus = checkData.campus( this.buddyInfo.campus);
-          this.tagName1 =  this.buddyInfo.tagList[0].name;
-          this.tagName2 =  this.buddyInfo.tagList[1].name;
-          this.tagName3 =  this.buddyInfo.tagList[2].name;
-        });
+      .then((response) => {
+        this.buddyInfo = response;
+        this.gender = checkData.gender(this.buddyInfo.gender);
+        this.campus = checkData.campus(this.buddyInfo.campus);
+        this.tagName1 = this.buddyInfo.tagList[0].name;
+        this.tagName2 = this.buddyInfo.tagList[1].name;
+        this.tagName3 = this.buddyInfo.tagList[2].name;
+      });
   }
 
   async onSubmit() {
@@ -67,10 +69,14 @@ export class EditProfileComponent implements OnInit {
       ]
     };
 
+
     this.authService.editBuddy(this.buddyInfo)
-        .then(() => {
-          this.router.navigate(['/buddy/profile']);
-        });
+      .then(() => {
+        this.router.navigate(['/buddy/profile']);
+      })
+      .catch(() => {
+        this.isShowErrorPopup = true;
+      });
   }
 }
 

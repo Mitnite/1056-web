@@ -37,20 +37,26 @@
   display: none;
 }
 
-.header-links:hover .profileContainer, .profileContainer:hover{
+.header-links:hover .profileContainer, .profileContainer:hover {
   z-index: 1005;
   position: absolute;
   right: 15px;
   top: 56px;
   display: block;
   width: 340px;
-  height: 189px;
   border-radius: 4px;
   background: var(--surface-light, #FFF);
   box-shadow: 0 1px 12px 0 rgba(106, 122, 152, 0.12);
 }
 
-.profileContent{
+.change-button {
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.profileContent {
   display: flex;
   justify-content: left;
   align-items: center;
@@ -58,7 +64,7 @@
   border-bottom: 1px solid #EDEFF3;
 }
 
-.profileRole{
+.profileRole {
   font-family: $hse-font-family-alt-lt;
   font-size: 12px;
   font-style: normal;
@@ -68,7 +74,7 @@
 
 }
 
-.btn-logout{
+.btn-logout {
   display: flex;
   justify-content: left;
   margin-left: 24px;

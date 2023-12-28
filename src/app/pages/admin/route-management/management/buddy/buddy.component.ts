@@ -18,6 +18,8 @@ export class AllBuddiesComponent {
 
     buddyInfo: EditBuddy | null = null;
 
+    search: string | null = null;
+
     @ViewChild('buddyTable') userTable: ElementRef;
 
     protected readonly HEADER: string = 'All buddies';

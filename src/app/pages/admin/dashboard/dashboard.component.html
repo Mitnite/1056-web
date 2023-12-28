@@ -1,9 +1,18 @@
 <p class="title">{{HEADER}}</p>
 
-<div>
+<div *ngIf="!students">
+  <app-loader></app-loader>
+</div>
+
+<div *ngIf="students">
+
+  <ng-container *ngIf="students.length === 0">
+    <div class="error-title">{{PLACEHOLDER_LOCALIZATION.NO_STUDENTS_MESSAGE}}</div>
+  </ng-container>
+
   <div class="wrapper">
     <div class="column" *ngFor="let student of students; let i = index">
-      <div class="card">
+      <div class="card" (click)="onInfoStudent(student)">
         <div class="one-line">
           <div class="icon">
             <app-icon name="person"></app-icon>
@@ -46,5 +55,8 @@
 	<button class="btn btn-secondary btn-close" (click)="isShowTable=false">{{GLOBAL_LOCALIZATION.BUTTON_CLOSE_LABEL}}</button>
 </div>
 
+<ng-container *ngIf="isShowErrorPopup">
+  <error-message-popup (deny)="isShowErrorPopup = false"></error-message-popup>
+</ng-container>
 
 

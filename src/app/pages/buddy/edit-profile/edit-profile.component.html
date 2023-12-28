@@ -9,10 +9,12 @@
     <p class="text">{{PLACEHOLDER_LOCALIZATION.STUDENT_NAME}}</p>
     <app-input [placeholder]="PLACEHOLDER_LOCALIZATION.FIRST_NAME" [(ngModel)]=buddyInfo.name></app-input>
   </div>
+
   <div class="line">
     <p class="text">{{PLACEHOLDER_LOCALIZATION.SURNAME}}</p>
     <app-input [placeholder]="PLACEHOLDER_LOCALIZATION.LAST_NAME" [(ngModel)]="buddyInfo.surname"></app-input>
   </div>
+
   <div class="line">
     <p class="text">{{PLACEHOLDER_LOCALIZATION.GENDER}}</p>
     <app-multi-select
@@ -23,10 +25,12 @@
       [(ngModel)]="gender">
     </app-multi-select>
   </div>
+
   <div class="line">
     <p class="text">{{PLACEHOLDER_LOCALIZATION.DATE_OF_BIRTH}}</p>
     <app-date-picker [(ngModel)]="buddyInfo.birthDate"></app-date-picker>
   </div>
+
   <div class="line">
     <p class="text">{{PLACEHOLDER_LOCALIZATION.PHONE_NUMBER}}</p>
     <app-input
@@ -37,10 +41,6 @@
     ></app-input>
   </div>
 
-  <div class="line">
-    <p class="text">{{PLACEHOLDER_LOCALIZATION.EMAIL}}</p>
-    <app-input [placeholder]="PLACEHOLDER_LOCALIZATION.EMAIL" [(ngModel)]=buddyInfo.email></app-input>
-  </div>
 
   <div class="line">
     <p class="text">{{PLACEHOLDER_LOCALIZATION.CITIZENSHIP}}</p>
@@ -125,3 +125,7 @@
 
 <span *ngIf="isShowPopUp"><app-popup (deny)="isShowPopUp = false" (accept)="onSubmit()"
                                      [title]="POPUP_LOCALIZATION.UPDATE_POPUP"></app-popup></span>
+
+<ng-container *ngIf="isShowErrorPopup">
+  <error-message-popup (deny)="isShowErrorPopup = false; this.isShowPopUp = false;"></error-message-popup>
+</ng-container>

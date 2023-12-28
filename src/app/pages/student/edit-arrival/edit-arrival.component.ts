@@ -20,7 +20,7 @@ export class EditArrivalComponent implements OnInit {
     arrivalDate: string | null = null;
     arrivalTime: string | null = null;
     residencePlace: string | null = null;
-
+    isShowErrorPopup = false;
     protected readonly TITLE = POPUP_LOCALIZATION.UPDATE_POPUP;
     protected readonly residenceCollection = data.residenceData;
     protected readonly HEADER: string = 'Edit my arrival & residence';
@@ -52,6 +52,7 @@ export class EditArrivalComponent implements OnInit {
     }
 
     onSubmit() {
+        this.isShowPopUp = false;
         const time = this.arrivalTime.replace(':', '').split('');
         this.studentInfo = {
             ...this.studentInfo,
@@ -61,6 +62,7 @@ export class EditArrivalComponent implements OnInit {
         this.authService.editStudentArrival(this.studentInfo)
             .then(() => {
                 this.router.navigate(['/foreign_student/profile']);
-            });
+            })
+          .catch(() => this.isShowErrorPopup = true);
     }
 }

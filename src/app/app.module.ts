@@ -57,6 +57,7 @@ import { BuddyInfoComponent } from './components/buddy-info/buddy-info.component
 import { StudentsReviewComponent } from './components/students-review/students-review.component';
 import { AuthorizationGuard, UnAuthorizationGuard } from './authorization.guard';
 import { LoaderComponent } from './components/loader/loader.component';
+import { ErrorMessagePopupComponent } from './components/error-message-popup/error-message-popup.component';
 
 
 @NgModule({
@@ -103,24 +104,26 @@ import { LoaderComponent } from './components/loader/loader.component';
     StudentInfoComponent,
     BuddyInfoComponent,
     StudentsReviewComponent,
-
+    ErrorMessagePopupComponent,
   ],
-    imports: [
-        BrowserModule,
-        HttpClientModule,
-        AppRoutingModule,
-        SharedModule,
-        BrowserAnimationsModule,
-        ReactiveFormsModule,
-        MatDialogModule,
-        LeftMenuModule,
-        FormsModule,
-        LeftMenuBuddyModule,
-        CookieModule.withOptions(),
-        LeftMenuAdminModule,
-        SlickCarouselModule,
-        LoaderComponent,
-    ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    SharedModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    LeftMenuModule,
+    FormsModule,
+    LeftMenuBuddyModule,
+    CookieModule.withOptions(),
+    LeftMenuAdminModule,
+    SlickCarouselModule,
+    LoaderComponent,
+  ],
+  exports: [
+  ],
   providers: [
     {
       provide: APP_INITIALIZER,

@@ -1,7 +1,11 @@
 <p class="title">{{MY_STUDENTS_LOCALIZATION.HEADER}}</p>
 
+<div *ngIf="!students">
+  <app-loader></app-loader>
+</div>
 
-<div class="myStudentContainer">
+
+<div class="myStudentContainer" *ngIf="students">
 
     <ng-container *ngIf="!findStudents('matched') && !findStudents('met')">
         <div class="subtitle">{{MY_STUDENTS_LOCALIZATION.EMPTY_STUDENTS}}</div>
@@ -20,7 +24,7 @@
 
                             <div class="messageMeetingTitle">{{MY_STUDENTS_LOCALIZATION.MESSAGE_MEETING_TEXT}}</div>
 
-                            <div class="card">
+                            <div class="card" (click)="onInfoStudent(student)">
                                 <div class="one-line">
                                     <div class="icon">
                                         <app-icon name="person"></app-icon>
@@ -50,10 +54,10 @@
                     </ng-container>
 
 
-                    <ng-container *ngIf="student.foreignStudent.isMatched === 'matched' && date[i] > currentDate">
+                    <ng-container *ngIf="student.foreignStudent.isMatched === 'matched'">  <!--&& date[i] > currentDate-->
 
                             <div class="column">
-                                <div class="card">
+                                <div class="card" (click)="onInfoStudent(student)">
                                     <div class="one-line">
                                         <div class="icon">
                                             <app-icon name="person"></app-icon>
@@ -98,7 +102,7 @@
                 <ng-container *ngFor="let student of students; let i = index">
                     <ng-container *ngIf="student.foreignStudent.isMatched === 'met'">
                         <div class="column">
-                            <div class="card">
+                            <div class="card" (click)="onInfoStudent(student)">
                                 <div class="one-line">
                                     <div class="icon">
                                         <app-icon name="person"></app-icon>
@@ -150,6 +154,10 @@
 
     </div>
 </div>
+
+<ng-container *ngIf="isShowErrorPopup">
+  <error-message-popup (deny)="isShowErrorPopup = false; this.isShowPopUp = false;"></error-message-popup>
+</ng-container>
 
 
 

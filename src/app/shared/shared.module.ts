@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppHeaderComponent } from './header/header.component';
 import { AppFooterComponent } from './footer/footer.component';
 import { AppInputComponent } from './components/ui/app-input/app-input.component';
@@ -19,9 +19,11 @@ import { AppDatePickerComponent } from './components/ui/app-date-picker/app-date
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { NgxMaskModule } from 'ngx-mask';
 import { AutoHeightDirective } from '@shared/directives/autoheight.directive';
+import { UpdatePasswordPopupComponent } from '../components/update-password-popup/update-password-popup.component';
 
 const declarations = [
   AppHeaderComponent,
+  UpdatePasswordPopupComponent,
   AppFooterComponent,
   AppInputComponent,
   AppIconComponent,
@@ -43,6 +45,8 @@ const declarations = [
     CommonModule,
     FormsModule,
     RouterLink,
+    ReactiveFormsModule,
+    FormsModule,
     MatSlideToggleModule,
     MatMenuModule,
     MatProgressBarModule,

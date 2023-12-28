@@ -1,5 +1,4 @@
-
-<div class="header-placement"  >
+<div class="header-placement">
   <a>
     <app-icon name="logo-en" (click)="isShowProfile ? onLogoClick() : undefined"></app-icon>
   </a>
@@ -17,13 +16,28 @@
       <img *ngIf="gender === 'female'" src="assets/icons/avatar_female.svg" width="65">
       <img *ngIf="gender === 'male'" src="assets/icons/avatar-male.svg" width="65">
       <div style="margin-left: 16px">
-        <div>{{name}} {{surname}}</div>
-        <div class="profileRole">{{role}}</div>
+        <div>{{ name }} {{ surname }}</div>
+        <div class="profileRole">{{ role }}</div>
       </div>
     </div>
 
-    <a class="btn btn-secondary btn-logout" (click)="logout()"> <app-icon name="exit"></app-icon>Log out</a>
+    <div class="change-button">
+      <button class="btn btn-secondary btn-logout" (click)="isShowChangePasswordPopup = true">
+        <app-icon name="edit"></app-icon>
+        &nbsp;Change password
+      </button>
+
+      <a class="btn btn-secondary btn-logout" (click)="logout()">
+        <app-icon name="exit"></app-icon>
+        &nbsp;Log out</a>
+
+    </div>
+
 
   </div>
 </div>
+
+<ng-container *ngIf="isShowChangePasswordPopup">
+  <update-password-popup (deny)="isShowChangePasswordPopup = false"></update-password-popup>
+</ng-container>
 

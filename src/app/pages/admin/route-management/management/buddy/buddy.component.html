@@ -9,15 +9,9 @@
 
 
 <div class="wrapper">
-    <!--  <app-multi-select
-        [collection]="nameCollection"
-        [isMulti]="false"
-        [showSearchInput]="false"
-        placeholder="Enter the value"
-        [(ngModel)]="name"
-        style="width: 600px">
-      </app-multi-select>-->
-    <app-input placeholder="Enter the value" style="width: 620px" [disabled]="true"></app-input>
+
+    <app-input placeholder="Enter the value" [(ngModel)]="search" style="width: 620px" ></app-input>
+
     <div>
         <button style="margin: 0 15px" class="btn btn-secondary" (click)="isEdit = !isEdit">
             {{!isEdit ? GLOBAL_LOCALIZATION.BUTTON_EDIT_LABEL : GLOBAL_LOCALIZATION.BUTTON_CANSEL_LABEL}}
@@ -34,7 +28,10 @@
 </div>
 
 <div class="wrapper-table" #buddyTable>
-    <app-buddy-table [isEmail]="true" (reload)="reloadHandler($event)" [isArchive]="isArchive"
+    <app-buddy-table [isEmail]="true"
+                     [search]="search"
+                     (reload)="reloadHandler($event)"
+                     [isArchive]="isArchive"
                      [isEdit]="isEdit"></app-buddy-table>
 </div>
 

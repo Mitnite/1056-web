@@ -47,3 +47,7 @@
 </div>
 
 <span *ngIf="isShowPopUp"><app-popup (deny)="isShowPopUp = false" (accept)="onSubmit()" [title]="TITLE"></app-popup></span>
+
+<ng-container *ngIf="isShowErrorPopup">
+  <error-message-popup (deny)="isShowErrorPopup = false; this.isShowPopUp = false;"></error-message-popup>
+</ng-container>

@@ -16,7 +16,7 @@ export class AllStudentsComponent {
     isDelete = false;
     addToArchive = false;
     studentInfo: EditStudent | null = null;
-
+    search: string | null = null;
 
     @ViewChild('internationalStudentTable') userTable: ElementRef;
 

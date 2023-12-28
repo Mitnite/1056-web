@@ -1,5 +1,9 @@
 <p class="title">{{STUDENT_DASHBOARD_LOCALIZATION.HEADER}}</p>
 
+<ng-container *ngIf="!status">
+  <app-loader></app-loader>
+</ng-container>
+
 <div class="tags">
   <div *ngIf="status === 'searching'" class="main">
     <div class="icon">
@@ -92,7 +96,11 @@
       </div>
 
       <div class="leaveReviewInput">
-        <app-textarea [disabled]="false" [width]=450 [resize]="150" [placeholder]="STUDENT_DASHBOARD_LOCALIZATION.LEAVE_REVIEW_PLACEHOLDER"></app-textarea>
+        <app-textarea [disabled]="false"
+                      [width]=450 [resize]="150"
+                      [(ngModel)]="reviewText"
+                      [placeholder]="STUDENT_DASHBOARD_LOCALIZATION.LEAVE_REVIEW_PLACEHOLDER">
+        </app-textarea>
 
       </div>
 
@@ -141,4 +149,8 @@
 
   </app-student-info>
 
+</ng-container>
+
+<ng-container *ngIf="isShowErrorPopup">
+  <error-message-popup (deny)="isShowErrorPopup = false; this.isAcceptMessage = false;"></error-message-popup>
 </ng-container>

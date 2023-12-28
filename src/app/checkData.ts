@@ -48,16 +48,16 @@ export const checkData = {
   },
 
   localGroupDB(localGroupName: string) {
-    switch (localGroupName) {
-      case 'Exchange':
+    switch (localGroupName.toLowerCase().split(' ').join('')) {
+      case 'exchange':
         return  'EXCHANGE_INTERNATIONAL_STUDENT';
-      case 'Full degree':
+      case 'fulldegree':
         return  'FULL_DEGREE_INTERNATIONAL_STUDENT';
-      case 'Prep year':
+      case 'prepyear':
         return  'PREP_YEAR_STUDENT';
-      case 'Short term':
+      case 'shortterm':
         return  'SHORT_TERM_STUDENT';
-      case 'Researh':
+      case 'researh':
         return  'RESEARCH';
       default:
         return '';

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User, SignBuddy, SignStudent, EditBuddy, EditStudent, EditStudentArrival } from '../interfaces';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { firstValueFrom, Observable, tap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
 import { Session } from '@core/session-store/session.interface';
 import { CookieService } from 'ngx-cookie';
 
@@ -9,7 +9,7 @@ import { CookieService } from 'ngx-cookie';
   providedIn: 'root'
 })
 export class AuthService {
-  private USER_ID;
+  private readonly USER_ID: string;
 
   constructor(private http: HttpClient, private cookieService: CookieService) {
     this.USER_ID = cookieService.get('user-id');

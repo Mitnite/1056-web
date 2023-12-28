@@ -3,11 +3,16 @@ import { SessionStoreService } from '@core/session-store/session-store.service';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
 import { AuthService } from '@core/auth.service';
+import { GLOBAL_LOCALIZATION } from '../../config/constants';
+import { NgIf } from '@angular/common';
+import { SharedModule } from '@shared/shared.module';
+import { AppModule } from '../../app.module';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
+
 })
 export class AppHeaderComponent implements OnInit {
   name = '';
@@ -16,7 +21,8 @@ export class AppHeaderComponent implements OnInit {
   routerLink = '';
   isShowProfile = false;
   gender = '';
-  private USER_ID;
+  isShowChangePasswordPopup = false;
+  private USER_ID: string;
 
   constructor(private authService: AuthService, private sessionStore: SessionStoreService, private router: Router, private cookieService: CookieService) {
   }
@@ -32,7 +38,7 @@ export class AppHeaderComponent implements OnInit {
 
   }
 
-  setRole(role) {
+  setRole(role: string) {
     if (role.toUpperCase() === 'ROLE_VOLUNTEER') {
       this.role = 'Buddy';
       this.routerLink = '/buddy/dashboard';
